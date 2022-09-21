@@ -59,9 +59,13 @@ nav a .material-icons-outlined:hover {
 
 /* Corousel */
 /* Hero */
+
+.wrapper-hero {
+	height: 100vh;
+}
 .hero {
 	position: absolute;
-	top: -5%;
+	top: -8%;
 	overflow: hidden;
 }
 
@@ -87,7 +91,7 @@ nav a .material-icons-outlined:hover {
 .hero .row .content h1 {
 	line-height: 1.2;
 	font-size: 3rem;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .hero .row .content span {
@@ -190,4 +194,36 @@ nav a .material-icons-outlined:hover {
 
 .arrows .carousel-control-next .material-icons-outlined {
 	right: 20px;
+}
+
+/* title */
+.title h2::before {
+	position: absolute;
+	content: "";
+	width: 4px;
+	height: 50px;
+	background-color: var(--background-color);
+	left: -20px;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+/* collections */
+
+.active-filter-btn {
+	background-color: var(--background-color) !important;
+	color: var(--button-color) !important;
+	border-color: var(--background-color) !important;
+}
+.filter-button-group .btn:hover {
+	color: var(--button-color) !important;
+}
+.collection-img span {
+	top: 20px;
+	right: 20px;
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
 }
