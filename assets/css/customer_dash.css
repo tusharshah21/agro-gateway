@@ -213,3 +213,11 @@ nav a .material-icons-outlined:hover {
 	height: 46px;
 	border-radius: 50%;
 }
+
+.collection-img img {
+	transition: all 500ms ease-in-out;
+}
+
+.collection-img img:hover {
+	transform: scale(1.2);
+}
