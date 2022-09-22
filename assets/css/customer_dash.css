@@ -7,18 +7,10 @@
 	--primary-color: #eae509;
 }
 
-/* * {
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-} */
-*,
-*::before,
-*::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: inherit;
-	font-size: 16px;
 }
 
 body,
@@ -57,7 +49,7 @@ nav a .material-icons-outlined:hover {
 	color: #2b7a0b;
 }
 
-/* Corousel */
+/* Carousel */
 /* Hero */
 
 .wrapper-hero {
@@ -67,12 +59,6 @@ nav a .material-icons-outlined:hover {
 	position: absolute;
 	top: -8%;
 	overflow: hidden;
-}
-
-.carousel,
-.hero .row {
-	width: 100%;
-	height: 100%;
 }
 
 .hero .row img {
@@ -193,7 +179,7 @@ nav a .material-icons-outlined:hover {
 }
 
 .arrows .carousel-control-next .material-icons-outlined {
-	right: 20px;
+	right: 30px;
 }
 
 /* title */
