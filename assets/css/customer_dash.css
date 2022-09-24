@@ -418,3 +418,139 @@ nav a .material-icons-outlined:hover {
 	transform: translate(20%, 0%);
 	visibility: visible;
 }
+
+/* ADVERTS */
+/* .advert .advert-layout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3rem;
+} */
+
+.advert-layout .item {
+	position: relative;
+	/* z-index: 0; */
+	width: 100%;
+	overflow: hidden;
+}
+
+.advert-layout img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	transition: all 300ms ease-in-out;
+}
+
+.advert-layout .content {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+}
+
+.advert-layout .left {
+	right: 10%;
+}
+
+.advert-layout .right {
+	left: 10%;
+}
+
+.advert-layout .content span {
+	display: block;
+	margin-bottom: 1rem;
+	transition: all 300ms ease-in-out;
+}
+
+.advert-layout .content h3 {
+	font-size: 1.6rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	transition: all 300ms ease-in-out;
+}
+
+.advert-layout .content a {
+	transition: all 300ms ease-in-out;
+	text-decoration: none;
+}
+
+.advert-layout .content a:hover {
+	color: var(--primary);
+}
+
+.advert-layout .item::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: all 300ms ease-in-out;
+}
+
+.advert-layout .item:hover::after {
+	background-color: rgba(74, 223, 82, 0.4);
+}
+
+.advert-layout .item:hover .content {
+	color: var(--white);
+}
+
+.advert-layout .item:hover .content a {
+	color: var(--white);
+}
+
+.advert-layout .item:hover img {
+	transform: scale(1.1);
+}
+
+/* About */
+#about {
+	background-color: #867f7f0a;
+}
+
+/* Counter */
+.counter {
+	content: "";
+	height: 100px;
+	background-color: #2a7a0b59;
+}
+
+/* newsletter */
+#newsletter {
+	background-color: rgba(179, 179, 179, 0.05);
+}
+#newsletter p {
+	max-width: 600px;
+}
+#newsletter .input-group {
+	max-width: 500px;
+}
+#newsletter .form-control {
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+#newsletter .btn {
+	background-color: #5bb318;
+	color: #fff;
+	border-color: #2b7a0b;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+}
+#newsletter .btn:hover {
+	background-color: #000;
+	border-color: #000;
+}
+
+/* footer */
+footer .brand {
+	letter-spacing: 10px;
+	font-size: 2rem;
+}
+footer a {
+	-webkit-transition: color 0.3s ease;
+	-o-transition: color 0.3s ease;
+	transition: color 0.3s ease;
+}
+footer a:hover {
+	color: #7dce13 !important;
+}
