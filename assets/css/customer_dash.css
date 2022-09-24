@@ -239,8 +239,8 @@ nav a .material-icons-outlined:hover {
 	font-weight: 600;
 }
 .offers-content h2 {
-	font-size: 4rem;
-	color: #eae509;
+	font-size: 5rem;
+	color: #ffffff;
 
 	/* font-family: var(--lg-font); */
 }
@@ -345,7 +345,7 @@ nav a .material-icons-outlined:hover {
 .product .bottom a {
 	margin-bottom: 1rem;
 	/* font-weight: inherit; */
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 
 .product .bottom a:hover {
@@ -354,11 +354,11 @@ nav a .material-icons-outlined:hover {
 
 .product .bottom span {
 	color: #2b7a0b;
-	font-size: 1.8rem;
+	font-size: 1.2rem;
 }
 
 .product .bottom .cancel {
-	font-size: 1.4rem;
+	font-size: 1rem;
 	color: var(--grey2);
 	text-decoration: line-through;
 }
@@ -367,6 +367,7 @@ nav a .material-icons-outlined:hover {
 	position: absolute;
 	right: 0;
 	bottom: 0.6rem;
+	font-size: 1.2rem;
 	background-color: white;
 	border-radius: 50%;
 	padding: 0.8rem 0.8rem;
@@ -400,7 +401,7 @@ nav a .material-icons-outlined:hover {
 }
 
 .product .side-icons span {
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	background-color: var(--white);
 	margin: 0.1rem;
 	padding: 0.5rem 0.5rem;
