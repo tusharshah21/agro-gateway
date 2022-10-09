@@ -19,11 +19,17 @@
 		<!--==================== Header Section ======================= -->
 
 		<header class="d-flex align-items-center header">
-			<div class="d-flex align-items-center justify-content-between w-25">
+			<div class="d-flex align-items-center justify-content-between logo-div">
 				<a href="#" class="navbar-brand me-5">
 					<img src="/assets/images/logo.png" alt="" class="logo" />
 				</a>
-				<span class="material-icons-outlined ms-5 icon"> menu </span>
+				<span
+					class="material-icons-outlined ms-5 icon btn"
+					onclick="openNav();
+					closeNav()"
+				>
+					menu
+				</span>
 			</div>
 			<!-- end of logo -->
 
@@ -304,10 +310,58 @@
 		</header>
 		<!-- End Header -->
 
-		<!--========================== Aside Section============================ -->
-		<aside></aside>
+		<!--================================================ Aside Section======================================================== -->
+		<aside class="sidebar" id="sidebar">
+			<ul class="nav nav-pills flex-column mb-auto ms-2">
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> speed </span>
+					<a href="" class="nav-link">Dashboard</a>
+				</li>
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> group </span>
+
+					<a href="" class="nav-link">Members</a>
+				</li>
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> app_registration </span>
+
+					<a href="" class="nav-link">Registration</a>
+				</li>
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> inventory_2 </span>
+
+					<a href="" class="nav-link">Products</a>
+				</li>
+				<hr />
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> supervised_user_circle </span>
+
+					<a href="" class="nav-link">Customers</a>
+				</li>
+				<li class="d-flex align-items-center nav-item">
+					<span class="material-icons-outlined ms-3"> chat </span>
+
+					<a href="" class="nav-link">Messages</a>
+				</li>
+			</ul>
+		</aside>
+
+		<!-- Body -->
+		<div id="main">...</div>
 
 		<!-- Bootstrap Js -->
 		<script src="/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+		<script>
+			function openNav() {
+				document.getElementById("sidebar").style.width = "250px";
+				document.getElementById("main").style.marginLeft = "250px";
+			}
+
+			/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+			function closeNav() {
+				document.getElementById("sidebar").style.width = "0";
+				document.getElementById("main").style.marginLeft = "0";
+			}
+		</script>
 	</body>
 </html>
