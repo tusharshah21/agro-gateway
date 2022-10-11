@@ -1,21 +1,28 @@
 const express = require("express");
 const path = require("path");
 
-// Apps
+// ====================================== Apps =====================================================
 const app = express();
 
-// Configurations
+// ========================================= Configurations ============================================
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-// Middleware
+// ============================================ Middleware ================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public/images", express.static(__dirname + "/public/images"));
 
-// Routes
+// ======================================== Routes ====================================================
+
+// login
 app.get("/login", (req, res) => {
 	res.render("login");
+});
+
+// ao registration page
+app.get("/registration", (req, res) => {
+	res.render("ao/registration");
 });
 
 // 404 routing
@@ -25,5 +32,5 @@ app.get("*", (req, res) => {
 	);
 });
 
-// Server
+// ============================================= Server ======================================================
 app.listen(3000, console.log("Listening on port 3000!!"));
