@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	--main-text-color: rgba(0, 0, 0, 0.8);
+	--background-color: #2b7a0b;
+	--button-color: #5bb318;
+	--secondary-color: #7dce13;
+	--primary-color: #eae509;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Poppins;
+	font-size: 16px;
+}
+
+body {
+	color: var(--main-text-color);
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* ============================================ HEADER SECTION ================================ */
+.header {
+	background-color: white;
+}
+.logo-div {
+	width: 17%;
+}
+.logo {
+	height: 2rem;
+}
+
+.search form {
+	height: 2rem;
+}
+
+.search input {
+	font-size: 0.8rem;
+}
+
+.search button {
+	font-size: 0.8rem;
+	color: var(--button-color);
+	border-color: var(--button-color);
+}
+
+.nav-link {
+	color: var(--background-color);
+}
+
+/* Notifications */
+.dropdown {
+	border: none;
+}
+.dropdown li {
+	font-size: 0.8rem;
+}
+
+.dropdown li a {
+	font-size: 0.8rem;
+}
+
+.dropdown li h4 {
+	font-size: 1rem;
+	color: black;
+}
+
+.dropdown li p {
+	font-size: 0.7rem;
+	color: var(--main-text-color);
+	margin: 0;
+}
+
+.notification-item {
+	padding: 0.4rem;
+}
+
+.notification-item:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.notification-item span {
+	margin: 1rem;
+	/* font-size: 1.5rem; */
+}
+
+.dropdown-footer {
+	text-align: center;
+}
+
+/* Messages */
+.message-item {
+	padding: 0.4rem;
+}
+
+.message-item:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.message-item img {
+	height: 2.5rem;
+	margin-right: 0.7rem;
+}
+
+.message-item a {
+	text-decoration: none;
+}
+
+/* Profile */
+.dropdown-item span {
+	font-size: 0.9rem;
+	margin-right: 0.5rem;
+}
+
+.dropdown-item:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dropdown-item .material-icons-outlined {
+	font-size: 1.5rem;
+}
+
+/* =========================================== Aside =================================================================== */
+/* Side bar */
+.sidebar {
+	background-color: white;
+	width: 18%;
+	height: 100vh;
+	/* margin-top: 4rem; */
+	/* position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	transition: 0.5s; */
+}
+
+.sidebar li {
+	/* padding: 0.5rem; */
+}
+
+.sidebar li:hover {
+	background-color: aqua;
+	border-radius: 10px;
+}
+
+/* main */
+#main {
+	transition: margin-left 0.5s;
+	padding: 16px;
+}

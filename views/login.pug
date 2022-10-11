@@ -1,0 +1,67 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Sign in &amp; Sign up Form
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css')
+    link(rel='stylesheet' href='/css/login_form.css')
+.container
+    .forms-container
+        .signin-signup
+            form.sign-in-form(action='#')
+                h2.title Ufarm Market
+                .input-field
+                    i.fas.fa-user
+                    input(type='text' placeholder='Username')
+                .input-field
+                    i.fas.fa-lock
+                    input(type='password' placeholder='Password')
+                input.btn.solid(type='submit' value='Login')
+                p.social-text Or Sign in with social platforms
+                .social-media
+                    a.social-icon(href='#')
+                        i.fab.fa-facebook-f
+                    a.social-icon(href='#')
+                        i.fab.fa-twitter
+                    a.social-icon(href='#')
+                        i.fab.fa-google
+                    a.social-icon(href='#')
+                        i.fab.fa-linkedin-in
+            form.sign-up-form(action='#')
+                h2.title Ufarm Market
+                .input-field
+                    i.fas.fa-user
+                    input(type='text' placeholder='Username')
+                .input-field
+                    i.fas.fa-envelope
+                    input(type='email' placeholder='Email')
+                .input-field
+                    i.fas.fa-lock
+                    input(type='password' placeholder='Password')
+                input.btn(type='submit' value='Sign up')
+                p.social-text Or Sign up with social platforms
+                .social-media
+                    a.social-icon(href='#')
+                        i.fab.fa-facebook-f
+                    a.social-icon(href='#')
+                        i.fab.fa-twitter
+                    a.social-icon(href='#')
+                        i.fab.fa-google
+                    a.social-icon(href='#')
+                        i.fab.fa-linkedin-in
+    .panels-container
+        .panel.left-panel
+            .content
+                h3 New here ?
+                p Sign Up now to start enjoying the Ufarm online Market
+                button#sign-up-btn.btn.transparent Sign up
+            img.image(src='/images/woman.png' alt='')
+        .panel.right-panel
+            .content
+                h3 One of us ?
+                p
+                    | Sign In with your account details to continue shopping with in the Ufarm
+                    | Market
+                button#sign-in-btn.btn.transparent Sign in
+            img.image(src='/images/basket.png' alt='')
+script(src='/js/login_form.js')
