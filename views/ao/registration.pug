@@ -1,270 +1,74 @@
-doctype html
-head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Dashboard - Agricultural Officer
-    // Bootstrap
-    link(rel='stylesheet' href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css")
-    // Custom CSS
-    link(rel='stylesheet' href='/css/ao.css')
-    link(rel='stylesheet' href='/css/registration_page.css')
-    // google material icons cdn -
-    link(href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' rel='stylesheet')
-// ==================== Header Section =======================
-header.d-flex.align-items-center.header
-    .d-flex.align-items-center.justify-content-between.logo-div
-        a.navbar-brand.me-5(href='#')
-            img.logo(src='/images/logo.png' alt='')
-        //
-            <button
-            class="btn"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-            ></button>
-        span.material-icons-outlined.btn.btn-outline-success.ms-5.icon(type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasExample' aria-controls='offcanvasExample')
-            | menu
-    // end of logo
-    .search.ms-3
-        form.d-flex
-            input.form-control.me-2(type='search' placeholder='Search' aria-label='Search')
-            button.btn.btn-outline-success(type='submit') Search
-    // end of search
-    .ms-auto
-        nav.navbar.navbar-expand
-            ul.navbar-nav
-                li.nav-item.dropdown
-                    a.nav-link(href='#' data-bs-toggle='dropdown')
-                        span.material-icons-outlined.icon  notifications 
-                    ul.dropdown-menu.dropdown-menu-end.dropdown
-                        li.dropdown-header
-                            | You have 4 new notifications
-                            a(href='#')
-                                span.badge.rounded-pill.bg-primary.p-2.ms-2 View all
-                        li
-                            hr.dropdown-divider
-                        li.notification-item.d-flex.align-items-center.justify-content-center
-                            span.material-icons-outlined.text-warning
-                                | error_outline
-                            div
-                                h4 Lorem Ipsum
-                                p Quae dolorem earum veritatis oditseno
-                                p 30 min. ago
-                        li
-                            hr.dropdown-divider
-                        li.notification-item.d-flex.align-items-center.justify-content-center
-                            span.material-icons-outlined.text-danger
-                                | cancel
-                            div
-                                h4 Atque rerum nesciunt
-                                p Quae dolorem earum veritatis oditseno
-                                p 1 hr. ago
-                        li
-                            hr.dropdown-divider
-                        li.notification-item.d-flex.align-items-center.justify-content-center
-                            span.material-icons-outlined.text-success
-                                | check_circle
-                            div
-                                h4 Sit rerum fuga
-                                p Quae dolorem earum veritatis oditseno
-                                p 2 hrs. ago
-                        li
-                            hr.dropdown-divider
-                        li.notification-item.d-flex.align-items-center.justify-content-center
-                            span.material-icons-outlined.text-primary  info 
-                            div
-                                h4 Dicta reprehenderit
-                                p Quae dolorem earum veritatis oditseno
-                                p 4 hrs. ago
-                        li
-                            hr.dropdown-divider
-                        li.dropdown-footer
-                            a(href='#') Show all notifications
-                    // End Notification Dropdown Items
-                    // end of notifications
-                    li.nav-item.dropdown
-                        a.nav-link(href='#' data-bs-toggle='dropdown')
-                            span.material-icons-outlined.icon  chat 
-                        ul.dropdown-menu.dropdown-menu-end.dropdown
-                            li.dropdown-header
-                                | You have 3 new messages
-                                a(href='#')
-                                    span.badge.rounded-pill.bg-primary.p-2.ms-2 View all
-                            li
-                                hr.dropdown-divider
-                            li.message-item
-                                a.d-flex(href='#')
-                                    img.rounded-circle(src='/images/messages-1.jpg' alt='')
-                                    div
-                                        h4 Maria Hudson
-                                        p
-                                            | Velit asperiores et ducimus soluta repudiandae
-                                            | labore officia est ut...
-                                        p 4 hrs. ago
-                            li
-                                hr.dropdown-divider
-                            li.message-item
-                                a.d-flex(href='#')
-                                    img.rounded-circle(src='/images/messages-2.jpg' alt='')
-                                    div
-                                        h4 Anna Nelson
-                                        p
-                                            | Velit asperiores et ducimus soluta repudiandae
-                                            | labore officia est ut...
-                                        p 6 hrs. ago
-                            li
-                                hr.dropdown-divider
-                            li.message-item
-                                a.d-flex(href='#')
-                                    img.rounded-circle(src='/images/messages-3.jpg' alt='')
-                                    div
-                                        h4 David Muldon
-                                        p
-                                            | Velit asperiores et ducimus soluta repudiandae
-                                            | labore officia est ut...
-                                        p 8 hrs. ago
-                            li
-                                hr.dropdown-divider
-                            li.dropdown-footer
-                                a(href='#') Show all messages
-                        // End Messages Dropdown Items
-                        // end of msg
-                        li.nav-item.dropdown.pe-3
-                            a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
-                                img.rounded-circle(src='/images/profile-img.jpg' alt='Profile' height='30')
-                                span.d-none.d-md-block.dropdown-toggle.ps-2 K. Anderson
-                            ul.dropdown-menu.dropdown-menu-end.dropdown
-                                li.dropdown-header
-                                    h4 Kevin Anderson
-                                    p Agricultural Officer
-                                li
-                                    hr.dropdown-divider
-                                li
-                                    a.dropdown-item.d-flex.align-items-center(href='users-profile.html')
-                                        span.material-icons-outlined  person 
-                                        span My Profile
-                                li
-                                    hr.dropdown-divider
-                                li
-                                    a.dropdown-item.d-flex.align-items-center(href='users-profile.html')
-                                        span.material-icons-outlined  settings 
-                                        span Account Settings
-                                li
-                                    hr.dropdown-divider
-                                li
-                                    a.dropdown-item.d-flex.align-items-center(href='pages-faq.html')
-                                        span.material-icons-outlined  help_outline 
-                                        span Need Help?
-                                li
-                                    hr.dropdown-divider
-                                li
-                                    a.dropdown-item.d-flex.align-items-center(href='#')
-                                        span.material-icons-outlined  logout 
-                                        span Sign Out
-                            // End Profile Dropdown Items
-                            // end of profile
-// End Header
-// ================================================ Aside Section========================================================
-aside#offcanvasExample.sidebar.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
-    .offcanvas-header
-        a(href='#')
-            img(src='/images/logo.png' alt='' height='30')
-        button.btn-close(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
-    ul.nav.nav-pills.flex-column.mb-auto.ms-2
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  speed 
-            a.nav-link(href='') Dashboard
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  group 
-            a.nav-link(href='') Members
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  app_registration 
-            a.nav-link(href='') Registration
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  inventory_2 
-            a.nav-link(href='') Products
-        hr
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  supervised_user_circle 
-            a.nav-link(href='') Customers
-        li.d-flex.align-items-center.nav-item
-            span.material-icons-outlined.ms-3  chat 
-            a.nav-link(href='') Messages
-// Body
-#main
-    .container-fluid
-        #main.card.main
-            h5.card-header Profile Details
-            // Account
-            .card-body
-                .d-flex.align-items-start.align-items-sm-center.gap-4
-                    img#uploadedAvatar.d-block.rounded(src='/images/profile-img.jpg' alt='user-avatar' height='100' width='100')
-                    .button-wrapper
-                        label.btn.btn-success.me-2.mb-4(for='upload' tabindex='0')
-                            span.d-none.d-sm-block Upload new photo
-                            span.material-icons-outlined.d-block.d-sm-none
-                                | file_upload
-                            input#upload.account-file-input(type='file' hidden='' accept='image/png, image/jpeg')
-                        button.btn.btn-outline-danger.account-image-reset.mb-4(type='button')
-                            span.material-icons-outlined.d-block.d-sm-none
-                                | restart_alt
-                            span.d-none.d-sm-block Reset
-                        p.text-muted.mb-0
-                            | Allowed JPG, GIF or PNG. Max size of 800K
-            hr.my-0
-            .card-body
-                form#formAccountSettings(method='POST' onsubmit='return false')
-                    .row
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='firstName') First Name
-                            input#firstName.form-control(type='text' name='firstName' value='John' autofocus='')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='lastName') Last Name
-                            input#lastName.form-control(type='text' name='lastName' value='Doe')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='email') E-mail
-                            input#email.form-control(type='text' name='email' value='john.doe@example.com' placeholder='john.doe@example.com')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='organization') Organization
-                            input#organization.form-control(type='text' name='organization' placeholder='Farmer One')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='phoneNumber') Phone Number
-                            .input-group.input-group-merge
-                                span.input-group-text UG (+256)
-                                input#phoneNumber.form-control(type='text' name='phoneNumber' placeholder='704 222 333')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='address') Address
-                            input#address.form-control(type='text' name='address' placeholder='Address')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='district') District
-                            input#district.form-control(type='text' name='district' placeholder='Kampala')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='nin') National ID
-                            input#nin.form-control(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20')
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='country') Ward
-                            select#country.select2.form-select
-                                option(value='') Select
-                                option(value='South Ward') South Ward
-                                option(value='North') North Ward
-                                option(value='East') East Ward
-                                option(value='West') West Ward
-                        .mb-3.col-md-6.input-field
-                            label.form-label(for='language') Language
-                            select#language.select2.form-select
-                                option(value='') Select Language
-                                option(value='en') English
-                                option(value='lu') Luganda
-                                option(value='ru') Runyankole/Rukiga
-                                option(value='luo') Luo/Langi
-                    .mt-2
-                        button.btn.btn-success.me-2(type='submit')
-                            | Save changes
-                        button.btn.btn-outline-danger(type='reset') Cancel
-            // /Account
-// Bootstrap Js
-script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous')
+extends ao_layout.pug 
 
-// <script src="/assets/js/ao.js"></script>
+block content
+    // Body
+    #main
+        .container-fluid
+            #main.card.main
+                h5.card-header Profile Details
+                // Account
+                .card-body
+                    .d-flex.align-items-start.align-items-sm-center.gap-4
+                        img#uploadedAvatar.d-block.rounded(src='/images/profile-img.jpg' alt='user-avatar' height='100' width='100')
+                        .button-wrapper
+                            label.btn.btn-success.me-2.mb-4(for='upload' tabindex='0')
+                                span.d-none.d-sm-block Upload new photo
+                                span.material-icons-outlined.d-block.d-sm-none
+                                    | file_upload
+                                input#upload.account-file-input(type='file' hidden='' accept='image/png, image/jpeg')
+                            button.btn.btn-outline-danger.account-image-reset.mb-4(type='button')
+                                span.material-icons-outlined.d-block.d-sm-none
+                                    | restart_alt
+                                span.d-none.d-sm-block Reset
+                            p.text-muted.mb-0
+                                | Allowed JPG, GIF or PNG. Max size of 800K
+                hr.my-0
+                .card-body
+                    form#formAccountSettings(method='POST' onsubmit='return false')
+                        .row
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='firstName') First Name
+                                input#firstName.form-control(type='text' name='firstName' value='John' autofocus='')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='lastName') Last Name
+                                input#lastName.form-control(type='text' name='lastName' value='Doe')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='email') E-mail
+                                input#email.form-control(type='text' name='email' value='john.doe@example.com' placeholder='john.doe@example.com')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='organization') Organization
+                                input#organization.form-control(type='text' name='organization' placeholder='Farmer One')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='phoneNumber') Phone Number
+                                .input-group.input-group-merge
+                                    span.input-group-text UG (+256)
+                                    input#phoneNumber.form-control(type='text' name='phoneNumber' placeholder='704 222 333')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='address') Address
+                                input#address.form-control(type='text' name='address' placeholder='Address')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='district') District
+                                input#district.form-control(type='text' name='district' placeholder='Kampala')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='nin') National ID
+                                input#nin.form-control(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20')
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='country') Ward
+                                select#country.select2.form-select
+                                    option(value='') Select
+                                    option(value='South Ward') South Ward
+                                    option(value='North') North Ward
+                                    option(value='East') East Ward
+                                    option(value='West') West Ward
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='language') Language
+                                select#language.select2.form-select
+                                    option(value='') Select Language
+                                    option(value='en') English
+                                    option(value='lu') Luganda
+                                    option(value='ru') Runyankole/Rukiga
+                                    option(value='luo') Luo/Langi
+                        .mt-2
+                            button.btn.btn-success.me-2(type='submit')
+                                | Save changes
+                            button.btn.btn-outline-danger(type='reset') Cancel

@@ -1,0 +1,122 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Customer_dashboard
+    //- // fontawesome cdn
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' integrity='sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==' crossorigin='anonymous' referrerpolicy='no-referrer')
+    //- // Material Icons
+    link(href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' rel='stylesheet')
+    //- // Bootstrap css
+    link(rel='stylesheet' href='/bootstrapcss/bootstrap.min.css')
+    //- // custom css
+    link(rel='stylesheet' href='css/customer.css')
+//- // Navbar
+nav.navbar.fixed-top.navbar-expand-lg.s
+    .container
+        a.navbar-brand(href='customer_dash.html')
+            img(src='images/logo.png' alt='logo' srcset='')
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+            span.material-icons-outlined  menu 
+        #navbarNav.collapse.navbar-collapse
+            ul.navbar-nav.mx-auto.text-center
+                li.nav-item.px-2.py-2
+                    a.nav-link(href='#header') Home
+                li.nav-item.px-2.py-2
+                    a.nav-link(href='#collection') Collection
+                li.nav-item.px-2.py-2
+                    a.nav-link(href='#special') Specials
+                //
+                    <li class="nav-item px-2 py-2">
+                    <a class="nav-link" href="#blogs">Blogs</a>
+                    </li>
+                li.nav-item.px-2.py-2
+                    a.nav-link(href='#about') About us
+                //
+                    <li class="nav-item px-2 py-2 border-0">
+                    <a class="nav-link" href="#popular">Popular</a>
+                    </li>
+            a.position-relative.mx-5(href='#')
+                span.material-icons-outlined.ms-4 search 
+            a.position-relative(href='#')
+                span.material-icons-outlined.py-1  shopping_cart 
+                small.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-success 2+
+            a.position-relative.ms-3(href='#')
+                span.material-icons-outlined.py-1  favorite_border 
+                small.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-success 2+
+            a.position-relative(href='#')
+                span.material-icons-outlined.ms-4 account_circle 
+//- // end of navbar
+
+//- block content ===========================================================
+block content 
+
+
+//- // footer
+footer.bg-dark.py-5
+    .container
+        .row.text-white.g-4
+            .col-md-6.col-lg-3
+                a.text-uppercase.text-decoration-none.brand.text-white(href='index.html') Nature
+                p.text-white.text-muted.mt-3
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                    | mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit dolor
+                    | ipsam?
+            .col-md-6.col-lg-3
+                h5.fw-light Links
+                ul.list-unstyled
+                    li.my-3
+                        a.text-white.text-decoration-none.text-muted(href='#')
+                            i.fas.fa-chevron-right.me-1
+                            |  Home
+                    li.my-3
+                        a.text-white.text-decoration-none.text-muted(href='#')
+                            i.fas.fa-chevron-right.me-1
+                            |  Collection
+                    li.my-3
+                        a.text-white.text-decoration-none.text-muted(href='#')
+                            i.fas.fa-chevron-right.me-1
+                            |  Blogs
+                    li.my-3
+                        a.text-white.text-decoration-none.text-muted(href='#')
+                            i.fas.fa-chevron-right.me-1
+                            |  About Us
+            .col-md-6.col-lg-3
+                h5.fw-light.mb-3 Contact Us
+                .d-flex.justify-content-start.align-items-start.my-2.text-muted
+                    span.me-3
+                        i.fas.fa-map-marked-alt
+                    span.fw-light
+                        | Albert Street, Kampala, AS 756, Uganda
+                .d-flex.justify-content-start.align-items-start.my-2.text-muted
+                    span.me-3
+                        i.fas.fa-envelope
+                    span.fw-light  ufarm.support@gmail.com 
+                .d-flex.justify-content-start.align-items-start.my-2.text-muted
+                    span.me-3
+                        i.fas.fa-phone-alt
+                    span.fw-light  +9786 6776 236 
+            .col-md-6.col-lg-3
+                h5.fw-light.mb-3 Follow Us
+                div
+                    ul.list-unstyled.d-flex
+                        li
+                            a.text-white.text-decoration-none.text-muted.fs-4.me-4(href='#')
+                                i.fab.fa-facebook-f
+                        li
+                            a.text-white.text-decoration-none.text-muted.fs-4.me-4(href='#')
+                                i.fab.fa-twitter
+                        li
+                            a.text-white.text-decoration-none.text-muted.fs-4.me-4(href='#')
+                                i.fab.fa-instagram
+                        li
+                            a.text-white.text-decoration-none.text-muted.fs-4.me-4(href='#')
+                                i.fab.fa-pinterest
+//- // end of footer
+//- // jquery
+script(src='js/jquery-3.6.0.js')
+//- // isotope js
+script(src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js')
+script(src='bootstrapjs/bootstrap.min.js')
+script(src='js/gp_dash.js')
