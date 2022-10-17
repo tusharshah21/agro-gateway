@@ -4,34 +4,24 @@ head
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Dashboard - Agricultural Officer
-    // Bootstrap
-    link(rel='stylesheet' href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css")
-    // Custom CSS
+    //- // Bootstrap
+    link(rel='stylesheet' href="/bootstrapcss/bootstrap.min.css")
+    //- // Custom CSS
     link(rel='stylesheet' href='/css/ao.css')
     link(rel='stylesheet' href='/css/registration_page.css')
-    // google material icons cdn -
+    //- // google material icons cdn -
     link(href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' rel='stylesheet')
-// ==================== Header Section =======================
+
+//- // ==================== Header Section =======================
 header.d-flex.align-items-center.header
     .d-flex.align-items-center.justify-content-between.logo-div
         a.navbar-brand.me-5(href='#')
             img.logo(src='/images/logo.png' alt='')
-        //
-            <button
-            class="btn"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-            ></button>
+
         span.material-icons-outlined.btn.btn-outline-success.ms-5.icon(type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasExample' aria-controls='offcanvasExample')
             | menu
-    // end of logo
-    .search.ms-3
-        form.d-flex
-            input.form-control.me-2(type='search' placeholder='Search' aria-label='Search')
-            button.btn.btn-outline-success(type='submit') Search
-    // end of search
+    //- // end of logo
+
     .ms-auto
         nav.navbar.navbar-expand
             ul.navbar-nav
@@ -82,8 +72,8 @@ header.d-flex.align-items-center.header
                             hr.dropdown-divider
                         li.dropdown-footer
                             a(href='#') Show all notifications
-                    // End Notification Dropdown Items
-                    // end of notifications
+                    //- // End Notification Dropdown Items
+                    //- // end of notifications
                     li.nav-item.dropdown
                         a.nav-link(href='#' data-bs-toggle='dropdown')
                             span.material-icons-outlined.icon  chat 
@@ -129,8 +119,8 @@ header.d-flex.align-items-center.header
                                 hr.dropdown-divider
                             li.dropdown-footer
                                 a(href='#') Show all messages
-                        // End Messages Dropdown Items
-                        // end of msg
+                        //- // End Messages Dropdown Items
+                        //- // end of msg
                         li.nav-item.dropdown.pe-3
                             a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
                                 img.rounded-circle(src='/images/profile-img.jpg' alt='Profile' height='30')
@@ -163,32 +153,36 @@ header.d-flex.align-items-center.header
                                     a.dropdown-item.d-flex.align-items-center(href='#')
                                         span.material-icons-outlined  logout 
                                         span Sign Out
-                            // End Profile Dropdown Items
-                            // end of profile
-// End Header
-// ================================================ Aside Section========================================================
+                            //- // End Profile Dropdown Items
+                            //- // end of profile
+//- // End Header
+//- // ================================================ Aside Section========================================================
 aside#offcanvasExample.sidebar.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
     .offcanvas-header
         a(href='#')
             img(src='/images/logo.png' alt='' height='30')
         button.btn-close(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
+    .search.m-3
+        form.d-flex
+            input.form-control.me-2(type='search' placeholder='Search' aria-label='Search')
+            button.btn.btn-outline-success(type='submit') Search
     ul.nav.nav-pills.flex-column.mb-auto.ms-2
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  speed 
-            a.nav-link(href='') Dashboard
+            a.nav-link(href='/ao') Dashboard
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  group 
-            a.nav-link(href='') Members
+            a.nav-link(href='/ao/members') Members
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  app_registration 
-            a.nav-link(href='') Registration
+            a.nav-link(href='/ao/register') Registration
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  inventory_2 
-            a.nav-link(href='') Products
+            a.nav-link(href='/ao/products') Products
         hr
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  supervised_user_circle 
-            a.nav-link(href='') Customers
+            a.nav-link(href='/ao/gp') Customers
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  chat 
             a.nav-link(href='') Messages
@@ -196,7 +190,7 @@ aside#offcanvasExample.sidebar.offcanvas.offcanvas-start(tabindex='-1' aria-labe
 
 block content
 
-// Bootstrap Js
+//- // Bootstrap Js
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous')
 
-// <script src="/assets/js/ao.js"></script>
+//- // <script src="/assets/js/ao.js"></script>
