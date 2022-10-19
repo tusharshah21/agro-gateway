@@ -1,0 +1,107 @@
+extends fo_layout.pug 
+
+block content
+    //- // Body
+    #main
+        .container-fluid
+            #main.card.main
+                h5.card-header Profile Details
+                //- // Account
+                .card-body
+                    form#formAccountSettings(method='POST' action="/fo/register")
+                        .d-flex.align-items-start.align-items-sm-center.gap-4
+                            img#uploadedAvatar.d-block.rounded(src='/images/profile-img.jpg' alt='user-avatar' height='100' width='100')
+                            .button-wrapper
+                                label.btn.btn-success.me-2.mb-4(for='upload' tabindex='0')
+                                    span.d-none.d-sm-block Upload new photo
+                                    span.material-icons-outlined.d-block.d-sm-none
+                                        | file_upload
+                                    input#upload.account-file-input(type='file' hidden='' accept='image/png, image/jpeg')
+                                button.btn.btn-outline-danger.account-image-reset.mb-4(type='reset')
+                                    span.material-icons-outlined.d-block.d-sm-none
+                                        | restart_alt
+                                    span.d-none.d-sm-block Reset
+                                p.text-muted.mb-0
+                                    | Allowed JPG, GIF or PNG. Max size of 800K
+                        hr.my-3
+                        .card-body
+                            .row
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='firstname') First Name
+                                    input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John")
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='lastname') Last Name
+                                    input#lastname.form-control(type='text' name='lastname' placeholder='Doe')
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='DOB') DOB
+                                    input#dob.form-control(type='date' name='dob')
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='email') E-mail
+                                    input#email.form-control(type='text' name='email' placeholder='john.doe@example.com')
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='phonenumber') Phone Number
+                                    .input-group.input-group-merge
+                                        span.input-group-text UG (+256)
+                                        input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333')
+                                .mb-3.col-md-4.input-field.row
+                                    label.form-label(for='gender') Gender
+                                    .form-check.col.ms-3
+                                        input.form-check-input#male(type='radio' name='gender' value="male")
+                                        label.form-check-label(for="male") Male
+                                    .form-check.col
+                                        input.form-check-input#female(type='radio' name='gender' value="female")
+                                        label.form-check-label(for="female") Female
+                                    .form-check.col
+                                        input.form-check-input#other(type='radio' name='gender' value="other")
+                                        label.form-check-label(for="other") Other
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='nin') National ID
+                                    input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20')
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='role') Organization
+                                    input#organization.form-control(type='text' name='role' value='Urban Farmer')
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='address') Address
+                                    input#address.form-control(type='text' name='address' placeholder='Address')
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='ward') Ward
+                                    select#ward.select2.form-select(name="ward")
+                                        option(value='') Select
+                                        option(value='south' ) South Ward
+                                        option(value='north' ) North Ward
+                                        option(value='east' ) East Ward
+                                        option(value='west' ) West Ward
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='residencetime') Years of Residence
+                                    input#residencetime.form-control(type='number' name='residencetime')
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='residencetype') Type of Residence
+                                    select#residencetype.select2.form-select(name="residencetype")
+                                        option(value='permanent' ) Permanent
+                                        option(value='temporary' ) Temporary
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='activity') Activity
+                                    select#activity.select2.form-select(name="activity")
+                                        option(value='') Select Activity
+                                        option(value='poultry') Poultry
+                                        option(value='dairy' ) Dairy
+                                        option(value='horticulture') Horticulture
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='uniquenumber') Unique Number
+                                    .input-group.input-group-merge
+                                        input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='')
+                                        button.btn.btn-success.btn-sm(type="button" onclick="genPassword()") generate
+                                .mb-3.col-md-4.input-field 
+                                    label.form-label(for="password") Password
+                                    input#password.form-control(type="text" name="password" placeholder="password")
+
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='registrationdate') Date of Registration
+                                    input#registrationdate.form-control(type='date' name='registrationdate')
+                            .mt-2
+                                button.btn.btn-success.me-2(type='submit')
+                                    | Save changes
+                                button.btn.btn-outline-danger(type='reset') Cancel

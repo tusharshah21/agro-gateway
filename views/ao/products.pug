@@ -1,0 +1,56 @@
+extends ao_layout.pug 
+
+block content 
+    .container-fluid.mt-3
+        //- select.form-select.mb-3
+        //-     option(value="") Apply filter
+        //-     option(value="farmerone") Farmer One
+        //-     option(value="urbanfarmer") Urban Farmer 
+        //-     //- option(value="generalpublic") General Public 
+
+        table.table.table-striped
+            thead
+                tr
+                    th(scope='col') #
+                    //- th(scope="col") 
+                    th(scope='col') Preview
+                    th(scope='col') Product
+                    th(scope='col') Price
+                    th(scope='col') Sold
+                    th(scope='col') Revenue
+            tbody
+                tr
+                    th(scope='row') 1
+                    td
+                        img(src="/images/product-1.png" alt="" srcset="" height="35")
+                    td Banana
+                    td Ugx 1500
+                    td 120
+                    td Ugx 180000
+
+                tr
+                    th(scope='row') 2
+                    td 
+                        img(src="/images/product-2.png" alt="" srcset="" height="35")
+                    td Tomatoes
+                    td Ugx 300
+                    td 300
+                    td Ugx 90000
+                tr
+                    th(scope='row') 3
+                    td
+                        img(src="/images/product-3.png" alt="" srcset="" height="40")
+
+                    td Oranges
+                    td Ugx 500
+                    td 190
+                    td Ugx 195000
+                tr
+                    th(scope='row') 4
+                    td
+                        img(src="/images/product-4.png" alt="" srcset="" height="35")
+                    td Milk
+                    td Ugx 2000
+                    td 120
+                    td Ugx 240000
+
