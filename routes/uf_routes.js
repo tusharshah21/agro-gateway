@@ -38,4 +38,17 @@ router.post("/upload", upload.single("produceimg"), async (req, res) => {
 	}
 });
 
+router.get("/products", async (req, res) => {
+	const produce = await Produce.find();
+
+	res.render("ao/products", { produce: produce });
+});
+
+// router.get("/products/update/:id", async (req,res)=>{
+// 	try{
+// 		const updateProduce=await Produce.findOne({_id:req.params.id})
+// 		res.render("")
+// 	}
+// })
+
 module.exports = router;

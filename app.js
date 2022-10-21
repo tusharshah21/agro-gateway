@@ -3,9 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 
-// Import Routes
+//* Import Routes
 const aoRoutes = require("./routes/ao_routes");
-const loginRoutes = require("./routes/login_routes");
+const authRoutes = require("./routes/auth_routes");
 const gpRoutes = require("./routes/gp_routes");
 const foRoutes = require("./routes/fo_routes");
 const ufRoutes = require("./routes/uf_routes");
@@ -26,7 +26,6 @@ async function main() {
 	log("Connected to Database");
 }
 
-// log(process.env);
 // ========================================= Configurations ============================================
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -39,7 +38,7 @@ app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
 // ======================================== Routes ====================================================
 
 // login
-app.use("/login", loginRoutes);
+app.use("/login", authRoutes);
 
 // AO routes
 app.use("/ao", aoRoutes);

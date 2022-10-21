@@ -8,15 +8,15 @@ head
 .container
     .forms-container
         .signin-signup
-            form.sign-in-form(action='#')
+            form.sign-in-form(action='/login' method="post")
                 h2.title Ufarm Market
                 .input-field
                     i.fas.fa-user
-                    input(type='text' placeholder='Username')
+                    input(type='text' placeholder='Unique ID')
                 .input-field
                     i.fas.fa-lock
                     input(type='password' placeholder='Password')
-                input.btn.solid(type='submit' value='Login')
+                button.btn.solid(type='submit') Login
                 p.social-text Or Sign in with social platforms
                 .social-media
                     a.social-icon(href='#')

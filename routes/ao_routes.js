@@ -1,14 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/Users");
+const Produce = require("../models/Produce");
 
 // register route
 router.get("/", (req, res) => {
 	res.render("ao/ao_dash.pug");
 });
 
-router.get("/members", (req, res) => {
-	res.render("ao/members");
+router.get("/members", async (req, res) => {
+	const members = await User.find();
+	console.log(members);
+	res.render("ao/members", { members: members });
 });
 
 router.get("/gp", (req, res) => {
@@ -78,8 +81,10 @@ router.post("/register", async (req, res) => {
 // 	});
 // });
 
-router.get("/products", (req, res) => {
-	res.render("ao/products");
+router.get("/products", async (req, res) => {
+	const produce = await Produce.find();
+
+	res.render("ao/products", { produce: produce });
 });
 
 module.exports = router;

@@ -25,45 +25,46 @@ block content
 
 
             tbody
-                tr
-                    th(scope='row') 1
-                    td John Doe
-                    td NWCM8733JD
-                    td johndoe@email.com
-                    td +256704222333
-                    td Male 
-                    td Farmer One 
-                    td North
-                    td Horticulture
+                each member,index in members
+                    tr
+                        th(scope='row')=index+1
+                        td=member.firstname+" "+member.lastname
+                        td=member.uniquenumber
+                        td=member.email
+                        td=member.phonenumber
+                        td=member.gender
+                        td=member.role
+                        td=member.ward
+                        td=member.activity
 
-                tr
-                    th(scope='row') 2
-                    td John Doe
-                    td NWCM8733JD
-                    td johndoe@email.com
-                    td +256704222333
-                    td Male 
-                    td  Urban Farmer
-                    td East
-                    td Horticulture
-                tr
-                    th(scope='row') 3
-                    td John Doe
-                    td NWCM8733JD
-                    td johndoe@email.com
-                    td +256704222333
-                    td Male 
-                    td Urban Farmer
-                    td West
-                    td Horticulture 
-                tr
-                    th(scope='row') 4
-                    td John Doe
-                    td NWCM8733JD
-                    td johndoe@email.com
-                    td +256704222333
-                    td Male 
-                    td General Public 
-                    td South
-                    td Horticulture
+                    //- tr
+                    //-     th(scope='row') 2
+                    //-     td John Doe
+                    //-     td NWCM8733JD
+                    //-     td johndoe@email.com
+                    //-     td +256704222333
+                    //-     td Male 
+                    //-     td  Urban Farmer
+                    //-     td East
+                    //-     td Horticulture
+                    //- tr
+                    //-     th(scope='row') 3
+                    //-     td John Doe
+                    //-     td NWCM8733JD
+                    //-     td johndoe@email.com
+                    //-     td +256704222333
+                    //-     td Male 
+                    //-     td Urban Farmer
+                    //-     td West
+                    //-     td Horticulture 
+                    //- tr
+                    //-     th(scope='row') 4
+                    //-     td John Doe
+                    //-     td NWCM8733JD
+                    //-     td johndoe@email.com
+                    //-     td +256704222333
+                    //-     td Male 
+                    //-     td General Public 
+                    //-     td South
+                    //-     td Horticulture
 

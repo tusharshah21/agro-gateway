@@ -15,6 +15,11 @@ const produceSchema = new mongoose.Schema({
 		type: String,
 		default: Date.now(),
 	},
+	availability: {
+		type: String,
+		default: "available",
+		enum: ["available", "booked", "N/A"],
+	},
 });
 
 module.exports = mongoose.model("Produce", produceSchema);
