@@ -22,17 +22,22 @@ block content
                     th(scope='col') Owner
 
             tbody
-                each product,index in produce
-                    tr
-                        th(scope='row') #{index+1}
-                        td
-                            img(src="/"+product.produceimg alt="" srcset="" height="35")
-                        td #{product.producename}
-                        td #{product.producetype}
-                        td #{product.price}
-                        td #{product.modeofdelivery}
-                        td #{product.payment} 
-                        td.fst-italic.text-muted #{product.fullname}
+                if produce.length>0
+                    each product,index in produce
+                        tr
+                            th(scope='row') #{index+1}
+                            td
+                                img(src="/"+product.produceimg alt="" srcset="" height="35")
+                            td #{product.producename}
+                            td #{product.producetype}
+                            td #{product.price}
+                            td #{product.modeofdelivery}
+                            td #{product.payment} 
+                            td.fst-italic.text-muted #{product.fullname}
+                else 
+                    tr 
+                        th(scope="row") 0
+                        td.text-center.text-danger(colspan="100") No Uploaded Produce
 
 
                         //- td 120

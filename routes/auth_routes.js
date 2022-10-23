@@ -2,24 +2,22 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-// router.get("/", (req, res) => {
-// 	res.render("login");
-// });
-
-// router.post("/", (req, res) => {
-// 	res.send(`<h1 style='text-align:center;margin-top:10%;font-size:70px'>Registered 😊</h1>`);
-// });
-
-// const express = require("express");
-// const router = express.Router();
-
 router.get("/", (req, res) => {
 	res.render("login");
 });
 
-router.post("/", passport.authenticate("local", { failureRedirect: "/" }), (req, res) => {
-	console.log("User: ", req.session.user);
-	res.redirect("/uf/uf_upload");
+router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
+	user = req.user;
+	console.log("User: " + user.email);
+	if (user.role === "Agriculture Officer") {
+		res.redirect("/ao");
+	} else if (user.role === "Farmer One") {
+		res.redirect("/fo");
+	} else if (user.role === "Urban Farmer") {
+		res.redirect("/uf");
+	} else {
+		res.redirect("/");
+	}
 });
 
 router.post("/logout", (req, res) => {

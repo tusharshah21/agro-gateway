@@ -1,5 +1,6 @@
-const { Router } = require("express");
-const router = Router();
+const connectEnsureLogin = require("connect-ensure-login");
+const express = require("express");
+const router = express.Router();
 const Produce = require("../models/Produce");
 const multer = require("multer");
 
@@ -17,38 +18,67 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // dash
-router.get("/", (req, res) => {
-	res.render("uf/uf_dash");
+router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.user;
+	res.render("uf/uf_dash", { user: user });
 });
 
-router.get("/upload", (req, res) => {
-	res.render("uf/uf_upload");
+router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const produce = await Produce.find().sort({ $natural: -1 });
+	res.render("uf/uploaded", { produce: produce });
 });
 
-router.post("/upload", upload.single("produceimg"), async (req, res) => {
-	console.log(req.body);
+router.get("/upload", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+	const currentUser = req.user;
+	res.render("uf/uf_upload", { currentUser: currentUser }); //req.session.user
+});
+
+router.post(
+	"/upload",
+	connectEnsureLogin.ensureLoggedIn(),
+	upload.single("produceimg"),
+	async (req, res) => {
+		console.log(req.body);
+		try {
+			const produce = new Produce(req.body);
+			produce.produceimg = req.file.path;
+			await produce.save();
+			res.redirect("/uf/uploaded");
+		} catch (error) {
+			res.status(400).send("Product not Saved.");
+			console.log(error);
+		}
+	}
+);
+
+// * Update Produce
+router.get("/update/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const currentUser = req.user;
 	try {
-		const produce = new Produce(req.body);
-		produce.produceimg = req.file.path;
-		await produce.save();
-		res.redirect("/uf");
+		const updateProduce = await Produce.findOne({ _id: req.params.id });
+		res.render("uf/uf_update", { currentUser: currentUser, updateProduce: updateProduce });
 	} catch (error) {
-		res.status(400).send("Product not Saved.");
-		console.log(error);
+		res.status(400).send("Product to update not found.");
 	}
 });
 
-router.get("/products", async (req, res) => {
-	const produce = await Produce.find();
-
-	res.render("ao/products", { produce: produce });
+router.post("/update", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	try {
+		await Produce.findOneAndUpdate({ _id: req.query.id }, req.body);
+		res.redirect("/uf/uploaded", { produce: req.body });
+	} catch (error) {
+		res.status(400).send("Product not Updated.");
+	}
 });
 
-// router.get("/products/update/:id", async (req,res)=>{
-// 	try{
-// 		const updateProduce=await Produce.findOne({_id:req.params.id})
-// 		res.render("")
-// 	}
-// })
+// * Delete Produce
+router.post("/delete", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	try {
+		await Produce.deleteOne({ _id: req.body.id });
+		req.redirect("back");
+	} catch (error) {
+		res.status(400).send("Product not Deleted.");
+	}
+});
 
 module.exports = router;

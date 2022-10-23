@@ -124,11 +124,12 @@ header.d-flex.align-items-center.header
                         li.nav-item.dropdown.pe-3
                             a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
                                 img.rounded-circle(src='/images/profile-img.jpg' alt='Profile' height='30')
-                                span.d-none.d-md-block.dropdown-toggle.ps-2 K. Anderson
+                                if user
+                                    span.d-none.d-md-block.dropdown-toggle.ps-2 #{user.firstname[0]}. #{user.lastname}
                             ul.dropdown-menu.dropdown-menu-end.dropdown
                                 li.dropdown-header
-                                    h4 Kevin Anderson
-                                    p Agricultural Officer
+                                    h4 #{user.firstname} #{user.lastname}
+                                    p Farmer One
                                 li
                                     hr.dropdown-divider
                                 li
@@ -152,7 +153,10 @@ header.d-flex.align-items-center.header
                                 li
                                     a.dropdown-item.d-flex.align-items-center(href='#')
                                         span.material-icons-outlined  logout 
-                                        span Sign Out
+                                        span 
+                                            form(action="/login/logout" method="post")
+                                                button.btn(type="submit") Logout
+
                             //- // End Profile Dropdown Items
                             //- // end of profile
 //- // End Header
@@ -172,7 +176,7 @@ aside#offcanvasExample.sidebar.offcanvas.offcanvas-start(tabindex='-1' aria-labe
             a.nav-link(href='/fo') Dashboard
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  group 
-            a.nav-link(href='/fo/members') Members
+            a.nav-link(href='/fo/members') Urban Farmers
         li.d-flex.align-items-center.nav-item
             span.material-icons-outlined.ms-3  app_registration 
             a.nav-link(href='/fo/register') Registration

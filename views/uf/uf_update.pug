@@ -1,0 +1,83 @@
+extends uf_layout.pug
+
+block content
+    //- // Body
+    #main
+        .container-fluid
+            #main.card.main
+
+                .card-body
+                if currentUser
+                    form#formAccountSettings(method='post' action="/uf/upload" enctype="multipart/form-data")
+                        .row
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='fullname') Full Name
+                                select#ward.select2.form-select(name="fullname")
+                                    option(value=currentUser.firstname+" "+currentUser.lastname) #{currentUser.firstname} #{currentUser.lastname}
+
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='ward') Ward
+                                select#ward.select2.form-select(name="ward")
+                                    option(value=currentUser.ward) #{currentUser.ward}
+
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='producetype') Produce Type
+                                select#producetype.select2.form-select(name="producetype")
+                                    option(value='') Select Type
+                                    option(value='poultry') Poultry
+                                    option(value='dairy') Dairy
+                                    option(value='horticulture') Horticulture
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='producename') Produce Name
+                                input#producename.form-control(type='text' name='producename' placeholder='Chicken')
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='quantity') Quantity
+                                input#quantity.form-control(type='number' name='quantity' placeholder='10')
+
+                            .mb-3.col-md-4
+                                label.form-label(for='price') Price per Unit
+                                .input-group
+                                    span.input-group-text Ugx
+                                    input#price.form-control(type='number' name='price' placeholder='2000')
+                                    span.input-group-text .00
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='modeofdelivery') Mode of Delivery
+                                select#modeofdelivery.select2.form-select(name="modeofdelivery")
+                                    option(value='pickup and Home delivery') Both Modes
+                                    option(value='pickup') Pick Up
+                                    option(value='home') Home Delivery
+
+                            .mb-3.col-md-4.input-field.row
+                                label.form-label(for='payment') Mode of Payment
+                                .form-check.col.ms-3
+                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="mobilemoney")
+                                    label.form-check-label(for="mobilemoney") Mobile Money
+                                .form-check.col
+                                    input.form-check-input#cash(type='checkbox' name='payment' value="cash")
+                                    label.form-check-label(for="cash") Cash
+
+                            .mb-3.col-md-4.input-field.row
+                                label.form-label(for='') Organic Produce
+                                .form-check.col.ms-3
+                                    input.form-check-input#organic(type='radio' name='organic' value="organic")
+                                    label.form-check-label(for="organic") Yes
+                                .form-check.col
+                                    input.form-check-input#inorganic(type='radio' name='organic' value="inorganic")
+                                    label.form-check-label(for="inorganic") No
+
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for="produceimg") Produce Image
+                                input#produceimg.form-control(type="file" name="produceimg")
+
+                            .mb-3.col-md-6.input-field
+                                label.form-label(for='uploaddate') Date of Upload
+                                input#uploaddate.form-control(type='date' name='uploaddate')
+                        .mt-2
+                            button.btn.btn-success.me-2(type='submit')
+                                | Save changes
+                            button.btn.btn-outline-danger(type='reset') Cancel

@@ -1,7 +1,12 @@
 require("dotenv").config();
-// const { log } = require("console");
-const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
+const express = require("express");
+const session = require("express-session");
+const passport = require("passport");
+
+// * Import Schema
+const User = require("./models/Users");
 
 //* Import Routes
 const aoRoutes = require("./routes/ao_routes");
@@ -9,21 +14,17 @@ const authRoutes = require("./routes/auth_routes");
 const gpRoutes = require("./routes/gp_routes");
 const foRoutes = require("./routes/fo_routes");
 const ufRoutes = require("./routes/uf_routes");
-const mongoose = require("mongoose");
-const { log } = require("console");
 
 // ====================================== Apps =====================================================
 const app = express();
 
+// ========================================== Mongoose ================================================
 const PORT = process.env.PORT || 3000;
 
-// ========================================== Mongoose ================================================
-
 main().catch((err) => console.log(err));
-
 async function main() {
 	await mongoose.connect(process.env.DB_URI);
-	log("Connected to Database");
+	console.log("Connected to Database " + process.env.DB_URI);
 }
 
 // ========================================= Configurations ============================================
@@ -34,6 +35,21 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
+
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+	})
+);
+
+// * Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // ======================================== Routes ====================================================
 
