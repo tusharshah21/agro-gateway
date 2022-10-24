@@ -1,1 +1,65 @@
 extends ao_layout.pug
+
+block content 
+    .container-fluid
+        .justify-content-center.d-flex.my-4
+            .card.p-2.mx-3.w-25.border-4.border-primary
+                .card-body
+                    h5.card-title Sales
+                    .d-flex.justify-content-center.mt-3
+                        span.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
+                        .items 
+                            h4 145
+                            p 12% increase
+
+            .card.p-2.mx-3.w-25.border-4
+                .card-body
+                    h5.card-title Revenue
+                    .d-flex.justify-content-center.mt-3
+                        span.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
+                        .items 
+                            h4 30000
+                            p 12% increase
+
+            .card.p-2.mx-3.w-25.border-4.border-warning
+                .card-body
+                    h5.card-title Customers
+                    .d-flex.justify-content-center.mt-3.align-middle
+                        span.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
+                        .items 
+                            h4 300
+                            p 12% increase
+
+        .producttable
+            .container-fluid.mt-3.p-4
+                h5 Top Selling
+                table.table.table-striped
+                    thead
+                        tr
+                            th(scope='col') #
+                            //- th(scope="col") 
+                            th(scope='col') Preview
+                            th(scope='col') Product
+                            th(scope="col") Produce Type
+                            th(scope='col') Price
+                            th(scope='col') Mode of Delivery
+                            th(scope='col') Payment Method
+                            th(scope='col') Owner
+
+                    tbody
+                        if produce.length>0
+                            each product,index in produce
+                                tr
+                                    th(scope='row') #{index+1}
+                                    td
+                                        img(src="/"+product.produceimg alt="" srcset="" height="35")
+                                    td #{product.producename}
+                                    td #{product.producetype}
+                                    td #{product.price}
+                                    td #{product.modeofdelivery}
+                                    td #{product.payment} 
+                                    td.fst-italic.text-muted #{product.fullname}
+                        else 
+                            tr 
+                                th(scope="row") 0
+                                td.text-center.text-danger(colspan="100") No Uploaded Produce

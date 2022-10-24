@@ -39,11 +39,12 @@ router.post("/aosignup", async (req, res) => {
 	}
 });
 
-//* register route
-router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	user = req.user;
+//* Dashboard
+router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	const produce = await Produce.find();
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/ao_dash.pug", { user: user });
+		res.render("ao/ao_dash.pug", { user: req.session.user, produce: produce });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
@@ -52,10 +53,11 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 });
 
 router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
 	const members = await User.find({ role: { $in: ["Farmer One", "Urban Farmer"] } });
 	console.log(members);
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/members", { members: members });
+		res.render("ao/members", { user: req.session.user, members: members });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
@@ -64,9 +66,9 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 });
 
 router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	user = req.user;
+	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/general_public_list");
+		res.render("ao/general_public_list", { user: req.session.user });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
@@ -75,9 +77,9 @@ router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 });
 
 router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	user = req.user;
+	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/ao_registration");
+		res.render("ao/ao_registration", { user: req.session.user });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
@@ -86,7 +88,7 @@ router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 });
 
 router.post("/register", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	user = req.user;
+	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
 		// console.log(req.body);
 		try {
@@ -124,10 +126,10 @@ router.post("/register", connectEnsureLogin.ensureLoggedIn(), async (req, res) =
 });
 
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	user = req.user;
+	const user = req.session.user;
 	const produce = await Produce.find();
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/products", { produce: produce });
+		res.render("ao/products", { user: req.session.user, produce: produce });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`

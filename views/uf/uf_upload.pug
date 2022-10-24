@@ -7,19 +7,23 @@ block content
             #main.card.main
 
                 .card-body
-                if currentUser
+                if user
                     form#formAccountSettings(method='post' action="/uf/upload" enctype="multipart/form-data")
                         .row
                             .mb-3.col-md-4.input-field
+                                label.form-label(for='uploadedby') Uploader ID
+                                select#ward.select2.form-select(name="uploadedby")
+                                    option(value=user._id) #{user._id}
+                            .mb-3.col-md-4.input-field
                                 label.form-label(for='fullname') Full Name
                                 select#ward.select2.form-select(name="fullname")
-                                    option(value=currentUser.firstname+" "+currentUser.lastname) #{currentUser.firstname} #{currentUser.lastname}
+                                    option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}
 
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='ward') Ward
                                 select#ward.select2.form-select(name="ward")
-                                    option(value=currentUser.ward) #{currentUser.ward}
+                                    option(value=user.ward) #{user.ward}
 
 
                             .mb-3.col-md-4.input-field
@@ -36,7 +40,9 @@ block content
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='quantity') Quantity
-                                input#quantity.form-control(type='number' name='quantity' placeholder='10')
+                                .input-group
+                                    input#quantity.form-control(type='number' name='quantity' placeholder='10')
+                                    span.input-group-text Unit
 
                             .mb-3.col-md-4
                                 label.form-label(for='price') Price per Unit
@@ -44,22 +50,6 @@ block content
                                     span.input-group-text Ugx
                                     input#price.form-control(type='number' name='price' placeholder='2000')
                                     span.input-group-text .00
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='modeofdelivery') Mode of Delivery
-                                select#modeofdelivery.select2.form-select(name="modeofdelivery")
-                                    option(value='pickup and Home delivery') Both Modes
-                                    option(value='pickup') Pick Up
-                                    option(value='home') Home Delivery
-
-                            .mb-3.col-md-4.input-field.row
-                                label.form-label(for='payment') Mode of Payment
-                                .form-check.col.ms-3
-                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="mobilemoney")
-                                    label.form-check-label(for="mobilemoney") Mobile Money
-                                .form-check.col
-                                    input.form-check-input#cash(type='checkbox' name='payment' value="cash")
-                                    label.form-check-label(for="cash") Cash
 
                             .mb-3.col-md-4.input-field.row
                                 label.form-label(for='') Organic Produce
@@ -70,11 +60,28 @@ block content
                                     input.form-check-input#inorganic(type='radio' name='organic' value="inorganic")
                                     label.form-check-label(for="inorganic") No
 
-                            .mb-3.col-md-6.input-field
+                            .mb-3.col-md-4.input-field.row
+                                label.form-label(for='payment') Mode of Payment
+                                .form-check.col.ms-3
+                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money")
+                                    label.form-check-label(for="mobilemoney") Mobile Money
+                                .form-check.col
+                                    input.form-check-input#cash(type='checkbox' name='payment' value="Cash")
+                                    label.form-check-label(for="cash") Cash
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='modeofdelivery') Mode of Delivery
+                                select#modeofdelivery.select2.form-select(name="modeofdelivery")
+                                    option(value='Pickup and Home Delivery') Both Modes
+                                    option(value='Pickup') Pick Up
+                                    option(value='Home Delivery') Home Delivery
+
+
+                            .mb-3.col-md-4.input-field
                                 label.form-label(for="produceimg") Produce Image
                                 input#produceimg.form-control(type="file" name="produceimg")
 
-                            .mb-3.col-md-6.input-field
+                            .mb-3.col-md-4.input-field
                                 label.form-label(for='uploaddate') Date of Upload
                                 input#uploaddate.form-control(type='date' name='uploaddate')
                         .mt-2

@@ -20,20 +20,25 @@ block content
                     th(scope='col') Mode of Delivery
                     th(scope='col') Payment Method
                     th(scope='col') Owner
+                    th.text-primary(scope='col') Edit
 
             tbody
                 if produce.length>0
                     each product,index in produce
-                        tr
-                            th(scope='row') #{index+1}
-                            td
-                                img(src="/"+product.produceimg alt="" srcset="" height="35")
-                            td #{product.producename}
-                            td #{product.producetype}
-                            td #{product.price}
-                            td #{product.modeofdelivery}
-                            td #{product.payment} 
-                            td.fst-italic.text-muted #{product.fullname}
+                        if product.status==="pending"
+                            tr
+                                th(scope='row') #{index+1}
+                                td
+                                    img(src="/"+product.produceimg alt="" srcset="" height="35")
+                                td #{product.producename}
+                                td #{product.producetype}
+                                td #{product.price}
+                                td #{product.modeofdelivery}
+                                td #{product.payment} 
+                                td.fst-italic.text-muted #{product.fullname}
+                                td                          
+                                    a(href="/fo/approve/"+product._id)
+                                        span.material-icons-outlined.ms-3  edit
                 else 
                     tr 
                         th(scope="row") 0

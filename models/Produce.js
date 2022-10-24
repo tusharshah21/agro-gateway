@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const produceSchema = new mongoose.Schema({
+	uploadedby: {
+		type: mongoose.Types.ObjectId,
+		ref: "User",
+		// required: true,
+	},
 	fullname: {
 		type: String,
 		required: true,

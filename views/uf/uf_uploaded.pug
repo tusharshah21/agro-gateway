@@ -1,0 +1,64 @@
+extends uf_layout.pug
+//- extends ao_layout.pug 
+block content 
+    .container-fluid.mt-3
+        //- select.form-select.mb-3
+        //-     option(value="") Apply filter
+        //-     option(value="farmerone") Farmer One
+        //-     option(value="urbanfarmer") Urban Farmer 
+        //-     //- option(value="generalpublic") General Public 
+
+    if produce.length>0
+        table.table.table-striped.table-hover
+            thead
+                tr
+                    th.text-center(scope='col') #
+                    //.text-center- th(scope="col") 
+                    th.text-center(scope='col') Preview
+                    th.text-center(scope='col') Product
+                    th.text-center(scope="col") Produce Type
+                    th.text-center(scope='col') Price
+                    th.text-center(scope='col') Mode of Delivery
+                    th.text-center(scope='col') Payment Method
+                    th.text-center(scope='col') Owner
+                    th.text-center(scope='col') Availabilty
+                    th.text-center(scope='col') Status
+                    th.text-center.text-success(scope='col') Update
+                    th.text-center.text-danger(scope='col') Delete
+
+
+            tbody
+                each product,index in produce
+                    tr
+                        th(scope='row') #{index+1}
+                        td
+                            img(src="/"+product.produceimg alt="" srcset="" height="35")
+                        td.text-center #{product.producename}
+                        td.text-center #{product.producetype}
+                        td.text-center #{product.price}
+                        td.text-center #{product.modeofdelivery}
+                        td.text-center #{product.payment} 
+                        td.text-center.fst-italic.text-muted #{product.fullname}
+
+                        if product.availability==="N/A"
+                            td.text-center.text-danger.fw-bold #{product.availability} 
+                        else 
+                            td.text-center #{product.availability} 
+
+                        if product.status==="approved"
+                            td.text-success.text-center.fw-bold #{product.status} 
+                        else 
+                            td.text-warning.text-center #{product.status} 
+
+                        //- if currentUser._id===product.uploadedby
+                        td                          
+                            a(href="/uf/update/"+product._id)
+                                span.material-icons-outlined.ms-3  edit
+                        td 
+                            form(action="/uf/delete" method="post")
+                                input(type="hidden" name="id" value=product.id)
+                                button.btn.btn-outline-danger.border-0(type="submit") 
+                                    span.material-icons-outlined.ms-3  delete
+    else 
+        p.text-center No items in Database
+

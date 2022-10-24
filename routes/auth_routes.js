@@ -7,7 +7,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
-	user = req.user;
+	req.session.user = req.user;
+	const user = req.session.user;
 	console.log("User: " + user.email);
 	if (user.role === "Agriculture Officer") {
 		res.redirect("/ao");

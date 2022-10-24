@@ -7,7 +7,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	// console.log(req.body);
 	// req.session.user = req.user;
 	// console.log("req.session.user = " + req.session.user);
-	res.render("gp/gp_dash");
+	res.render("gp/gp_dash", { user: req.session.user });
 });
 
 // export
