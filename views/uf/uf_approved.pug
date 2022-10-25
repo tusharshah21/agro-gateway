@@ -20,7 +20,6 @@ block content
                     th(scope='col') Price
                     th(scope='col') Mode of Delivery
                     th(scope='col') Payment Method
-                    th(scope='col') Owner
                     th(scope='col') Quantity
                     th(scope='col') Availability
 
@@ -40,7 +39,6 @@ block content
                             td #{product.price}
                             td #{product.modeofdelivery}
                             td #{product.payment} 
-                            td.fst-italic.text-muted #{product.fullname}
                             td #{product.quantity} 
                             if product.availability==="available"
                                 td.text-success #{product.availability} 
@@ -58,5 +56,6 @@ block content
                             //-         button.btn.btn-outline-danger.border-0(type="submit") 
                             //-             span.material-icons-outlined.ms-3  delete
     else 
-        p.text-center No items in Database
+        h3.text-center.mt-5.p-5.text-muted No Produce in Database
+        h3.text-center(style="font-size:100px") 😒
 

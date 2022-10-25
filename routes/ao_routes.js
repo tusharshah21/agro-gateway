@@ -3,11 +3,14 @@ const router = express.Router();
 const connectEnsureLogin = require("connect-ensure-login");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
+const General = require("../models/General");
 
+//* Agriculture Officer Signup
 router.get("/agricosignup", (req, res) => {
 	res.render("ao/ao_signup");
 });
 
+// agricosignup
 router.post("/aosignup", async (req, res) => {
 	console.log(req.body);
 	try {
@@ -44,7 +47,58 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produce = await Produce.find();
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/ao_dash.pug", { user: req.session.user, produce: produce });
+		try {
+			let totalPoultry = await Produce.aggregate([
+				{ $match: { producetype: "poultry" } },
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			let totalHort = await Produce.aggregate([
+				{ $match: { producetype: "horticulture" } },
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+			let totalDairy = await Produce.aggregate([
+				{ $match: { producetype: "dairy" } },
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+			let totalGP = await General.collection.countDocuments();
+			let totalFO = await User.collection.countDocuments({ role: "Farmer One" });
+			let totalUF = await User.collection.countDocuments({ role: "Urban Farmer" });
+
+			console.log("Poultry collections", totalGP);
+			console.log("Hort collections", totalFO);
+			console.log("Dairy collections", totalUF);
+			res.render("ao/ao_dash.pug", {
+				user: req.session.user,
+				produce: produce,
+				totalP: totalPoultry[0],
+				totalH: totalHort[0],
+				totalD: totalDairy[0],
+				totalFO,
+				totalUF,
+				totalGP,
+			});
+		} catch (error) {
+			res.status(400).send("Unable to retrieve items from database");
+		}
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
@@ -125,11 +179,25 @@ router.post("/register", connectEnsureLogin.ensureLoggedIn(), async (req, res) =
 	}
 });
 
+// * Products Page
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produce = await Produce.find();
 	if (user.role === "Agriculture Officer") {
 		res.render("ao/products", { user: req.session.user, produce: produce });
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
+		);
+	}
+});
+
+// * Reports
+router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	const produce = await Produce.find();
+	if (user.role === "Agriculture Officer") {
+		res.render("ao/ao_report", { user: req.session.user, produce: produce });
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`

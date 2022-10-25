@@ -33,7 +33,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
-		const produce = await Produce.find().sort({ $natural: -1 });
+		const produce = await Produce.find({ uploadedby: user }).sort({ $natural: -1 });
 		// for (let i = 0; i < produce.length; i++) {
 		// 	console.log(i.uploadedby);
 		// }
@@ -50,7 +50,7 @@ router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 router.get("/approved", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
-		const produce = await Produce.find().sort({ $natural: -1 });
+		const produce = await Produce.find({ uploadedby: user }).sort({ $natural: -1 });
 		res.render("uf/uf_approved", { user: req.session.user, produce: produce });
 	} else {
 		res.send(

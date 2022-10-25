@@ -20,7 +20,6 @@ block content
                     th.text-center(scope='col') Price
                     th.text-center(scope='col') Mode of Delivery
                     th.text-center(scope='col') Payment Method
-                    th.text-center(scope='col') Owner
                     th.text-center(scope='col') Availabilty
                     th.text-center(scope='col') Status
                     th.text-center.text-success(scope='col') Update
@@ -38,7 +37,6 @@ block content
                         td.text-center #{product.price}
                         td.text-center #{product.modeofdelivery}
                         td.text-center #{product.payment} 
-                        td.text-center.fst-italic.text-muted #{product.fullname}
 
                         if product.availability==="N/A"
                             td.text-center.text-danger.fw-bold #{product.availability} 
@@ -50,7 +48,6 @@ block content
                         else 
                             td.text-warning.text-center #{product.status} 
 
-                        //- if currentUser._id===product.uploadedby
                         td                          
                             a(href="/uf/update/"+product._id)
                                 span.material-icons-outlined.ms-3  edit
@@ -60,5 +57,7 @@ block content
                                 button.btn.btn-outline-danger.border-0(type="submit") 
                                     span.material-icons-outlined.ms-3  delete
     else 
-        p.text-center No items in Database
+        h3.text-center.mt-5.p-5.text-muted No Produce in Database
+        h3.text-center(style="font-size:100px") 😒
+
 

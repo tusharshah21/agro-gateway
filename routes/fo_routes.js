@@ -32,7 +32,7 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Farmer One") {
-		const produce = await Produce.find();
+		const produce = await Produce.find().sort({ status: -1 });
 		res.render("fo/products", { user: req.session.user, produce: produce });
 	} else {
 		res.send(

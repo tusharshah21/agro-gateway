@@ -58,7 +58,7 @@ block content
                                     label.form-label(for='nin') National ID
                                     input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20')
                                 .mb-3.col-md-4.input-field
-                                    label.form-label(for='role') Organization
+                                    label.form-label(for='role') Role
                                     input#organization.form-control(type='text' name='role' value='Urban Farmer')
 
                                 .mb-3.col-md-4.input-field
@@ -92,7 +92,7 @@ block content
                                     label.form-label(for='uniquenumber') Unique Number
                                     .input-group.input-group-merge
                                         input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='')
-                                        button.btn.btn-success.btn-sm(type="button" onclick="genPassword()") generate
+                                        button.btn.btn-success.btn-sm(type="button" onclick="genUfUniqueNum()") generate
                                 .mb-3.col-md-4.input-field 
                                     label.form-label(for="password") Password
                                     input#password.form-control(type="text" name="password" placeholder="password")

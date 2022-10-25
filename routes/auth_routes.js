@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
-	console.log("User: " + user.email);
+	console.log("User Email: " + user.email, "Unique Id: " + user.uniquenumber);
 	if (user.role === "Agriculture Officer") {
 		res.redirect("/ao");
 	} else if (user.role === "Farmer One") {
@@ -27,7 +27,7 @@ router.post("/logout", (req, res) => {
 			if (err) {
 				res.status(400).send("Unable to logout");
 			} else {
-				return res.redirect("/");
+				return res.redirect("/login");
 			}
 		});
 	}

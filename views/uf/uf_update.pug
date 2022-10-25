@@ -3,14 +3,14 @@ extends uf_layout.pug
 block content
     //- // Body
     #main
-        .container-fluid
+        .container-fluid.d-flex.justify-content-center.mt-5
             #main.card.main
-
+                .card-img-top.d-flex.justify-content-center
+                    img.w-25(src="/"+produce.produceimg alt="update img" style="height:50px width:50px")
                 .card-body
                 if user
                     form#formAccountSettings(method='post' action="/uf/update/?id="+produce._id )
                         .row
-
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='producetype') Produce Type
                                 select#producetype.select2.form-select(name="producetype")

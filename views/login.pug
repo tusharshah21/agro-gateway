@@ -12,7 +12,7 @@ head
                 h2.title Ufarm Market
                 .input-field
                     i.fas.fa-user
-                    input(type='text' placeholder='Email' name="email")
+                    input(type='text' placeholder='Unique ID' name="uniquenumber")
                 .input-field
                     i.fas.fa-lock
                     input(type='password' placeholder='Password' name="password")
@@ -27,18 +27,18 @@ head
                         i.fab.fa-google
                     a.social-icon(href='#')
                         i.fab.fa-linkedin-in
-            form.sign-up-form(action='#')
+            form.sign-up-form(action='/signup' method='post')
                 h2.title Ufarm Market
                 .input-field
                     i.fas.fa-user
-                    input(type='text' placeholder='Username')
+                    input(type='text' placeholder='Unique ID' name="uniquenumber")
                 .input-field
                     i.fas.fa-envelope
-                    input(type='email' placeholder='Email')
+                    input(type='email' placeholder='Email' name="email")
                 .input-field
                     i.fas.fa-lock
-                    input(type='password' placeholder='Password')
-                input.btn(type='submit' value='Sign up')
+                    input(type='password' placeholder='Password' name="password")
+                button.btn.solid(type='submit') Sign up
                 p.social-text Or Sign up with social platforms
                 .social-media
                     a.social-icon(href='#')

@@ -20,7 +20,7 @@ block content
                     th(scope='col') Gender
                     //- th(scope='col') Role
                     th(scope='col') Ward 
-                    th(scope='col') Activity
+
 
             tbody
                 if members.length > 0
@@ -34,7 +34,7 @@ block content
                             td #{member.gender}
                             //- td #{member.role}
                             td #{member.ward}
-                            td #{member.activity}
+
                 else 
                     tr 
                         th(scope='row') 0
