@@ -70,6 +70,9 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		// default: Date(),
 	},
+	avatar: {
+		type: String,
+	},
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "uniquenumber" });

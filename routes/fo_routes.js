@@ -1,8 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const connectEnsureLogin = require("connect-ensure-login");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
+
+// image upload
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "public/uploads");
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.originalname);
+	},
+});
+
+// instantiate variable upload to store multer functionality to upload image
+const upload = multer({ storage: storage });
 
 //  dash
 router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
@@ -53,33 +67,41 @@ router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	}
 });
 
-router.post("/register", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	console.log(req.body);
-	try {
-		const user = new User(req.body);
-		let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
-		let emailExists = await User.findOne({ email: req.body.email });
+router.post(
+	"/register",
+	connectEnsureLogin.ensureLoggedIn(),
+	upload.single("avatar"),
+	async (req, res) => {
+		console.log(req.body);
+		try {
+			const user = new User(req.body);
+			if (user.avatar) {
+				user.avatar = req.file.path;
+			}
+			let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
+			let emailExists = await User.findOne({ email: req.body.email });
 
-		console.log("unique Num: " + uniqueExists, "email: " + emailExists);
+			console.log("unique Num: " + uniqueExists, "email: " + emailExists);
 
-		if (uniqueExists || emailExists) {
-			return res.status(400).render("fo/fo_user_exists");
-		} else {
-			await User.register(user, req.body.password, (error) => {
-				if (error) {
-					throw error;
-				}
-				res.redirect("/fo/members");
-			});
+			if (uniqueExists || emailExists) {
+				return res.status(400).render("fo/fo_user_exists");
+			} else {
+				await User.register(user, req.body.password, (error) => {
+					if (error) {
+						throw error;
+					}
+					res.redirect("/fo/members");
+				});
+			}
+		} catch (error) {
+			res.status(400).send(
+				"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
+			);
+			console.log(error);
+			// catch more errors.... registrationn with existing id
 		}
-	} catch (error) {
-		res.status(400).send(
-			"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
-		);
-		console.log(error);
-		// catch more errors.... registrationn with existing id
 	}
-});
+);
 
 // * Approve Produce
 router.get("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {

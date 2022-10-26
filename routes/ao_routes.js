@@ -1,9 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const connectEnsureLogin = require("connect-ensure-login");
+const multer = require("multer");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
 const General = require("../models/General");
+
+// image upload
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "public/uploads");
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.originalname);
+	},
+});
+
+// instantiate variable upload to store multer functionality to upload image
+const upload = multer({ storage: storage });
 
 //* Agriculture Officer Signup
 router.get("/agricosignup", (req, res) => {
@@ -141,43 +155,51 @@ router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	}
 });
 
-router.post("/register", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	const user = req.session.user;
-	if (user.role === "Agriculture Officer") {
-		// console.log(req.body);
-		try {
-			const user = new User(req.body);
-			let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
-			let emailExists = await User.findOne({ email: req.body.email });
+router.post(
+	"/register",
+	connectEnsureLogin.ensureLoggedIn(),
+	upload.single("avatar"),
+	async (req, res) => {
+		const user = req.session.user;
+		if (user.role === "Agriculture Officer") {
+			// console.log(req.body);
+			try {
+				const user = new User(req.body);
+				if (user.avatar) {
+					user.avatar = req.file.path;
+				}
+				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
+				let emailExists = await User.findOne({ email: req.body.email });
 
-			if (uniqueExists || emailExists) {
-				console.log("unique:" + uniqueExists, "email: " + emailExists);
-				return res.status(400).send(
-					`<h2 style='text-align:center;margin-top:100px;font-size:100px;'>User already Exists 😭</h2>
+				if (uniqueExists || emailExists) {
+					console.log("unique:" + uniqueExists, "email: " + emailExists);
+					return res.status(400).send(
+						`<h2 style='text-align:center;margin-top:100px;font-size:100px;'>User already Exists 😭</h2>
 					<p style='text-align:center;margin-top:5px;font-size:40px;'>Try new email or unique Number <span style='font-size:80px'/>🤷</span></p>`
+					);
+				} else {
+					await User.register(user, req.body.password, (error) => {
+						// console.log(req.body.password);
+						if (error) {
+							throw error;
+						}
+						res.redirect("/ao/members");
+					});
+				}
+			} catch (error) {
+				res.status(400).send(
+					"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
 				);
-			} else {
-				await User.register(user, req.body.password, (error) => {
-					// console.log(req.body.password);
-					if (error) {
-						throw error;
-					}
-					res.redirect("/ao/members");
-				});
+				console.log(error);
+				// catch more errors.... registrationn with existing id
 			}
-		} catch (error) {
-			res.status(400).send(
-				"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
+		} else {
+			res.send(
+				`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
 			);
-			console.log(error);
-			// catch more errors.... registrationn with existing id
 		}
-	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
 	}
-});
+);
 
 // * Products Page
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {

@@ -8,7 +8,7 @@ block content
                 h5.card-header Profile Details
                 //- // Account
                 .card-body
-                    form#formAccountSettings(method='POST' action="/ao/register")
+                    form#formAccountSettings(method='POST' action="/ao/register" enctype="multipart/form-data")
                         .d-flex.align-items-start.align-items-sm-center.gap-4
                             img#uploadedAvatar.d-block.rounded(src='/images/profile-img.jpg' alt='user-avatar' height='100' width='100')
                             .button-wrapper
@@ -16,7 +16,7 @@ block content
                                     span.d-none.d-sm-block Upload new photo
                                     span.material-icons-outlined.d-block.d-sm-none
                                         | file_upload
-                                    input#upload.account-file-input(type='file' hidden='' accept='image/png, image/jpeg')
+                                    input#upload.account-file-input(type='file' hidden='' name="avatar" accept='image/png, image/jpeg')
                                 button.btn.btn-outline-danger.account-image-reset.mb-4(type='reset')
                                     span.material-icons-outlined.d-block.d-sm-none
                                         | restart_alt

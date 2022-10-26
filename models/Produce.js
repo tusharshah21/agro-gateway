@@ -47,7 +47,6 @@ const produceSchema = new mongoose.Schema({
 	},
 	uploaddate: {
 		type: String,
-		default: Date.now(),
 	},
 	availability: {
 		type: String,
