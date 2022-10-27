@@ -77,7 +77,7 @@ router.post(
 		if (user.role === "Farmer One") {
 			try {
 				const user = new User(req.body);
-				if (req.file.path) {
+				if (req.file && req.file.originalname) {
 					user.avatar = req.file.path;
 				}
 				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });

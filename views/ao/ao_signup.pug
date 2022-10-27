@@ -18,7 +18,7 @@ head
         #main.card.main
             h5.card-header Profile Details
             .card-body
-                form#formAccountSettings(method='POST' action="/ao/aosignup")
+                form#formAccountSettings.needs-validation(method='POST' action="/ao/agricosignup" enctype="multipart/form-data" novalidate)
                     .d-flex.align-items-start.align-items-sm-center.gap-4
                         img#uploadedAvatar.d-block.rounded(src='/images/profile-img.jpg' alt='user-avatar' height='100' width='100')
                         .button-wrapper
@@ -26,7 +26,7 @@ head
                                 span.d-none.d-sm-block Upload new photo
                                 span.material-icons-outlined.d-block.d-sm-none
                                     | file_upload
-                                input#upload.account-file-input(type='file' hidden='' accept='image/png, image/jpeg')
+                                input#upload.account-file-input(type='file' hidden='' name="avatar" accept='image/png, image/jpeg')
                             button.btn.btn-outline-danger.account-image-reset.mb-4(type='reset')
                                 span.material-icons-outlined.d-block.d-sm-none
                                     | restart_alt
@@ -38,55 +38,86 @@ head
                         .row
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='firstname') First Name
-                                input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John")
+                                input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John" required)
+                                .invalid-feedback Please provide First name
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='lastname') Last Name
-                                input#lastname.form-control(type='text' name='lastname' placeholder='Doe')
+                                input#lastname.form-control(type='text' name='lastname' placeholder='Doe' required)
+                                .invalid-feedback Please provide Second name
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='DOB') DOB
-                                input#dob.form-control(type='date' name='dob')
+                                input#dob.form-control(type='date' name='dob' required)
+                                .invalid-feedback Please provide Date of Birth
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='email') E-mail
-                                input#email.form-control(type='text' name='email' placeholder='john.doe@example.com')
+                                input#email.form-control(type='text' name='email' placeholder='john.doe@example.com' required)
+                                .invalid-feedback Please provide Email
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='phonenumber') Phone Number
                                 .input-group.input-group-merge
                                     span.input-group-text UG (+256)
-                                    input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333')
+                                    input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333' required)
+                                    .invalid-feedback Please provide Phone Number
+                                    .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field.row
                                 label.form-label(for='gender') Gender
                                 .form-check.col.ms-3
-                                    input.form-check-input#male(type='radio' name='gender' value="male")
-                                    label.form-check-label(for="male") Male
+                                    input.form-check-input#male(type='radio' name='gender' value="male" required)
+                                    label.form-check-label(for="male") Male                            
                                 .form-check.col
-                                    input.form-check-input#female(type='radio' name='gender' value="female")
+                                    input.form-check-input#female(type='radio' name='gender' value="female" required)
                                     label.form-check-label(for="female") Female
                                 .form-check.col
-                                    input.form-check-input#other(type='radio' name='gender' value="other")
+                                    input.form-check-input#other(type='radio' name='gender' value="other" required)
                                     label.form-check-label(for="other") Other
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='nin') National ID
-                                input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20')
+                                input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20' required)
+                                .invalid-feedback Please provide NIN
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
-                                label.form-label(for='role') Organization
+                                label.form-label(for='role') Role
                                 input#organization.form-control(type='text' name='role' value='Agriculture Officer')
+                                .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='address') Address
-                                input#address.form-control(type='text' name='address' placeholder='Address')
+                                input#address.form-control(type='text' name='address' placeholder='Address' required)
+                                .invalid-feedback Please provide Address
+                                .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='uniquenumber') Unique Number
                                 .input-group.input-group-merge
-                                    input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='')
+                                    input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' required)
                                     button.btn.btn-success.btn-sm(type="button" onclick="genAoUniqueNum()") generate
+                                    .invalid-feedback Please generate Unique Number
+                                    .valid-feedback Looks good!
+
                             .mb-3.col-md-4.input-field 
                                 label.form-label(for="password") Password
-                                input#password.form-control(type="text" name="password" placeholder="password")
+                                input#password.form-control(type="text" name="password" placeholder="password" required)
+                                .invalid-feedback Please provide Password
+                                .valid-feedback Looks good!
 
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='registrationdate') Date of Registration
-                                input#registrationdate.form-control(type='date' name='registrationdate')
+                                input#registrationdate.form-control(type='date' name='registrationdate' required)
+                                .invalid-feedback Please provide Date
+                                .valid-feedback Looks good!
+
                         .mt-2
                             button.btn.btn-success.me-2(type='submit')
                                 | Save changes
@@ -97,4 +128,5 @@ head
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous')
 
 script(src="/js/ao_register.js") 
+script(src="/js/form_validate.js") 
 //- // <script src="/assets/js/ao.js"></script>

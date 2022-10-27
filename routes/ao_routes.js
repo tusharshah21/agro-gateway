@@ -26,10 +26,13 @@ router.get("/agricosignup", (req, res) => {
 });
 
 // agricosignup
-router.post("/aosignup", async (req, res) => {
-	console.log(req.body);
+router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 	try {
 		const user = new User(req.body);
+		if (req.file && req.file.originalname) {
+			user.avatar = req.file.path;
+		}
+		console.log(req.body);
 		let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
 		let emailExists = await User.findOne({ email: req.body.email });
 
@@ -61,7 +64,7 @@ router.post("/aosignup", async (req, res) => {
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	const produce = await Produce.find();
+	const produce = await Produce.find({ status: "approved" });
 	if (user.role === "Agriculture Officer") {
 		try {
 			let totalPoultry = await Produce.aggregate([
@@ -173,7 +176,7 @@ router.post(
 			// console.log(req.body);
 			try {
 				const user = new User(req.body);
-				if (req.file.path) {
+				if (req.file && req.file.originalname) {
 					user.avatar = req.file.path;
 				}
 				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });

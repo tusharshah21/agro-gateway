@@ -8,7 +8,7 @@ block content
 
                 .card-body
                 if user
-                    form#formAccountSettings(method='post' action="/uf/upload" enctype="multipart/form-data")
+                    form#formAccountSettings.needs-validation(method='post' action="/uf/upload" enctype="multipart/form-data" novalidate)
                         .row
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='uploadedby') Uploader ID
@@ -28,62 +28,76 @@ block content
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='producetype') Produce Type
-                                select#producetype.select2.form-select(name="producetype")
+                                select#producetype.select2.form-select(name="producetype" required)
                                     option(value='') Select Type
                                     option(value='poultry') Poultry
                                     option(value='dairy') Dairy
                                     option(value='horticulture') Horticulture
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='producename') Produce Name
-                                input#producename.form-control(type='text' name='producename' placeholder='Chicken')
+                                input#producename.form-control(type='text' name='producename' placeholder='Chicken' required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='quantity') Quantity
                                 .input-group
-                                    input#quantity.form-control(type='number' name='quantity' placeholder='10')
+                                    input#quantity.form-control(type='number' name='quantity' placeholder='10' required)
                                     span.input-group-text Unit
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
 
                             .mb-3.col-md-4
                                 label.form-label(for='price') Price per Unit
                                 .input-group
                                     span.input-group-text Ugx
-                                    input#price.form-control(type='number' name='price' placeholder='2000')
+                                    input#price.form-control(type='number' name='price' placeholder='2000' required)
                                     span.input-group-text .00
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field.row
                                 label.form-label(for='') Organic Produce
                                 .form-check.col.ms-3
-                                    input.form-check-input#organic(type='radio' name='organic' value="organic")
+                                    input.form-check-input#organic(type='radio' name='organic' value="organic" required)
                                     label.form-check-label(for="organic") Yes
                                 .form-check.col
-                                    input.form-check-input#inorganic(type='radio' name='organic' value="inorganic")
+                                    input.form-check-input#inorganic(type='radio' name='organic' value="inorganic" required)
                                     label.form-check-label(for="inorganic") No
 
                             .mb-3.col-md-4.input-field.row
                                 label.form-label(for='payment') Mode of Payment
                                 .form-check.col.ms-3
-                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money")
+                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money" required)
                                     label.form-check-label(for="mobilemoney") Mobile Money
                                 .form-check.col
-                                    input.form-check-input#cash(type='checkbox' name='payment' value="Cash")
+                                    input.form-check-input#cash(type='checkbox' name='payment' value="Cash" required)
                                     label.form-check-label(for="cash") Cash
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='modeofdelivery') Mode of Delivery
-                                select#modeofdelivery.select2.form-select(name="modeofdelivery")
+                                select#modeofdelivery.select2.form-select(name="modeofdelivery" required)
                                     option(value='Pickup and Home Delivery') Both Modes
                                     option(value='Pickup') Pick Up
                                     option(value='Home Delivery') Home Delivery
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for="produceimg") Produce Image
-                                input#produceimg.form-control(type="file" name="produceimg")
+                                input#produceimg.form-control(type="file" name="produceimg" required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='uploaddate') Date of Upload
-                                input#uploaddate.form-control(type='date' name='uploaddate')
+                                input#uploaddate.form-control(type='date' name='uploaddate' required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
                         .mt-2
                             button.btn.btn-success.me-2(type='submit')
                                 | Save changes

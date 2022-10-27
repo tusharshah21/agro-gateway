@@ -13,6 +13,7 @@ block content
             thead
                 tr
                     th(scope='col') #
+                    th
                     th(scope='col') Name
                     th(scope='col') Unique ID
                     th(scope='col') Email
@@ -27,10 +28,12 @@ block content
                     each member,index in members
                         tr
                             th(scope='row') #{index+1}
+                            td 
+                                img(src="/"+member.avatar height="35px" style="border-radius: 50%")
                             td #{member.firstname} #{member.lastname}
                             td #{member.uniquenumber}
                             td #{member.email}
-                            td #{member.phonenumber}
+                            td +256 #{member.phonenumber}
                             td #{member.gender}
                             //- td #{member.role}
                             td #{member.ward}
