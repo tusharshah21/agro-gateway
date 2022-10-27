@@ -30,21 +30,39 @@ block content
             tbody
                 if farmerones.length > 0
                     each farmerone,index in farmerones
-                        tr
-                            th(scope='row') #{index+1}
-                            td 
-                                img(src="/"+farmerone.avatar height="35px" style="border-radius: 50%")
-                            td    #{farmerone.firstname} #{farmerone.lastname}
-                            td #{farmerone.uniquenumber}
-                            td #{farmerone.email}
-                            td #{farmerone.phonenumber}
-                            td #{farmerone.gender}
-                            td #{farmerone.ward}
-                            td #{farmerone.activity}
-                            td #{farmerone.status}
-                            td 
-                                a(href="/ao/foupdate/"+farmerone._id)
-                                    span.material-icons-outlined.ms-3  edit
+                        if farmerone.status == "retired"
+                            tr.text-muted.text-decoration-line-through
+                                th(scope='row') #{index+1}
+                                td 
+                                    img(src="/"+farmerone.avatar height="35px" style="border-radius: 50%")
+                                td    #{farmerone.firstname} #{farmerone.lastname}
+                                td #{farmerone.uniquenumber}
+                                td #{farmerone.email}
+                                td #{farmerone.phonenumber}
+                                td #{farmerone.gender}
+                                td #{farmerone.ward}
+                                td #{farmerone.activity}
+                                td.text-danger #{farmerone.status}
+                                td 
+                                    a(href="/ao/foupdate/"+farmerone._id)
+                                        span.material-icons-outlined.ms-3  edit
+
+                        else 
+                            tr
+                                th(scope='row') #{index+1}
+                                td 
+                                    img(src="/"+farmerone.avatar height="35px" style="border-radius: 50%")
+                                td    #{farmerone.firstname} #{farmerone.lastname}
+                                td #{farmerone.uniquenumber}
+                                td #{farmerone.email}
+                                td #{farmerone.phonenumber}
+                                td #{farmerone.gender}
+                                td #{farmerone.ward}
+                                td #{farmerone.activity}
+                                td #{farmerone.status}
+                                td 
+                                    a(href="/ao/foupdate/"+farmerone._id)
+                                        span.material-icons-outlined.ms-3  edit
 
                 else 
                     tr 

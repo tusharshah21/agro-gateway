@@ -140,6 +140,22 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 	}
 });
 
+router.get("/members/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Agriculture Officer") {
+		const members = await User.find({ role: "Farmer One" });
+		res.render("ao/members_fo", { user, members: members });
+	}
+});
+
+router.get("/members/urbanfarmers", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Agriculture Officer") {
+		const members = await User.find({ role: "Urban Farmer" });
+		res.render("ao/members_uf", { user, members: members });
+	}
+});
+
 //  * * * * * * * * * * * * * * * * * * General Public  * * * * * * * * * * * * * * * * * * * * * * * *
 
 router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
@@ -217,7 +233,7 @@ router.post(
 router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
-		const farmerOnes = await User.find({ role: "Farmer One" });
+		const farmerOnes = await User.find({ role: "Farmer One" }).sort({ status: 1 });
 		res.render("ao/ao_farmerone", { user, farmerones: farmerOnes });
 	}
 });
