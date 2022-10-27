@@ -6,34 +6,45 @@ block content
         .container-fluid.d-flex.justify-content-center.mt-5
             #main.card.main
                 .card-img-top.d-flex.justify-content-center
-                    img.w-25(src="/"+produce.produceimg alt="update img" style="height:50px width:50px")
+                    if farmerone.avatar
+                        img.w-25.mx-auto(src="/"+farmerone.avatar alt="update img" style="height:50px width:50px")
+                    else 
+                        img.w-25.mx-auto(src='/images/profile-img.jpg' alt="update img" style="height:50px width:50px")
+                    p.fw-bold.text-success.my-auto.mx-auto.fs-2 #{farmerone.firstname} #{farmerone.lastname}
                 .card-body
-                if user
-                    form#formAccountSettings(method='post' action="/uf/update/?id="+produce._id )
+                if farmerone
+                    form#formAccountSettings(method='post' action="/ao/foupdate/?id="+farmerone._id )
                         .row
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='producetype') Produce Type
-                                select#producetype.select2.form-select(name="producetype")
-                                    option(value='poultry' selected=produce.producetype==="poultry") Poultry
-                                    option(value='dairy' selected=produce.producetype==="dairy") Dairy
-                                    option(value='horticulture' selected=produce.producetype==="horticulture") Horticulture
+                            .mb-3.col-md-12.input-field
+                                label.form-label(for='phonenumber') Phone Number
+                                .input-group.input-group-merge
+                                    span.input-group-text UG (+256)
+                                    input#phonenumber.form-control(type='text' name='phonenumber' value=farmerone.phone)
 
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='availability') Availability
-                                select#status.select2.form-select(name="availability")
-                                    option(value='available' selected=produce.availability==="available") Available
-                                    option(value='booked' selected=produce.availability==="booked") Booked
-                                    option(value='N/A' selected=produce.availability==="N/A") N/A
+                            .mb-3.col-md-12.input-field
+                                label.form-label(for='status') Status
+                                select#status.select2.form-select(name="status")
+                                    option(value='active' selected=farmerone.status==="active") Active
+                                    option(value='retired' selected=farmerone.status==="retired") Retired
 
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='modeofdelivery') Mode of Delivery
-                                select#status.select2.form-select(name="modeofdelivery")
-                                    option(value='Pickup & Home Delivery' selected=produce.availability==="Pickup & Home Delivery") Pickup & Home Delivery
-                                    option(value='Pickup' selected=produce.availability==="Pickup") Pickup
-                                    option(value='Home Delivery' selected=produce.availability==="Home Delivery") Home Delivery
+                            .mb-3.col-md-12.input-field
+                                label.form-label(for='activity') Activity
+                                select#activity.select2.form-select(name="activity")
+                                    option(value='dairy' selected=farmerone.activity==="dairy") Dairy
+                                    option(value='poultry' selected=farmerone.activity==="poultry") Poultry
+                                    option(value='horticulture' selected=farmerone.activity==="horticulture") Horticulture
+
+
+
+                            //- .mb-3.col-md-4.input-field
+                            //-     label.form-label(for='modeofdelivery') Mode of Delivery
+                            //-     select#status.select2.form-select(name="modeofdelivery")
+                            //-         option(value='Pickup & Home Delivery' selected=produce.availability==="Pickup & Home Delivery") Pickup & Home Delivery
+                            //-         option(value='Pickup' selected=produce.availability==="Pickup") Pickup
+                            //-         option(value='Home Delivery' selected=produce.availability==="Home Delivery") Home Delivery
 
 
                         .mt-2
                             button.btn.btn-success.me-2(type='submit')
                                 | Save changes
-                            a.btn.btn-outline-danger(type='reset' href="/uf/uploaded") Cancel
+                            a.btn.btn-outline-danger(type='reset' href="/ao/farmerones") Cancel

@@ -76,4 +76,4 @@ app.get("*", (req, res) => {
 });
 
 // ============================================= Server ======================================================
-app.listen(4000, console.log(`UFARM 🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));
+app.listen(PORT, console.log(`UFARM 🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));

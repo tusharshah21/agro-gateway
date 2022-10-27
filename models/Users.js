@@ -73,6 +73,11 @@ const userSchema = new mongoose.Schema({
 	avatar: {
 		type: String,
 	},
+	status: {
+		type: String,
+		default: "active",
+		enum: ["active", "retired"],
+	},
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "uniquenumber" });

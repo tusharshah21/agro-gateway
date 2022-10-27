@@ -19,7 +19,8 @@ const storage = multer.diskStorage({
 // instantiate variable upload to store multer functionality to upload image
 const upload = multer({ storage: storage });
 
-//* Agriculture Officer Signup
+//* * * * * * *  * * * * * * * * Agriculture Officer Signup  * * * * * * * * * * * * * * * * * *
+
 router.get("/agricosignup", (req, res) => {
 	res.render("ao/ao_signup");
 });
@@ -56,7 +57,8 @@ router.post("/aosignup", async (req, res) => {
 	}
 });
 
-//* Dashboard
+//*  * * * * * * * * * * * * * * * * * * Dashboard  * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produce = await Produce.find();
@@ -120,6 +122,8 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	}
 });
 
+//  * * * * * * * * * * * * * * * * * * Members * * * * * * * * * * * * * * * * *
+
 router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const members = await User.find({ role: { $in: ["Farmer One", "Urban Farmer"] } });
@@ -133,6 +137,8 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 	}
 });
 
+//  * * * * * * * * * * * * * * * * * * General Public  * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
@@ -143,6 +149,8 @@ router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 		);
 	}
 });
+
+//  * * * * * * * * * * * * * * * * * * Register Farmer One  * * * * * * * * * * * * * * * * * *
 
 router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	const user = req.session.user;
@@ -165,7 +173,7 @@ router.post(
 			// console.log(req.body);
 			try {
 				const user = new User(req.body);
-				if (user.avatar) {
+				if (req.file.path) {
 					user.avatar = req.file.path;
 				}
 				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
@@ -201,7 +209,50 @@ router.post(
 	}
 );
 
-// * Products Page
+//  * * * * * * * * * * * * * * * * * * Update Farmer One  * * * * * * * * * * * * * * * * * *
+
+router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Agriculture Officer") {
+		const farmerOnes = await User.find({ role: "Farmer One" });
+		res.render("ao/ao_farmerone", { user, farmerones: farmerOnes });
+	}
+});
+
+router.get("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Agriculture Officer") {
+		try {
+			const updateFO = await User.findOne({ _id: req.params.id });
+			res.render("ao/fo_update", { user: req.session.user, farmerone: updateFO });
+		} catch (error) {
+			res.status(400).send("Farmer to update not found.");
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
+		);
+	}
+});
+
+router.post("/foupdate", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Agriculture Officer") {
+		try {
+			await User.findOneAndUpdate({ _id: req.query.id }, req.body);
+			res.redirect("/ao/farmerones");
+		} catch (error) {
+			res.status(400).send("Farmer not Updated.");
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
+		);
+	}
+});
+
+// * * * * * * * * * * * * * * * * * * * Products Page  * * * * * * * * * * * * * * * * * *
+
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produce = await Produce.find();
@@ -214,7 +265,8 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	}
 });
 
-// * Reports
+// * * * * * * * * * * * * * * * * * * * Reports  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produce = await Produce.find();

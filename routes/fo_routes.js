@@ -73,32 +73,39 @@ router.post(
 	upload.single("avatar"),
 	async (req, res) => {
 		console.log(req.body);
-		try {
-			const user = new User(req.body);
-			if (user.avatar) {
-				user.avatar = req.file.path;
-			}
-			let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
-			let emailExists = await User.findOne({ email: req.body.email });
+		const user = req.session.user;
+		if (user.role === "Farmer One") {
+			try {
+				const user = new User(req.body);
+				if (req.file.path) {
+					user.avatar = req.file.path;
+				}
+				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
+				let emailExists = await User.findOne({ email: req.body.email });
 
-			console.log("unique Num: " + uniqueExists, "email: " + emailExists);
+				console.log("unique Num: " + uniqueExists, "email: " + emailExists);
 
-			if (uniqueExists || emailExists) {
-				return res.status(400).render("fo/fo_user_exists");
-			} else {
-				await User.register(user, req.body.password, (error) => {
-					if (error) {
-						throw error;
-					}
-					res.redirect("/fo/members");
-				});
+				if (uniqueExists || emailExists) {
+					return res.status(400).render("fo/fo_user_exists");
+				} else {
+					await User.register(user, req.body.password, (error) => {
+						if (error) {
+							throw error;
+						}
+						res.redirect("/fo/members");
+					});
+				}
+			} catch (error) {
+				res.status(400).send(
+					"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
+				);
+				console.log(error);
+				// catch more errors.... registrationn with existing id
 			}
-		} catch (error) {
-			res.status(400).send(
-				"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
+		} else {
+			res.send(
+				`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Farmer One 🤷</h2>`
 			);
-			console.log(error);
-			// catch more errors.... registrationn with existing id
 		}
 	}
 );
