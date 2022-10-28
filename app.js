@@ -70,9 +70,10 @@ app.use("/", gpRoutes);
 
 // 404 routing
 app.get("*", (req, res) => {
-	res.send(
-		`<h1 style='text-align:center;margin-top:5%;font-size:80px;'>404<h1><h1 style='text-align:center;font-size:70px;'>😂😂😂</h1><p style='text-align:center;color:red;'>Page does not exist</p>`
-	);
+	// res.send(
+	// 	`<h1 style='text-align:center;margin-top:5%;font-size:80px;'>404<h1><h1 style='text-align:center;font-size:70px;'>😂😂😂</h1><p style='text-align:center;color:red;'>Page does not exist</p>`
+	// );
+	res.render("404.pug");
 });
 
 // ============================================= Server ======================================================

@@ -20,6 +20,8 @@ block content
                     th(scope='col') Mode of Delivery
                     th(scope='col') Payment Method
                     th(scope='col') Owner
+                    th(scope='col') Status
+
 
             tbody
                 if produce.length>0
@@ -34,6 +36,10 @@ block content
                             td #{product.modeofdelivery}
                             td #{product.payment} 
                             td.fst-italic.text-muted #{product.fullname}
+                            if product.status=="approved"
+                                td.text-success.fw-bold #{product.status}
+                            else 
+                                td #{product.status}
                 else 
                     tr 
                         th(scope="row") 0

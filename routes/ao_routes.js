@@ -64,11 +64,18 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	const produce = await Produce.find({ status: "approved" });
+	const produces = await Produce.find({ status: "approved" });
 	if (user.role === "Agriculture Officer") {
 		try {
+			// ? Search produce
+			// if (req.query.searchProduce) selectedProduce = req.query.searchProduce;
+
+			// // Query for returning all tonnage and revenue of a produce
+			// let items = await Produce.find({ prodname: selectedProduce });
+
 			let totalPoultry = await Produce.aggregate([
-				{ $match: { producetype: "poultry" } },
+				// { $match: { producetype: "poultry" } },
+				{ $match: { $and: [{ producetype: "poultry" }, { status: "approved" }] } },
 				{
 					$group: {
 						_id: "$all",
@@ -79,35 +86,43 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			]);
 
 			let totalHort = await Produce.aggregate([
-				{ $match: { producetype: "horticulture" } },
+				// { $match: { producetype: "horticulture" } },
+
+				{ $match: { $and: [{ producetype: "horticulture" }, { status: "approved" }] } },
+
 				{
 					$group: {
-						_id: "$all",
+						_id: "$approved",
 						totalQuantity: { $sum: "$quantity" },
 						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
 					},
 				},
 			]);
 			let totalDairy = await Produce.aggregate([
-				{ $match: { producetype: "dairy" } },
+				// { $match: { producetype: "dairy" } },
+				{ $match: { $and: [{ producetype: "dairy" }, { status: "approved" }] } },
+
 				{
 					$group: {
 						_id: "$all",
+						// _id:user._id,
 						totalQuantity: { $sum: "$quantity" },
 						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
 					},
 				},
 			]);
 			let totalGP = await General.collection.countDocuments();
-			let totalFO = await User.collection.countDocuments({ role: "Farmer One" });
+			let totalFO = await User.collection.countDocuments({
+				$and: [{ status: "active" }, { role: "Farmer One" }],
+			});
 			let totalUF = await User.collection.countDocuments({ role: "Urban Farmer" });
 
-			console.log("Poultry collections", totalGP);
-			console.log("Hort collections", totalFO);
-			console.log("Dairy collections", totalUF);
+			console.log("Poultry collections", totalPoultry);
+			console.log("Hort collections", totalDairy);
+			console.log("Dairy collections", totalHort);
 			res.render("ao/ao_dash.pug", {
 				user: req.session.user,
-				produce: produce,
+				produces: produces,
 				totalP: totalPoultry[0],
 				totalH: totalHort[0],
 				totalD: totalDairy[0],

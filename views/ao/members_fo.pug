@@ -8,18 +8,18 @@ block content
         //-     option(value="urbanfarmer") Urban Farmer 
         //- option(value="generalpublic") General Public 
 
-        .btn-group(role='group')
-            button#filter.btn.btn-light.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-                | Filter
-            ul.dropdown-menu(aria-labelledby='filter')
-                li
-                a.dropdown-item(href='/ao/members') All
-                li
-                a.dropdown-item(href='/ao/members/urbanfarmers') Urban Farmers
 
 
 
         table.table
+            .btn-group(role='group')
+                button#filter.btn.btn-light.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                    | Filter
+                ul.dropdown-menu(aria-labelledby='filter')
+                    li
+                    a.dropdown-item(href='/ao/members') All
+                    li
+                    a.dropdown-item(href='/ao/members/urbanfarmers') Urban Farmers
             thead
                 tr
                     th(scope='col') #
@@ -37,18 +37,19 @@ block content
             tbody
                 if members.length > 0
                     each member,index in members
-                        tr
-                            th(scope='row') #{index+1}
-                            th 
-                                img(src="/"+member.avatar, width="35" height="35" style="border-radius:50%")
-                            td #{member.firstname} #{member.lastname}
-                            td #{member.uniquenumber}
-                            td #{member.email}
-                            td #{member.phonenumber}
-                            td #{member.gender}
-                            td #{member.role}
-                            td #{member.ward}
-                            td #{member.activity}
+                        if member.status=="active"
+                            tr
+                                th(scope='row') #{index+1}
+                                th 
+                                    img(src="/"+member.avatar, width="35" height="35" style="border-radius:50%")
+                                td #{member.firstname} #{member.lastname}
+                                td #{member.uniquenumber}
+                                td #{member.email}
+                                td #{member.phonenumber}
+                                td #{member.gender}
+                                td #{member.role}
+                                td #{member.ward}
+                                td #{member.activity}
                 else 
                     tr 
                         th(scope='row') 0

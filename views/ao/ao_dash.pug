@@ -2,7 +2,7 @@ extends ao_layout.pug
 
 block content 
     .container-fluid
-        if produce.length>0
+        if produces.length>0
             .justify-content-center.d-flex.my-4
                 .card.p-2.mx-3.border-4.border-primary
                     .card-body
@@ -10,7 +10,7 @@ block content
                         .d-flex.justify-content-center.mt-3
                             span.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
                             .items 
-                                h4 #{new Intl.NumberFormat().format(totalH.totalQuantity + totalD.totalQuantity + totalP.totalQuantity)} Units
+                                h4 #{new Intl.NumberFormat().format(totalD.totalQuantity=totalP.totalQuantity+totalH.totalQuantity)} Units
                                 p 12% increase
                         .mt-4
                             .text-center
@@ -27,7 +27,7 @@ block content
                         .d-flex.justify-content-center.mt-3
                             span.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
                             .items 
-                                h4 #{new Intl.NumberFormat().format(totalH.totalCost + totalD.totalCost + totalP.totalCost)} UGX
+                                h4 #{new Intl.NumberFormat().format( totalP.totalCost)} UGX
                                 p 12% increase
                         .mt-4
                             .text-center
@@ -72,8 +72,8 @@ block content
                             th(scope='col') Owner
 
                     tbody
-                        if produce.length>0
-                            each product,index in produce
+                        if produces.length>0
+                            each product,index in produces
                                 tr
                                     th(scope='row') #{index+1}
                                     td
