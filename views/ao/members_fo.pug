@@ -13,7 +13,7 @@ block content
 
         table.table
             .btn-group(role='group')
-                button#filter.btn.btn-light.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+                button#filter.btn.btn-light.shadow.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
                     | Filter
                 ul.dropdown-menu(aria-labelledby='filter')
                     li
@@ -31,7 +31,7 @@ block content
                     th(scope='col') Gender
                     th(scope='col') Role
                     th(scope='col') Ward 
-                    th(scope='col') Activity
+
 
 
             tbody
@@ -45,11 +45,11 @@ block content
                                 td #{member.firstname} #{member.lastname}
                                 td #{member.uniquenumber}
                                 td #{member.email}
-                                td #{member.phonenumber}
+                                td +256 #{member.phonenumber}
                                 td #{member.gender}
                                 td #{member.role}
                                 td #{member.ward}
-                                td #{member.activity}
+
                 else 
                     tr 
                         th(scope='row') 0

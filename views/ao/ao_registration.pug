@@ -5,7 +5,7 @@ block content
     #main
         .container-fluid
             #main.card.main
-                h5.card-header Profile Details
+                h5.card-header Profile Details | Register Farmer One
                 //- // Account
                 .card-body
                     form#formAccountSettings.needs-validation(method='POST' action="/ao/register" enctype="multipart/form-data" novalidate)
@@ -117,15 +117,15 @@ block content
                                     .invalid-feedback All field are required
                                     .valid-feedback Looks good!
 
-                                .mb-3.col-md-4.input-field
-                                    label.form-label(for='activity') Activity
-                                    select#activity.select2.form-select(name="activity" required)
-                                        option(value='') Select Activity
-                                        option(value='poultry') Poultry
-                                        option(value='dairy' ) Dairy
-                                        option(value='horticulture') Horticulture
-                                    .invalid-feedback All field are required
-                                    .valid-feedback Looks good!
+                                //- .mb-3.col-md-4.input-field
+                                //-     label.form-label(for='activity') Activity
+                                //-     select#activity.select2.form-select(name="activity" required)
+                                //-         option(value='') Select Activity
+                                //-         option(value='poultry') Poultry
+                                //-         option(value='dairy' ) Dairy
+                                //-         option(value='horticulture') Horticulture
+                                //-     .invalid-feedback All field are required
+                                //-     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='uniquenumber') Unique Number

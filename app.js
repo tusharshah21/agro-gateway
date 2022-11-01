@@ -15,10 +15,10 @@ const gpRoutes = require("./routes/gp_routes");
 const foRoutes = require("./routes/fo_routes");
 const ufRoutes = require("./routes/uf_routes");
 
-// ====================================== Apps =====================================================
+//* ====================================== Apps =====================================================
 const app = express();
 
-// ========================================== Mongoose ================================================
+//* ========================================== Mongoose ================================================
 const PORT = process.env.PORT || 3000;
 
 main().catch((err) => console.log(err));
@@ -27,11 +27,11 @@ async function main() {
 	console.log("Connected to Database " + process.env.DB_URI);
 }
 
-// ========================================= Configurations ============================================
+//* ========================================= Configurations ============================================
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-// ============================================ Middleware ================================================
+//* ============================================ Middleware ================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
@@ -51,7 +51,7 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// ======================================== Routes ====================================================
+//* ======================================== Routes ====================================================
 
 // login
 app.use("/login", authRoutes);
@@ -76,5 +76,5 @@ app.get("*", (req, res) => {
 	res.render("404.pug");
 });
 
-// ============================================= Server ======================================================
+//* ============================================= Server ======================================================
 app.listen(PORT, console.log(`UFARM 🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));

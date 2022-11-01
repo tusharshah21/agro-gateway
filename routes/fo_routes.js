@@ -4,6 +4,7 @@ const multer = require("multer");
 const connectEnsureLogin = require("connect-ensure-login");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
+const General = require("../models/General");
 
 // image upload
 const storage = multer.diskStorage({
@@ -18,11 +19,101 @@ const storage = multer.diskStorage({
 // instantiate variable upload to store multer functionality to upload image
 const upload = multer({ storage: storage });
 
-//  dash
-router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+//* ******************************** Dashboard ********************************
+
+router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
+	const produces = await Produce.find({ status: "approved" });
+
 	if (user.role === "Farmer One") {
-		res.render("fo/fo_dash", { user: req.session.user });
+		try {
+			let totalPoultry = await Produce.aggregate([
+				// { $match: { producetype: "poultry" } },
+				{
+					$match: {
+						$and: [
+							{ producetype: "poultry" },
+							{ status: "approved" },
+							{ ward: user.ward },
+						],
+					},
+				},
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			let totalHort = await Produce.aggregate([
+				// { $match: { producetype: "horticulture" } },
+
+				{
+					$match: {
+						$and: [
+							{ producetype: "horticulture" },
+							{ status: "approved" },
+							{ ward: user.ward },
+						],
+					},
+				},
+
+				{
+					$group: {
+						_id: "$approved",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			let totalDairy = await Produce.aggregate([
+				// { $match: { producetype: "dairy" } },
+				{
+					$match: {
+						$and: [
+							{ producetype: "dairy" },
+							{ status: "approved" },
+							{ ward: user.ward },
+						],
+					},
+				},
+
+				{
+					$group: {
+						_id: "$all",
+						// _id:user._id,
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			let totalGP = await General.collection.countDocuments();
+			let totalUF = await User.collection.countDocuments({
+				role: "Urban Farmer",
+			});
+			let totalFO = await User.collection.countDocuments({
+				$and: [{ status: "active" }, { role: "Farmer One" }],
+			});
+
+			console.log(totalPoultry);
+			res.render("fo/fo_dash", {
+				user,
+				produces,
+				totalP: totalPoultry[0],
+				totalH: totalHort[0],
+				totalD: totalDairy[0],
+				totalFO: totalFO,
+				totalGP: totalGP,
+				totalUF: totalUF,
+			});
+		} catch (error) {
+			console.log(error);
+			res.status(404).send("Unable to find Produce");
+		}
 	} else {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Farmer One 🤷</h2>`
@@ -34,7 +125,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Farmer One") {
-		const members = await User.find({ role: "Urban Farmer" });
+		const members = await User.find({ role: "Urban Farmer", ward: user.ward });
 		res.render("fo/fo_members", { user: req.session.user, members: members });
 	} else {
 		res.send(
@@ -46,7 +137,7 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Farmer One") {
-		const produce = await Produce.find().sort({ status: -1 });
+		const produce = await Produce.find({ ward: user.ward }).sort({ status: -1 });
 		res.render("fo/products", { user: req.session.user, produce: produce });
 	} else {
 		res.send(

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const gpSchema = new mongoose.Schema({
-	username: {
+	uniquenumber: {
 		type: String,
 		required: true,
 		trim: true,
@@ -16,6 +16,6 @@ const gpSchema = new mongoose.Schema({
 	},
 });
 
-gpSchema.plugin(passportLocalMongoose);
+gpSchema.plugin(passportLocalMongoose, { usernameField: "uniquenumber" });
 
 module.exports = mongoose.model("General", gpSchema);

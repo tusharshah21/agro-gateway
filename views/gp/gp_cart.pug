@@ -1,0 +1,26 @@
+extends gp_layout
+
+block content 
+    .cart
+        .container-fluid
+            .card 
+                .card-header.d-flex
+                    h5.me-auto Shopping Cart 
+                    a.ms-auto(href="") Remove all
+                .card-body
+                    .row 
+                        .col-12.d-flex
+                            .img 
+                                img(src="/images/product-2.png" alt="" srcset="" width="100" height="100")
+                            .detail
+                                h4 Tomatoes 
+                                p 250ml
+                                input(type="checkbox")
+                            .amount 
+                                button +
+                                p 2
+                                button -
+                            .total 
+                                h6 $2.99
+                                a(href="") Save for later 
+                                a(href="") Remove

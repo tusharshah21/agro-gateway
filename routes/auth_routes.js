@@ -2,14 +2,17 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
+// * * * * * * * * * * * * * * * * * Login * * * * * * * * * * * * * * * * * * * * * * * * *
+// login get
 router.get("/", (req, res) => {
 	res.render("login");
 });
 
+// login post
 router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
-	console.log("User Email: " + user.email, "Unique Id: " + user.uniquenumber);
+	// console.log("User Email: " + user.email, "Unique Id: " + user.uniquenumber);
 	if (user.role === "Agriculture Officer") {
 		res.redirect("/ao");
 	} else if (user.role === "Farmer One") {
@@ -20,6 +23,8 @@ router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), 
 		res.redirect("/");
 	}
 });
+
+// * * * * * * * * * * * * * * * * * Logout * * * * * * * * * * * * * * * * *
 
 router.post("/logout", (req, res) => {
 	if (req.session) {
@@ -34,4 +39,5 @@ router.post("/logout", (req, res) => {
 	// res.redirect("/login");
 });
 
+// export routes
 module.exports = router;

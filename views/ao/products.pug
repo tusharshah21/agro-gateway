@@ -16,11 +16,13 @@ block content
                     th(scope='col') Preview
                     th(scope='col') Product
                     th(scope="col") Produce Type
-                    th(scope='col') Price
+                    th(scope='col') Units
                     th(scope='col') Mode of Delivery
                     th(scope='col') Payment Method
-                    th(scope='col') Owner
-                    th(scope='col') Status
+                    th(scope='col') Owner  
+                    th(scope='col') Ward   
+                    th(scope='col') Details
+
 
 
             tbody
@@ -32,14 +34,55 @@ block content
                                 img(src="/"+product.produceimg alt="" srcset="" height="35")
                             td #{product.producename}
                             td #{product.producetype}
-                            td #{product.price}
+                            td #{product.quantity}
                             td #{product.modeofdelivery}
                             td #{product.payment} 
                             td.fst-italic.text-muted #{product.fullname}
-                            if product.status=="approved"
-                                td.text-success.fw-bold #{product.status}
-                            else 
-                                td #{product.status}
+                            td #{product.ward} 
+                            //- if product.status=="approved"
+                            //-     td.text-success.fw-bold #{product.status}
+                            //- else 
+                            //-     td #{product.status}
+                            td 
+                                a(href="" data-bs-toggle="modal" data-bs-target="#productpage"+product._id)
+                                    span.material-icons-outlined.ms-3  info
+
+                            //-* Modal
+                            .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="productpage"+product._id)
+                                .modal-dialog.modal-dialog-centered.modal-lg
+                                    .modal-content
+                                        .modal-body
+                                            .container-fluid.d-flex.flex-sm-row.justify-content-center
+                                                .body.p-5.d-flex.rounded
+                                                    .img.me-3
+                                                        img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
+                                                    .details.ms-3
+                                                        .title
+                                                            h3.text-capitalize #{product.producename}
+                                                            p.text-capitalize #{product.organic} #{product.producename}
+                                                        .stars.my-2.text-warning
+                                                            span.material-icons-outlined star
+                                                            span.material-icons-outlined star
+                                                            span.material-icons-outlined star
+                                                            span.material-icons-outlined star
+                                                            span.material-icons-outlined star_half
+                                                        .decription
+                                                            h5 Lorem ipsum dolor sit amet.
+                                                            p
+                                                                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                | Blanditiis soluta odit totam nam maiores in vel,
+                                                                | doloribus nulla ab esse!
+                                                            p.btn.btn-outline-success.btn-sm.me-3 #{product.payment}
+                                                            p.btn.btn-outline-success.btn-sm #{product.modeofdelivery}
+                                                            p.text-capitalize #{product.availability}
+                                                        //- .input-group.mb-3
+                                                        //-     span#quantity.input-group-text Units
+                                                        //-     input.form-control(type='number' value='1' aria-label='quantity' aria-describedby='quantity')
+                                                        .price.fw-bold UGX #{new Intl.NumberFormat().format(product.price)}/-
+                                                        //- .my-2
+                                                        //-     button.btn.btn-success(type='button')
+                                                        //-         | Add to Cart
+
                 else 
                     tr 
                         th(scope="row") 0

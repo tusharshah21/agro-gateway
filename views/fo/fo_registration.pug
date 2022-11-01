@@ -78,7 +78,13 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='role') Role
-                                    input#organization.form-control(type='text' name='role' value='Urban Farmer' required)
+                                    input#role.form-control(type='text' name='role' value='Urban Farmer' required)
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='ward') Ward
+                                    input#ward.form-control(type='text' name='ward' value=user.ward required)
                                     .invalid-feedback All field are required
                                     .valid-feedback Looks good!
 
@@ -88,16 +94,16 @@ block content
                                     .invalid-feedback All field are required
                                     .valid-feedback Looks good!
 
-                                .mb-3.col-md-4.input-field
-                                    label.form-label(for='ward') Ward
-                                    select#ward.select2.form-select(name="ward" required)
-                                        option(value='') Select
-                                        option(value='south' ) South Ward
-                                        option(value='north' ) North Ward
-                                        option(value='east' ) East Ward
-                                        option(value='west' ) West Ward
-                                    .invalid-feedback All field are required
-                                    .valid-feedback Looks good!
+                                //- .mb-3.col-md-4.input-field
+                                //-     label.form-label(for='ward') Ward
+                                //-     select#ward.select2.form-select(name="ward" required)
+                                //-         option(value='') Select
+                                //-         option(value='south' ) South Ward
+                                //-         option(value='north' ) North Ward
+                                //-         option(value='east' ) East Ward
+                                //-         option(value='west' ) West Ward
+                                //-     .invalid-feedback All field are required
+                                //-     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='residencetime') Years of Residence

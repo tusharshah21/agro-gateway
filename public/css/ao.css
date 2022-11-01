@@ -137,10 +137,6 @@ body {
 	transition: 0.5s; */
 }
 
-.sidebar li {
-	/* padding: 0.5rem; */
-}
-
 .sidebar li:hover {
 	background-color: aqua;
 	border-radius: 10px;
@@ -151,3 +147,11 @@ body {
 	transition: margin-left 0.5s;
 	padding: 16px;
 }
+
+/* *DASHBOARD */
+/* .card {
+	border-radius: 20px;
+	background-color: rgb(255, 255, 255);
+
+	box-shadow: 0 0 0 5px rgba(0, 0, 0, 1);
+} */

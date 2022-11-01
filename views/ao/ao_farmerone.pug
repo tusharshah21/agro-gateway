@@ -2,11 +2,11 @@ extends ao_layout.pug
 
 block content 
     .container-fluid.mt-3
-        select.form-select.mb-3
-            option(value="") Apply filter
-            option(value="active") Active
-            option(value="retired") Retired
-            //- option(value="generalpublic") General Public 
+        //- select.form-select.mb-3
+        //-     option(value="") Apply filter
+        //-     option(value="active") Active
+        //-     option(value="retired") Retired
+        //- option(value="generalpublic") General Public 
 
 
 
@@ -20,8 +20,7 @@ block content
                     th(scope='col') Email
                     th(scope='col') Phone 
                     th(scope='col') Gender
-                    th(scope='col') Ward 
-                    th(scope='col') Activity
+                    th(scope='col') Ward                     
                     th(scope='col') Status
                     th(scope='col') Edit
 
@@ -38,10 +37,9 @@ block content
                                 td    #{farmerone.firstname} #{farmerone.lastname}
                                 td #{farmerone.uniquenumber}
                                 td #{farmerone.email}
-                                td #{farmerone.phonenumber}
+                                td +256 #{farmerone.phonenumber}
                                 td #{farmerone.gender}
-                                td #{farmerone.ward}
-                                td #{farmerone.activity}
+                                td #{farmerone.ward}                                
                                 td.text-danger #{farmerone.status}
                                 td 
                                     a(href="/ao/foupdate/"+farmerone._id)
@@ -55,10 +53,9 @@ block content
                                 td    #{farmerone.firstname} #{farmerone.lastname}
                                 td #{farmerone.uniquenumber}
                                 td #{farmerone.email}
-                                td #{farmerone.phonenumber}
+                                td +256 #{farmerone.phonenumber}
                                 td #{farmerone.gender}
-                                td #{farmerone.ward}
-                                td #{farmerone.activity}
+                                td #{farmerone.ward}                            
                                 td #{farmerone.status}
                                 td 
                                     a(href="/ao/foupdate/"+farmerone._id)

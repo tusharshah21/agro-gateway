@@ -5,6 +5,7 @@ head
     title Sign in &amp; Sign up Form
     link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css')
     link(rel='stylesheet' href='/css/login_form.css')
+
 .container
     .forms-container
         .signin-signup
@@ -29,9 +30,11 @@ head
                         i.fab.fa-linkedin-in
             form.sign-up-form(action='/signup' method='post')
                 h2.title Ufarm Market
+
                 .input-field
                     i.fas.fa-user
-                    input(type='text' placeholder='Unique ID' name="uniquenumber")
+                    input.form-control(type='text' placeholder='Unique ID' name="uniquenumber")
+
                 .input-field
                     i.fas.fa-envelope
                     input(type='email' placeholder='Email' name="email")
