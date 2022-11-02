@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
+const moment = require("moment");
 
 // * Import Schema
 const User = require("./models/Users");
@@ -30,6 +31,7 @@ async function main() {
 //* ========================================= Configurations ============================================
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
+app.locals.moment = moment;
 
 //* ============================================ Middleware ================================================
 app.use(express.urlencoded({ extended: true }));

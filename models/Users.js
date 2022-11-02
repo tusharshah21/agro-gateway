@@ -61,10 +61,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		// required: true,
 	},
-	activity: {
-		type: String,
-		// required: true,
-	},
+	// activity: {
+	// 	type: String,
+	// 	// required: true,
+	// },
 	registrationdate: {
 		type: Date,
 		required: true,

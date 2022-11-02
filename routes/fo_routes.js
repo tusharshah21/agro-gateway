@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	const produces = await Produce.find({ status: "approved" });
+	const produces = await Produce.find({ status: "approved" }).sort({ price: -1 });
 
 	if (user.role === "Farmer One") {
 		try {

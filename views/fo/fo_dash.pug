@@ -2,57 +2,59 @@ extends fo_layout.pug
 
 block content 
     .container-fluid
-        .justify-content-center.d-flex.my-4
-            .card.mx-3.border-primary.shadow
-                .card-body
-                    h5.card-title Projected Sales
-                    .d-flex.justify-content-center.mt-3.top
-                        span.fs-1.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
-                        .items 
-                            h4 #{new Intl.NumberFormat().format(totalH.totalQuantity+totalD.totalQuantity+totalP.totalQuantity)} Units
-                            p 12% increase
-                    .mt-4
-                        .text-center
-                            h6 Horticulture: 
-                                span.fw-bold #{totalH.totalQuantity}
-                            h6 Dairy: 
-                                span.fw-bold #{totalD.totalQuantity}
-                            h6 Poultry:
-                                span.fw-bold #{totalP.totalQuantity}
+        if produces.length>0
 
-            .card.mx-3.shadow
-                .card-body
-                    h5.card-title Projected Revenue
-                    .d-flex.justify-content-center.mt-3
-                        span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
-                        .items 
-                            h4 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
-                            p 12% increase
-                    .mt-4
-                        .text-center
-                            h6 Horticulture: 
-                                span.fw-bold  #{new Intl.NumberFormat().format(totalH.totalCost)}
-                            h6 Dairy: 
-                                span.fw-bold #{new Intl.NumberFormat().format(totalD.totalCost)}
-                            h6 Poultry: 
-                                span.fw-bold #{new Intl.NumberFormat().format(totalP.totalCost)}
+            .justify-content-center.d-flex.my-4
+                .card.mx-3.border-primary.shadow
+                    .card-body
+                        h5.card-title Projected Ward Sales
+                        .d-flex.justify-content-center.mt-3.top
+                            span.fs-1.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
+                            .items 
+                                h4 #{new Intl.NumberFormat().format(totalH.totalQuantity+totalD.totalQuantity+totalP.totalQuantity)} Units
+                                p 12% increase
+                        .mt-4
+                            .text-center
+                                h6 Horticulture: 
+                                    span.fw-bold #{totalH.totalQuantity}
+                                h6 Dairy: 
+                                    span.fw-bold #{totalD.totalQuantity}
+                                h6 Poultry:
+                                    span.fw-bold #{totalP.totalQuantity}
 
-            .card.mx-3.border-warning.shadow
-                .card-body
-                    h5.card-title Team
-                    .d-flex.justify-content-center.mt-3.align-middle
-                        span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
-                        .items 
-                            h4 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
-                            p 12% increase
-                    .mt-4
-                        .text-center
-                            h6 Farmer Ones: 
-                                span.fw-bold #{totalFO}
-                            h6 Urban Farmers: 
-                                span.fw-bold #{totalUF}
-                            h6 Customers: 
-                                span.fw-bold #{totalGP}
+                .card.mx-3.shadow
+                    .card-body
+                        h5.card-title Projected Ward Revenue
+                        .d-flex.justify-content-center.mt-3
+                            span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
+                            .items 
+                                h4 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
+                                p 12% increase
+                        .mt-4
+                            .text-center
+                                h6 Horticulture: 
+                                    span.fw-bold  #{new Intl.NumberFormat().format(totalH.totalCost)}
+                                h6 Dairy: 
+                                    span.fw-bold #{new Intl.NumberFormat().format(totalD.totalCost)}
+                                h6 Poultry: 
+                                    span.fw-bold #{new Intl.NumberFormat().format(totalP.totalCost)}
+
+                .card.mx-3.border-warning.shadow
+                    .card-body
+                        h5.card-title Team
+                        .d-flex.justify-content-center.mt-3.align-middle
+                            span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
+                            .items 
+                                h4 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
+                                p 12% increase
+                        .mt-4
+                            .text-center
+                                h6 Farmer Ones: 
+                                    span.fw-bold #{totalFO}
+                                h6 Urban Farmers: 
+                                    span.fw-bold #{totalUF}
+                                h6 Customers: 
+                                    span.fw-bold #{totalGP}
 
     .producttable.shadow
         .container-fluid.mt-3.p-4
@@ -79,7 +81,7 @@ block content
                                     img(src="/"+product.produceimg alt="" srcset="" height="35")
                                 td #{product.producename}
                                 td #{product.producetype}
-                                td #{product.price}                            
+                                td #{new Intl.NumberFormat().format(product.price)}
                                 td.fst-italic.text-muted #{product.fullname}
                                 td #{product.ward} 
                                 td 

@@ -2,7 +2,7 @@ extends gp_layout.pug
 
 block content 
     //- // Hero
-    section.wrapper-hero
+    section.wrapper-hero#header
         .hero
             .row
                 #hero.carousel.slide(data-bs-ride='carousel')
@@ -492,13 +492,14 @@ block content
                         | voluptatibus corporis recusandae accusantium velit, nemo, nobis, nulla
                         | ullam pariatur totam quos.
                 .col-lg-6.order-lg-0
-                    img.img-fluid(src='/images/about_us.jpg' alt='')
+                    img.img-fluid(src='/images/basket.png' alt='')
     // end of about us
     // Count down
     section.count-down.py-5
         .container.title.text-center
             h2.position-relative.d-inline-block Count down to sale
         .counter.mt-4
+            p#timer
     // end of count down
     // newsletter
     section#newsletter.py-5

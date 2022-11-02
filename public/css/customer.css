@@ -510,9 +510,19 @@ nav a .material-icons-outlined:hover {
 
 /* Counter */
 .counter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	content: "";
 	height: 100px;
-	background-color: #2a7a0b59;
+	/* background-color: #2a7a0b59; */
+}
+.counter p {
+	font-size: 5rem;
+	font-weight: bolder;
+	background: -webkit-linear-gradient(-40deg, var(--background-color), rgb(255, 94, 0));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 /* newsletter */
