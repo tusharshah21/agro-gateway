@@ -7,114 +7,120 @@ block content
         //-     option(value="farmerone") Farmer One
         //-     option(value="urbanfarmer") Urban Farmer 
         //-     //- option(value="generalpublic") General Public 
-
-        table.table.table-striped
-            thead
-                tr
-                    th(scope='col') #
-                    //- th(scope="col") 
-                    th(scope='col') Preview
-                    th(scope='col') Product
-                    th(scope="col") Produce Type
-                    th(scope='col') Units
-                    th(scope='col') Mode of Delivery
-                    th(scope='col') Payment Method
-                    th(scope='col') Owner  
-                    th(scope='col') Ward   
-                    th(scope='col') Details
-
-
-
-            tbody
-                if produce.length>0
-                    each product,index in produce
-                        tr
-                            th(scope='row') #{index+1}
-                            td
-                                img(src="/"+product.produceimg alt="" srcset="" height="35")
-                            td #{product.producename}
-                            td #{product.producetype}
-                            td #{product.quantity}
-                            td #{product.modeofdelivery}
-                            td #{product.payment} 
-                            td.fst-italic.text-muted #{product.fullname}
-                            td #{product.ward} 
-                            //- if product.status=="approved"
-                            //-     td.text-success.fw-bold #{product.status}
-                            //- else 
-                            //-     td #{product.status}
-                            td 
-                                a(href="" data-bs-toggle="modal" data-bs-target="#productpage"+product._id)
-                                    span.material-icons-outlined.ms-3  info
-
-                            //-* Modal
-                            .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="productpage"+product._id)
-                                .modal-dialog.modal-dialog-centered.modal-lg
-                                    .modal-content
-                                        .modal-body
-                                            .container-fluid.d-flex.flex-sm-row.justify-content-center
-                                                .body.p-5.d-flex.rounded
-                                                    .img.me-3
-                                                        img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
-                                                    .details.ms-3
-                                                        .title
-                                                            h3.text-capitalize #{product.producename}
-                                                            p.text-capitalize #{product.organic} #{product.producename}
-                                                        .stars.my-2.text-warning
-                                                            span.material-icons-outlined star
-                                                            span.material-icons-outlined star
-                                                            span.material-icons-outlined star
-                                                            span.material-icons-outlined star
-                                                            span.material-icons-outlined star_half
-                                                        .decription
-                                                            h5 Lorem ipsum dolor sit amet.
-                                                            p
-                                                                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                                | Blanditiis soluta odit totam nam maiores in vel,
-                                                                | doloribus nulla ab esse!
-                                                            p.btn.btn-outline-success.btn-sm.me-3 #{product.payment}
-                                                            p.btn.btn-outline-success.btn-sm #{product.modeofdelivery}
-                                                            p.text-capitalize #{product.availability}
-                                                        //- .input-group.mb-3
-                                                        //-     span#quantity.input-group-text Units
-                                                        //-     input.form-control(type='number' value='1' aria-label='quantity' aria-describedby='quantity')
-                                                        .price.fw-bold UGX #{new Intl.NumberFormat().format(product.price)}/-
-                                                        //- .my-2
-                                                        //-     button.btn.btn-success(type='button')
-                                                        //-         | Add to Cart
-
-                else 
-                    tr 
-                        th(scope="row") 0
-                        td.text-center.text-danger(colspan="100") No Uploaded Produce
+        .tables
+            table.table.table-striped
+                thead
+                    tr
+                        th(scope='col') #
+                        //- th(scope="col") 
+                        th(scope='col') Preview
+                        th(scope='col') Product
+                        th(scope="col") Produce Type
+                        th(scope='col') Units
+                        th(scope='col') Mode of Delivery
+                        th(scope='col') Payment Method
+                        th(scope='col') Owner  
+                        th(scope='col') Ward   
+                        th(scope='col') Details
 
 
-                        //- td 120
-                        //- td Ugx 180000
 
-                //- tr
-                //-     th(scope='row') 2
-                //-     td 
-                //-         img(src="/images/product-2.png" alt="" srcset="" height="35")
-                //-     td Tomatoes
-                //-     td Ugx 300
-                //-     td 300
-                //-     td Ugx 90000
-                //- tr
-                //-     th(scope='row') 3
-                //-     td
-                //-         img(src="/images/product-3.png" alt="" srcset="" height="40")
+                tbody
+                    if produce.length>0
+                        each product,index in produce
+                            tr
+                                th(scope='row') #{index+1}
+                                td
+                                    img(src="/"+product.produceimg alt="" srcset="" height="35")
+                                td #{product.producename}
+                                td #{product.producetype}
+                                td #{product.quantity}
+                                td #{product.modeofdelivery}
+                                td #{product.payment} 
+                                td.fst-italic.text-muted #{product.fullname}
+                                td #{product.ward} 
+                                //- if product.status=="approved"
+                                //-     td.text-success.fw-bold #{product.status}
+                                //- else 
+                                //-     td #{product.status}
+                                td 
+                                    a(href="" data-bs-toggle="modal" data-bs-target="#productpage"+product._id)
+                                        span.material-icons-outlined.ms-3  info
 
-                //-     td Oranges
-                //-     td Ugx 500
-                //-     td 190
-                //-     td Ugx 195000
-                //- tr
-                //-     th(scope='row') 4
-                //-     td
-                //-         img(src="/images/product-4.png" alt="" srcset="" height="35")
-                //-     td Milk
-                //-     td Ugx 2000
-                //-     td 120
-                //-     td Ugx 240000
+                                //-* Modal
+                                .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="productpage"+product._id)
+                                    .modal-dialog.modal-dialog-centered.modal-lg
+                                        .modal-content
+                                            .modal-body
+                                                .container-fluid.d-flex.flex-sm-row.justify-content-center
+                                                    .body.d-flex.rounded
+                                                        .img.me-3
+                                                            img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
+                                                            .price.fw-bold.mt-5.text-center UGX #{product.price}/-  
+
+                                                        .details.ms-3
+                                                            .title
+                                                                h3.text-capitalize.fw-bold #{product.producename}
+                                                                p.text-capitalize #{product.organic} #{product.producename}
+                                                            .stars.my-2.text-warning
+                                                                span.material-icons-outlined star
+                                                                span.material-icons-outlined star
+                                                                span.material-icons-outlined star
+                                                                span.material-icons-outlined star
+                                                                span.material-icons-outlined star_half
+                                                            .decription
+                                                                h5 Lorem ipsum dolor sit amet.
+                                                                p
+                                                                    | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                                    | Blanditiis soluta odit totam nam maiores in vel,
+                                                                    | doloribus nulla ab esse!
+
+                                                                p.btn.btn-outline-success.btn-sm.me-3 #{product.payment}
+                                                                p.btn.btn-outline-success.btn-sm #{product.modeofdelivery}
+                                                                p.text-capitalize #{product.availability}
+                                                            //- .input-group.mb-3
+                                                            //-     span#quantity.input-group-text Units
+                                                            //-     input.form-control(type='number' value='1' aria-label='quantity' aria-describedby='quantity')
+                                                            .phone.d-flex
+                                                                p.mx-auto 
+                                                                    span.material-icons-outlined phone 
+                                                                    a.text-decoration-none(href="#") +256 #{user.phonenumber}
+                                                                p.mx-auto
+                                                                    span.material-icons-outlined mail 
+                                                                    a.text-decoration-none(href="mailto:"+user.email) #{user.email}
+
+                    else 
+                        tr 
+                            th(scope="row") 0
+                            td.text-center.text-danger(colspan="100") No Uploaded Produce
+
+
+                            //- td 120
+                            //- td Ugx 180000
+
+                    //- tr
+                    //-     th(scope='row') 2
+                    //-     td 
+                    //-         img(src="/images/product-2.png" alt="" srcset="" height="35")
+                    //-     td Tomatoes
+                    //-     td Ugx 300
+                    //-     td 300
+                    //-     td Ugx 90000
+                    //- tr
+                    //-     th(scope='row') 3
+                    //-     td
+                    //-         img(src="/images/product-3.png" alt="" srcset="" height="40")
+
+                    //-     td Oranges
+                    //-     td Ugx 500
+                    //-     td 190
+                    //-     td Ugx 195000
+                    //- tr
+                    //-     th(scope='row') 4
+                    //-     td
+                    //-         img(src="/images/product-4.png" alt="" srcset="" height="35")
+                    //-     td Milk
+                    //-     td Ugx 2000
+                    //-     td 120
+                    //-     td Ugx 240000
 

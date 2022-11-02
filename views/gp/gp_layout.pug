@@ -17,9 +17,11 @@ head
     link(rel="icon" type="image/x-icon" href="/images/favicon.png")
 //- // Navbar
 nav.navbar.fixed-top.navbar-expand-lg.s
-    .container
+    .container-fluid
         a.navbar-brand(href='/')
             img(src='images/logo.png' alt='logo' )
+            span 
+                sup.fw-bold Ufarm
         button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
             span.material-icons-outlined  menu 
         #navbarNav.collapse.navbar-collapse
@@ -43,7 +45,7 @@ nav.navbar.fixed-top.navbar-expand-lg.s
             a.position-relative.mx-5(href='#')
                 span.material-icons-outlined.ms-4 search 
             a.position-relative(href='#')
-                span.material-icons-outlined.py-1  shopping_cart 
+                span.material-icons-outlined.py-1  mail 
                 small.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-success 2+
             a.position-relative.ms-3(href='#')
                 span.material-icons-outlined.py-1  favorite_border 
@@ -61,7 +63,9 @@ footer.bg-dark.py-5
     .container
         .row.text-white.g-4
             .col-md-6.col-lg-3
-                a.text-uppercase.text-decoration-none.brand.text-white(href='index.html') Nature
+                a.text-uppercase.text-decoration-none.brand.text-white(href='index.html') 
+                    |Nature 
+                    sup.text-success.fw-bolder Ufarm
                 p.text-white.text-muted.mt-3
                     | Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                     | mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit dolor

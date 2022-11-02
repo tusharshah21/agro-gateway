@@ -24,3 +24,7 @@ block content
                                 h6 $2.99
                                 a(href="") Save for later 
                                 a(href="") Remove
+    if produces.length>0
+        each product, index in produces
+            p #{index} #{product.producename}
+

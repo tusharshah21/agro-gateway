@@ -64,7 +64,7 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	const produces = await Produce.find({ status: "approved" });
+	const produces = await Produce.find({ status: "approved" }).sort({ price: -1 }).limit(5);
 	if (user.role === "Agriculture Officer") {
 		try {
 			// ? Search produce

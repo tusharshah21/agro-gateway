@@ -10,23 +10,31 @@ block content
                 if user
                     form#formAccountSettings.needs-validation(method='post' action="/uf/upload" enctype="multipart/form-data" novalidate)
                         .row
-                            .mb-3.col-md-4.input-field
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='uploadedby') Uploader ID
-                                select#ward.select2.form-select(name="uploadedby")
-                                    option(value=user._id) #{user._id}
-                            .mb-3.col-md-4.input-field
+                                select#uploadedby.select2.form-select(name="uploadedby" required)
+                                    option(value=user._id) #{user._id}                               
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='fullname') Full Name
-                                select#ward.select2.form-select(name="fullname")
+                                select#fullname.select2.form-select(name="fullname" required)
                                     option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='email') Email
+                                select#email.select2.form-select(name="email" required)
+                                    option(value=user.email) #{user.email}
 
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='phonenumber') Phone 
+                                select#phonenumber.select2.form-select(name="phonenumber" required)
+                                    option(value=user.phonenumber) #{user.phonenumber}
 
-                            .mb-3.col-md-4.input-field
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='ward') Ward
-                                select#ward.select2.form-select(name="ward")
+                                select#ward.select2.form-select(name="ward" required)
                                     option(value=user.ward) #{user.ward}
 
 
-                            .mb-3.col-md-4.input-field
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='producetype') Produce Type
                                 select#producetype.select2.form-select(name="producetype" required)
                                     option(value='') Select Type
@@ -36,13 +44,13 @@ block content
                                 .invalid-feedback All field are required
                                 .valid-feedback Looks good!
 
-                            .mb-3.col-md-4.input-field
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='producename') Produce Name
                                 input#producename.form-control(type='text' name='producename' placeholder='Chicken' required)
                                 .invalid-feedback All field are required
                                 .valid-feedback Looks good!
 
-                            .mb-3.col-md-4.input-field
+                            .mb-3.col-md-3.input-field
                                 label.form-label(for='quantity') Quantity
                                 .input-group
                                     input#quantity.form-control(type='number' name='quantity' placeholder='10' required)

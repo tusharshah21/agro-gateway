@@ -1,3 +1,5 @@
+// * * * * * * * * * * * * * * * * * * * * Filter * * * * * * * * * * * * * * * * * * * *
+
 // init Isotope
 const $grid = $(".collection-list").isotope({
 	// options
@@ -17,10 +19,10 @@ function resetFilterBtns() {
 	});
 }
 
-// Timer
+//* * * * * * * * * * * * * * * * * * * *  Timer * * * * * * * * * * * * * * * * * * * *
 
 // Set the date we're counting down to
-const countDownDate = new Date("Nov 11, 2022 15:37:25").getTime();
+const countDownDate = new Date("Nov 11, 2022 18:00:00").getTime();
 
 // Update the count down every 1 second
 const x = setInterval(function () {

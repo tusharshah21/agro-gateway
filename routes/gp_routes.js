@@ -2,16 +2,19 @@ const express = require("express");
 const router = express.Router();
 const connectEnsureLogin = require("connect-ensure-login");
 const General = require("../models/General");
+const Produce = require("../models/Produce");
 
-//* customer dash
-router.get("/", (req, res) => {
+//* * * * * * * * * * * * * * * * * * *  DASHBOARD * * * * * * * * * * * * * * * * * * * * * * * *
+router.get("/", async (req, res) => {
+	const produce = await Produce.find({ status: "approved" });
+	console.log(produce);
 	// console.log(req.body);
 	// req.session.user = req.user;
 	// console.log("req.session.user = " + req.session.user);
-	res.render("gp/gp_dash", { user: req.session.user });
+	res.render("gp/gp_dash", { produce: produce });
 });
 
-//* GP registration
+//* * * * * * * * * * * * * * * * * * *  GP registration * * * * * * * * * * * * * * * * * * * * * * * *
 router.get("/signup", (req, res) => {
 	// console.log(req.body);
 	// req.session.user = req.user;

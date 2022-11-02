@@ -49,6 +49,10 @@ nav a .material-icons-outlined:hover {
 	color: #2b7a0b;
 }
 
+.container-fluid a span {
+	color: #2b7a0b;
+}
+
 /* Carousel */
 /* Hero */
 
@@ -234,9 +238,12 @@ nav a .material-icons-outlined:hover {
 }
 
 .offers-content span {
-	color: #2b7a0b;
+	color: #ffffff;
+	background-color: #2b7a0b;
 	font-size: 1.5rem;
 	font-weight: 600;
+	padding: 1rem;
+	border-radius: 0px 20px 0px 20px;
 }
 .offers-content h2 {
 	font-size: 5rem;
@@ -419,6 +426,12 @@ nav a .material-icons-outlined:hover {
 	visibility: visible;
 }
 
+/** MODAL **/
+.modal-content {
+	border-radius: 20px;
+	/* background-color: black; */
+}
+
 /* ADVERTS */
 /* .advert .advert-layout {
 	display: grid;
@@ -554,7 +567,7 @@ nav a .material-icons-outlined:hover {
 /* footer */
 footer .brand {
 	letter-spacing: 10px;
-	font-size: 2rem;
+	font-size: 1rem;
 }
 footer a {
 	-webkit-transition: color 0.3s ease;
