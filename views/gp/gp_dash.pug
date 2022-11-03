@@ -197,12 +197,12 @@ block content
         #featured.carousel.slide.py-3(data-bs-ride='carousel')
             .carousel-inner
                 .carousel-item.active
-                    .row
+                    .row.d-flex
                         if produce.length>0
                             //- - produce.sort((a,b)=>0.5-Math.random())
                             each product in produce
                                 if product.producetype=="poultry"
-                                    .col-2.featured-img
+                                    .col-2.featured-img.mx-auto
                                         img.d-block.w-100(src='/'+product.produceimg alt='...')
                                         .addCart
                                             a.text-dark(href="mailto:"+product.email) 
@@ -211,53 +211,15 @@ block content
                                             span.material-icons-outlined  search 
                                             span.material-icons-outlined  favorite_border 
                                             span.material-icons-outlined  phone 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-2.png' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/'+product.produceimg alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-1.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-13.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-12.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
+
+
                 .carousel-item
-                    .row
+                    .row.d-flex
                         if produce.length>0
                             //- - produce.sort((a,b)=>0.5-Math.random())
                             each product in produce
                                 if product.producetype=="horticulture"
-                                    .col-2.featured-img
+                                    .col-2.featured-img.mx-auto
                                         img.d-block.w-100(src='/'+product.produceimg alt='...')
                                         .addCart
                                             a.text-dark(href="mailto:"+product.email) 
@@ -266,53 +228,15 @@ block content
                                             span.material-icons-outlined  search 
                                             span.material-icons-outlined  favorite_border 
                                             span.material-icons-outlined  phone 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-10.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-10.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-10.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-10.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-10.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
+
+
                 .carousel-item
-                    .row
+                    .row.d-flex
                         if produce.length>0
                             //- - produce.sort((a,b)=>0.5-Math.random())
                             each product in produce
                                 if product.producetype=="dairy"
-                                    .col-2.featured-img
+                                    .col-2.featured-img.mx-auto
                                         img.d-block.w-100(src='/'+product.produceimg alt='...')
                                         .addCart
                                             a.text-dark(href="mailto:"+product.email) 
@@ -321,46 +245,8 @@ block content
                                             span.material-icons-outlined  search 
                                             span.material-icons-outlined  favorite_border 
                                             span.material-icons-outlined  phone  
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-14.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-11.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-11.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-11.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
-                        //- .col-2.featured-img
-                        //-     img.d-block.w-100(src='/images/product-11.jpg' alt='...')
-                        //-     .addCart
-                        //-         span.material-icons-outlined  shopping_cart 
-                        //-     ul.side-icons
-                        //-         span.material-icons-outlined  search 
-                        //-         span.material-icons-outlined  favorite_border 
-                        //-         span.material-icons-outlined  tune 
+
+
             button.carousel-control-prev(type='button' data-bs-target='#featured' data-bs-slide='prev')
                 span.material-icons-outlined  chevron_left 
                 span.visually-hidden Previous
@@ -368,6 +254,8 @@ block content
                 span.material-icons-outlined  chevron_right 
                 span.visually-hidden Next
     //- // End of featured slider
+
+
     // Products
     section.py-5.container-fluid
         .title.text-center
@@ -392,7 +280,7 @@ block content
                         .bottom
                             a(href="" data-bs-toggle="modal" data-bs-target="#productpage"+product._id ) #{product.producename}
                             .price
-                                span Ugx #{product.price}
+                                span Ugx #{new Intl.NumberFormat().format(product.price)}
 
 
                     //-* Modal
@@ -404,7 +292,7 @@ block content
                                         .body.d-flex.rounded
                                             .img.me-3
                                                 img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
-                                                .price.fw-bold.mt-4.text-center UGX #{product.price}/-  
+                                                .price.fw-bold.mt-4.text-center UGX #{new Intl.NumberFormat().format(product.price)}/-  
 
                                             .details.ms-3
                                                 .title

@@ -19,7 +19,8 @@ const storage = multer.diskStorage({
 // instantiate variable upload to store multer functionality to upload image
 const upload = multer({ storage: storage });
 
-//* Dashboard
+//* * * * * * * * * * * * * * * * * * * * * * * * *  Dashboard * * * * * * * * * * * * * * * *
+
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const produces = await Produce.find();
@@ -90,9 +91,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			]);
 
 			let totalGP = await General.collection.countDocuments();
-			let totalUF = await User.collection.countDocuments({
-				role: "Urban Farmer",
-			});
+			let totalUF = await User.find({ role: "Urban Farmer" }).count();
 			let totalFO = await User.collection.countDocuments({
 				$and: [{ status: "active" }, { role: "Farmer One" }],
 			});
@@ -119,7 +118,8 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	}
 });
 
-//* Uploaded Produce
+//* * * * * * * * * * * * * * * * * * * * * * * * *  Uploaded Produce * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
@@ -135,7 +135,7 @@ router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	}
 });
 
-// * Approved * * * * * * * * * * * * * *
+// * * * * * * * * * * * * * * * * * Approved * * * * * * * * * * * * * *
 
 router.get("/approved", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
@@ -149,7 +149,8 @@ router.get("/approved", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	}
 });
 
-//* Upload Produce
+//* * * * * * * * * * * * * * * * * Upload Produce * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/upload", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
@@ -179,7 +180,8 @@ router.post(
 	}
 );
 
-// * Update Produce
+// * * * * * * * * * * * * * * * * *  Update Produce * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 router.get("/update/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
@@ -216,6 +218,13 @@ router.post("/delete", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 			`<h2 style='text-align:center;margin-top:200px;font-size:30px;'>Product not Deleted. 🥹</h2>`
 		);
 	}
+});
+
+// * * * * * * * * * * * * * * * * * * * Orders * * * * * * * * * * * * * * * * * * * * *
+
+router.get("/orders", (req, res) => {
+	const user = req.session.user;
+	res.render("uf/orders", { user });
 });
 
 module.exports = router;

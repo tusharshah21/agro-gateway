@@ -278,7 +278,9 @@ nav a .material-icons-outlined:hover {
 }
 .featured-img {
 	position: relative;
+	width: 12rem;
 }
+
 .featured-img .addCart {
 	position: absolute;
 	right: 0;
@@ -334,7 +336,7 @@ nav a .material-icons-outlined:hover {
 .product .img-container {
 	position: relative;
 	cursor: pointer;
-	width: 15rem;
+	width: 12rem;
 	height: auto;
 }
 
@@ -352,7 +354,9 @@ nav a .material-icons-outlined:hover {
 .product .bottom a {
 	margin-bottom: 1rem;
 	/* font-weight: inherit; */
-	font-size: 0.8rem;
+	font-size: 1rem;
+	color: black;
+	text-decoration: none;
 }
 
 .product .bottom a:hover {
@@ -364,11 +368,11 @@ nav a .material-icons-outlined:hover {
 	font-size: 1.2rem;
 }
 
-.product .bottom .cancel {
+/* .product .bottom .cancel {
 	font-size: 1rem;
 	color: var(--grey2);
 	text-decoration: line-through;
-}
+} */
 
 .product .addCart {
 	position: absolute;
@@ -422,7 +426,7 @@ nav a .material-icons-outlined:hover {
 }
 
 .product:hover .side-icons {
-	transform: translate(20%, 0%);
+	transform: translate(0%, -15%);
 	visibility: visible;
 }
 
@@ -528,7 +532,7 @@ nav a .material-icons-outlined:hover {
 	align-items: center;
 	content: "";
 	height: 100px;
-	/* background-color: #2a7a0b59; */
+	/* background-color: #2a7a0b33; */
 }
 .counter p {
 	font-size: 5rem;
