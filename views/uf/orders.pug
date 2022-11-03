@@ -1,0 +1,112 @@
+extends uf_layout.pug
+
+block content
+    //- // Body
+    #main
+        .container-fluid
+            #main.card.main
+
+                .card-body
+                if user
+                    form#formAccountSettings.needs-validation(method='post' action="/uf/upload" enctype="multipart/form-data" novalidate)
+                        .row
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='uploadedby') Uploader ID
+                                select#uploadedby.select2.form-select(name="uploadedby" required)
+                                    option(value=user._id) #{user._id}                               
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='fullname') Full Name
+                                select#fullname.select2.form-select(name="fullname" required)
+                                    option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='email') Email
+                                select#email.select2.form-select(name="email" required)
+                                    option(value=user.email) #{user.email}
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='phonenumber') Phone 
+                                select#phonenumber.select2.form-select(name="phonenumber" required)
+                                    option(value=user.phonenumber) #{user.phonenumber}
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='ward') Ward
+                                select#ward.select2.form-select(name="ward" required)
+                                    option(value=user.ward) #{user.ward}
+
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='producetype') Produce Type
+                                select#producetype.select2.form-select(name="producetype" required)
+                                    option(value='') Select Type
+                                    option(value='poultry') Poultry
+                                    option(value='dairy') Dairy
+                                    option(value='horticulture') Horticulture
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='producename') Produce Name
+                                input#producename.form-control(type='text' name='producename' placeholder='Chicken' required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='quantity') Quantity
+                                .input-group
+                                    input#quantity.form-control(type='number' name='quantity' placeholder='10' required)
+                                    span.input-group-text Unit
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
+
+                            .mb-3.col-md-4
+                                label.form-label(for='price') Price per Unit
+                                .input-group
+                                    span.input-group-text Ugx
+                                    input#price.form-control(type='number' name='price' placeholder='2000' required)
+                                    span.input-group-text .00
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
+
+                            .mb-3.col-md-4.input-field.row
+                                label.form-label(for='') Organic Produce
+                                .form-check.col.ms-3
+                                    input.form-check-input#organic(type='radio' name='organic' value="organic" required)
+                                    label.form-check-label(for="organic") Yes
+                                .form-check.col
+                                    input.form-check-input#inorganic(type='radio' name='organic' value="inorganic" required)
+                                    label.form-check-label(for="inorganic") No
+
+                            .mb-3.col-md-4.input-field.row
+                                label.form-label(for='payment') Mode of Payment
+                                .form-check.col.ms-3
+                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money")
+                                    label.form-check-label(for="mobilemoney") Mobile Money
+                                .form-check.col
+                                    input.form-check-input#cash(type='checkbox' name='payment' value="Cash" )
+                                    label.form-check-label(for="cash") Cash
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='modeofdelivery') Mode of Delivery
+                                select#modeofdelivery.select2.form-select(name="modeofdelivery" required)
+                                    option(value='Pickup and Home Delivery') Both Modes
+                                    option(value='Pickup') Pick Up
+                                    option(value='Home Delivery') Home Delivery
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for="produceimg") Produce Image
+                                input#produceimg.form-control(type="file" name="produceimg" required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+
+                            .mb-3.col-md-4.input-field
+                                label.form-label(for='orderdate') Date of Order
+                                input#orderdate.form-control(type='date' name='orderdate' required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+                        .mt-2
+                            button.btn.btn-success.me-2(type='submit')
+                                | Save changes
+                            button.btn.btn-outline-danger(type='reset') Cancel
