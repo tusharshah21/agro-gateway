@@ -14,6 +14,12 @@ const gpSchema = new mongoose.Schema({
 		trim: true,
 		unique: true,
 	},
+	phonenumber: {
+		type: String,
+		required: true,
+		trim: true,
+		// unique: true,
+	},
 });
 
 gpSchema.plugin(passportLocalMongoose, { usernameField: "uniquenumber" });

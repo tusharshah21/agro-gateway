@@ -5,6 +5,7 @@ const multer = require("multer");
 const Produce = require("../models/Produce");
 const User = require("../models/Users");
 const General = require("../models/General");
+const Order = require("../models/Orders");
 
 // image upload
 const storage = multer.diskStorage({
@@ -222,7 +223,7 @@ router.post("/delete", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 
 // * * * * * * * * * * * * * * * * * * * Orders * * * * * * * * * * * * * * * * * * * * *
 
-router.get("/orders", (req, res) => {
+router.get("/orders", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	const user = req.session.user;
 	res.render("uf/orders", { user });
 });
