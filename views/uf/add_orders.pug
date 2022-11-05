@@ -27,17 +27,17 @@ block content
             #main.card.main
                 .card-body
                 if user
-                    form#formAccountSettings.needs-validation(method='post' action="/uf/add_orders" enctype="multipart/form-data" novalidate)
+                    form#formAccountSettings.needs-validation(method='post' action="/uf/add_orders" novalidate)
                         .row
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='seller') Seller
                                 select#seller.select2.form-select(name="seller" required)
-                                    option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}                              
+                                    option(value=user._id) #{user.firstname} #{user.lastname}                              
                             if customer
                                 .mb-3.col-md-3.input-field
                                     label.form-label(for='customer') Customer                            
                                     select#customer.select2.form-select(name="customer" readonly)                                        
-                                        option(value=customer.email+" , "+customer.uniquenumber) #{customer.email}, #{customer.uniquenumber}
+                                        option(value=customer._id) #{customer.email}, #{customer.uniquenumber}
 
 
                             if item
@@ -45,7 +45,7 @@ block content
                                     label.form-label(for='producename') Produce Name
                                     //- input#producename.form-control(type='text' name='producename' value=item.producename readonly)
                                     select#producename.select2.form-select(name='producename')
-                                        option(value=item.producename) #{item.producename}
+                                        option(value=item._id) #{item.producename}
 
                                     //- .invalid-feedback All field are required
                                     //- .valid-feedback Looks good!

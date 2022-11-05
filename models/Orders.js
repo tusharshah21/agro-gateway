@@ -12,7 +12,11 @@ const orderSchema = new mongoose.Schema({
 	produceimg: String,
 	orderdate: {
 		type: Date,
-		default: new Date(),
+	},
+	status: {
+		type: String,
+		default: "pending",
+		enum: ["pending", "complete", "cancelled"],
 	},
 });
 

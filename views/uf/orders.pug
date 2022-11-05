@@ -1,0 +1,44 @@
+extends uf_layout
+
+block content 
+    .container-fluid.mt-3
+        h4 Orders
+        if orders
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th.text-center(scope='col') #
+                        //.text-center- th(scope="col") 
+                        th.text-center(scope='col')
+                        th.text-center(scope='col') Product                
+                        th.text-center(scope='col') Units
+                        th.text-center(scope="col") Total
+                        th.text-center(scope='col') Customer
+                        th.text-center(scope='col') Payment Method
+                        th.text-center(scope='col') Delivery
+                        th.text-center(scope='col') Status
+                        th.text-center.text-success(scope='col') Update
+
+
+                tbody
+                    tr 
+                        each order,index in orders
+                            td.text-center #{index+1}
+                            td 
+                                img(src="/"+order.produceimg width="35") 
+                            td.text-center #{order.producename}                 
+                            td.text-center #{order.quantity}
+                            td.text-center 2000
+                            td.text-center #{order.customer} 
+                            td.text-center #{order.payment} 
+                            td.text-center #{order.modeofdelivery} 
+                            td.text-center #{order.status} 
+                            td                          
+                                a(href="")
+                                    span.material-icons-outlined.ms-3  edit
+
+
+
+
+
+

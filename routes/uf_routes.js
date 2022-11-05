@@ -97,7 +97,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				$and: [{ status: "active" }, { role: "Farmer One" }],
 			});
 
-			console.log(totalPoultry);
+			// console.log(totalPoultry);
 			res.render("uf/uf_dash", {
 				user,
 				produces,
@@ -229,7 +229,7 @@ router.get("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 		let selectedProduce;
 		if (req.query.searchproduce) selectedProduce = req.query.searchproduce;
 		const item = await Produce.findOne({ _id: selectedProduce });
-		console.log(item);
+		// console.log(item);
 
 		let selectedCustomer;
 		if (req.query.searchcustomer) selectedCustomer = req.query.searchcustomer;
@@ -249,14 +249,32 @@ router.get("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 router.post("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
+		console.log(req.body);
 		try {
 			const order = new Order(req.body);
-			console.log(req.body);
 			await order.save();
 			res.redirect("/uf/add_orders");
 		} catch (error) {
 			res.status(400).send("Product not Saved.");
 			console.log(error);
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		);
+	}
+});
+
+// get orders
+router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	req.session.user = req.user;
+	const user = req.session.user;
+	if (user.role === "Urban Farmer") {
+		try {
+			const orders = await Order.find({ seller: user._id });
+			res.render("uf/orders", { user, orders });
+		} catch (error) {
+			res.status(400).send("Couldn't get orders");
 		}
 	} else {
 		res.send(
