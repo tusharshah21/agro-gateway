@@ -1,26 +1,18 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
-	seller: {
-		type: mongoose.Types.ObjectId,
-		ref: "User",
-	},
+	seller: String,
+	customer: String,
 
-	producename: {
-		type: mongoose.Types.ObjectId,
-		ref: "Produce",
-	},
+	producename: String,
 
 	quantity: Number,
-
+	payment: String,
+	modeofdelivery: String,
+	produceimg: String,
 	orderdate: {
 		type: Date,
 		default: new Date(),
-	},
-
-	customer: {
-		type: mongoose.Types.ObjectId,
-		ref: "General",
 	},
 });
 

@@ -50,8 +50,37 @@ nav.navbar.fixed-top.navbar-expand-lg.s
             a.position-relative.ms-3(href='#')
                 span.material-icons-outlined.py-1  favorite_border 
                 small.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-success 2+
-            a.position-relative(href='#')
+            a.position-relative(href='#' data-bs-toggle='dropdown')
                 span.material-icons-outlined.ms-4 account_circle 
+            ul.dropdown-menu.dropdown-menu-end.dropdown
+                li.dropdown-header
+                    h5.text-center.text-dark #{user.uniquenumber}
+
+                li
+                    hr.dropdown-divider
+                li
+                    a.dropdown-item.d-flex.align-items-center(href='users-profile.html')
+                        span.material-icons-outlined  person 
+                        span My Profile
+                li
+                    hr.dropdown-divider
+                li
+                    a.dropdown-item.d-flex.align-items-center(href='users-profile.html')
+                        span.material-icons-outlined  settings 
+                        span Account Settings
+                li
+                    hr.dropdown-divider
+                li
+                    a.dropdown-item.d-flex.align-items-center(href='pages-faq.html')
+                        span.material-icons-outlined  help_outline 
+                        span Need Help?
+                li
+                    hr.dropdown-divider
+                li
+                    a.dropdown-item.d-flex.align-items-center(href='#')
+                        span.material-icons-outlined  logout 
+                        form(action="/login/logout" method="post")
+                            button.btn(type="submit") Logout
 //- // end of navbar
 
 //- block content ===========================================================

@@ -4,12 +4,12 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const userSchema = new mongoose.Schema({
 	firstname: {
 		type: String,
-		required: true,
+		// required: true,
 		trim: true,
 	},
 	lastname: {
 		type: String,
-		required: true,
+		// required: true,
 		trim: true,
 	},
 	uniquenumber: {
@@ -19,11 +19,11 @@ const userSchema = new mongoose.Schema({
 	},
 	dob: {
 		type: String,
-		required: true,
+		// required: true,
 	},
 	gender: {
 		type: String,
-		required: true,
+		// required: true,
 	},
 	email: {
 		type: String,
@@ -37,16 +37,16 @@ const userSchema = new mongoose.Schema({
 	},
 	nin: {
 		type: String,
-		required: true,
+		// required: true,
 		trim: true,
 	},
 	role: {
 		type: String,
-		required: true,
+		// required: true,
 	},
 	address: {
 		type: String,
-		required: true,
+		// required: true,
 		trim: true,
 	},
 	ward: {
@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
 	// },
 	registrationdate: {
 		type: Date,
-		required: true,
+		// required: true,
 		// default: Date(),
 	},
 	avatar: {

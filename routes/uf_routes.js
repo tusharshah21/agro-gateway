@@ -4,7 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 const Produce = require("../models/Produce");
 const User = require("../models/Users");
-const General = require("../models/General");
+// const General = require("../models/General");
 const Order = require("../models/Orders");
 
 // image upload
@@ -91,7 +91,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			let totalGP = await General.collection.countDocuments();
+			let totalGP = await User.find({ role: "Customer" }).count();
 			let totalUF = await User.find({ role: "Urban Farmer" }).count();
 			let totalFO = await User.collection.countDocuments({
 				$and: [{ status: "active" }, { role: "Farmer One" }],
@@ -223,9 +223,46 @@ router.post("/delete", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 
 // * * * * * * * * * * * * * * * * * * * Orders * * * * * * * * * * * * * * * * * * * * *
 
-router.get("/orders", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+router.get("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	res.render("uf/orders", { user });
+	if (user.role === "Urban Farmer") {
+		let selectedProduce;
+		if (req.query.searchproduce) selectedProduce = req.query.searchproduce;
+		const item = await Produce.findOne({ _id: selectedProduce });
+		console.log(item);
+
+		let selectedCustomer;
+		if (req.query.searchcustomer) selectedCustomer = req.query.searchcustomer;
+		const customer = await User.findOne({ _id: selectedCustomer });
+
+		const customers = await User.find({ role: "Customer" });
+		const produces = await Produce.find({ uploadedby: user._id });
+		// console.log(produces, user);
+		res.render("uf/add_orders", { user, customers, produces, item, customer });
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		);
+	}
+});
+
+router.post("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	const user = req.session.user;
+	if (user.role === "Urban Farmer") {
+		try {
+			const order = new Order(req.body);
+			console.log(req.body);
+			await order.save();
+			res.redirect("/uf/add_orders");
+		} catch (error) {
+			res.status(400).send("Product not Saved.");
+			console.log(error);
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		);
+	}
 });
 
 module.exports = router;

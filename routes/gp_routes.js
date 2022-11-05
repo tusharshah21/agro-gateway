@@ -1,17 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const connectEnsureLogin = require("connect-ensure-login");
-const General = require("../models/General");
+const User = require("../models/Users");
 const Produce = require("../models/Produce");
 
 //* * * * * * * * * * * * * * * * * * *  DASHBOARD * * * * * * * * * * * * * * * * * * * * * * * *
-router.get("/", async (req, res) => {
+router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	req.session.user = req.user;
+	const user = req.session.user;
 	const produce = await Produce.find({ status: "approved" });
 	console.log(produce);
 	// console.log(req.body);
 	// req.session.user = req.user;
 	// console.log("req.session.user = " + req.session.user);
-	res.render("gp/gp_dash", { produce: produce });
+	res.render("gp/gp_dash", { user, produce: produce });
 });
 
 //* * * * * * * * * * * * * * * * * * *  GP registration * * * * * * * * * * * * * * * * * * * * * * * *
@@ -25,9 +27,9 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res) => {
 	console.log(req.body);
 	try {
-		const user = new General(req.body);
-		let uniquenumberExists = await General.findOne({ uniquenumber: req.body.uniquenumber });
-		let emailExists = await General.findOne({ email: req.body.email });
+		const user = new User(req.body);
+		let uniquenumberExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
+		let emailExists = await User.findOne({ email: req.body.email });
 
 		console.log("Username: " + uniquenumberExists, "email: " + emailExists);
 
@@ -38,7 +40,7 @@ router.post("/signup", async (req, res) => {
 					"<h2 style='text-align:center;margin-top:200px;font-size:40px;'>Username or email already exists 🥹🥹🥹!</h1>"
 				);
 		} else {
-			await General.register(user, req.body.password, (error) => {
+			await User.register(user, req.body.password, (error) => {
 				if (error) {
 					throw error;
 				}

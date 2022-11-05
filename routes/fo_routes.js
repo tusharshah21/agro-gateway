@@ -4,7 +4,6 @@ const multer = require("multer");
 const connectEnsureLogin = require("connect-ensure-login");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
-const General = require("../models/General");
 
 // image upload
 const storage = multer.diskStorage({
@@ -91,7 +90,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			let totalGP = await General.collection.countDocuments();
+			let totalGP = await User.find({ role: "Customer" }).count();
 			let totalUF = await User.collection.countDocuments({
 				role: "Urban Farmer",
 			});

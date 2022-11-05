@@ -1,0 +1,94 @@
+extends uf_layout.pug
+
+block content
+    //- // Body
+    #main
+        .container-fluid
+
+            if produces,customers
+                form.d-flex.justify-content-center(action="/uf/add_orders")
+                    .mb-3.col-md-6.input-field
+                        label.form-label(for='searchproduce') Search Produce
+                        .input-group.input-group-merge
+                            select#searchproduce.select2.form-select(name="searchproduce")
+                                each product in produces
+                                    option(value=product._id) #{product.producename}
+
+                    .mb-3.col-md-6.input-field
+                        label.form-label(for='searchcustomer') Search Customer
+                        .input-group.input-group-merge
+                            select#searchcustomer.select2.form-select(name="searchcustomer")
+                                each customer in customers
+                                    option(value=customer._id) #{customer.uniquenumber}, #{customer.email}
+                            button.btn.btn-success(type="submit") Search
+
+
+
+            #main.card.main
+                .card-body
+                if user
+                    form#formAccountSettings.needs-validation(method='post' action="/uf/add_orders" enctype="multipart/form-data" novalidate)
+                        .row
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='seller') Seller
+                                select#seller.select2.form-select(name="seller" required)
+                                    option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}                              
+                            if customer
+                                .mb-3.col-md-3.input-field
+                                    label.form-label(for='customer') Customer                            
+                                    select#customer.select2.form-select(name="customer" readonly)                                        
+                                        option(value=customer.email+" , "+customer.uniquenumber) #{customer.email}, #{customer.uniquenumber}
+
+
+                            if item
+                                .mb-3.col-md-3.input-field
+                                    label.form-label(for='producename') Produce Name
+                                    //- input#producename.form-control(type='text' name='producename' value=item.producename readonly)
+                                    select#producename.select2.form-select(name='producename')
+                                        option(value=item.producename) #{item.producename}
+
+                                    //- .invalid-feedback All field are required
+                                    //- .valid-feedback Looks good!
+
+                                .mb-3.col-md-3.input-field
+                                    label.form-label(for='quantity') Quantity
+                                    .input-group
+                                        input#quantity.form-control(type='number' min="1" max=item.quantity name='quantity' value=1 required)
+                                        span.input-group-text Unit
+                                        .invalid-feedback All field are required (Min=1)
+                                        .valid-feedback Looks good!
+
+
+                                .mb-3.col-md-3.input-field.row
+                                    label.form-label(for='payment') Mode of Payment
+                                    select#payment.select2.form-select(name="payment")
+                                        each payment in item.payment
+                                            option(value=payment) #{payment}
+
+                                .mb-3.col-md-3.input-field
+                                    label.form-label(for='modeofdelivery') Mode of Delivery
+                                    select#modeofdelivery.select2.form-select(name="modeofdelivery" required)
+                                        if item.modeofdelivery=="Pickup and Home Delivery"
+                                            option(value="Pickup") Pickup 
+                                            option(value="Home Delivery") Home Delivery
+                                        else 
+                                            option(value=item.modeofdelivery) #{item.modeofdelivery}    
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
+
+
+                                .mb-3.col-md-3.input-field
+                                    label.form-label(for="produceimg") Produce Image
+                                    input#produceimg.form-control(type="text" name="produceimg" value=item.produceimg readonly)
+                                    .invalid-feedback All field are required
+                                    .valid-feedback Looks good!
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='orderdate') Date of Order
+                                input#date.form-control(type='text' name='orderdate' required)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
+                        .mt-2
+                            button.btn.btn-success.me-2(type='submit')
+                                | Add Order
+                            button.btn.btn-outline-danger(type='reset') Cancel
