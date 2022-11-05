@@ -2,7 +2,7 @@ extends uf_layout
 
 block content 
     .container-fluid.mt-3
-        h4 Orders
+        h4.fw-bold Orders
         if orders
             table.table.table-striped.table-hover
                 thead
@@ -21,24 +21,56 @@ block content
 
 
                 tbody
-                    tr 
-                        each order,index in orders
+                    each order,index in orders
+                        tr 
                             td.text-center #{index+1}
                             td 
                                 img(src="/"+order.produceimg width="35") 
                             td.text-center #{order.producename}                 
                             td.text-center #{order.quantity}
-                            td.text-center 2000
+                            td.text-center #{new Intl.NumberFormat().format(order.price*order.quantity)}
                             td.text-center #{order.customer} 
                             td.text-center #{order.payment} 
                             td.text-center #{order.modeofdelivery} 
-                            td.text-center #{order.status} 
+                            if order.status=="complete"
+                                //- td.my-2.bg-success.text-light.badge.rounded-pill.d-flex.justify-content-center.bg-opacity-75 #{order.status}
+                                td 
+                                    span.bg-success.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                            else if order.status=="pending"
+                                //- td.my-2.bg-warning.text-light.badge.rounded-pill.d-flex.justify-content-center.bg-opacity-75 #{order.status} 
+                                td
+                                    span.bg-warning.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                            else 
+                                //- td.my-2.bg-danger.text-light.badge.rounded-pill.d-flex.justify-content-center.bg-opacity-75 #{order.status} 
+                                td 
+                                    span.bg-danger.badge.rounded-pill.d-flex.justify-content-center #{order.status} 
                             td                          
-                                a(href="")
+                                a(href="" data-bs-toggle="modal" data-bs-target="#orderstatus"+order._id)
                                     span.material-icons-outlined.ms-3  edit
 
 
 
 
 
+                        //-* Modal
+                        .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="orderstatus"+order._id)
+                            .modal-dialog.modal-dialog-centered.modal-lg
+                                .modal-content
+                                    .modal-body.d-flex
+                                        .m-0.p-0
+                                            img(src="/"+order.produceimg alt="update img" width="300px")
+                                        .card-body.ms-3.my-auto
+                                            form#formAccountSettings(method='post' action="/uf/orders/"+order._id )
+
+                                                .mb-3.input-field
+                                                    label.form-label(for='status') Update Order Status
+                                                    select#status.select2.form-select(name="status")
+                                                        option(value='pending' selected=order.status==="pending") Pending
+                                                        option(value='complete' selected=order.status==="complete") Complete
+                                                        option(value='cancelled' selected=order.status==="cancelled") Cancelled                                   
+
+                                                .mt-2
+                                                    button.btn.btn-success.me-2(type='submit')
+                                                        | Save changes
+                                                    a.btn.btn-outline-danger(type='reset' href="/uf/orders") Cancel 
 

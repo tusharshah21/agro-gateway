@@ -202,6 +202,7 @@ router.get("/update/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 router.post("/update", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	try {
 		await Produce.findOneAndUpdate({ _id: req.query.id }, req.body);
+		// console.log(req.body);
 		res.redirect("/uf/uploaded");
 	} catch (error) {
 		res.status(400).send("Product not Updated.");
@@ -255,7 +256,7 @@ router.post("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res)
 			await order.save();
 			res.redirect("/uf/add_orders");
 		} catch (error) {
-			res.status(400).send("Product not Saved.");
+			res.status(400).send("Order not Created.");
 			console.log(error);
 		}
 	} else {
@@ -280,6 +281,19 @@ router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 		res.send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
 		);
+	}
+});
+
+// update Order Status
+router.post("/orders/:id", async (req, res) => {
+	try {
+		const id = req.params.id;
+		console.log(req.body, id);
+		const prod = await Order.findOneAndUpdate({ _id: id }, req.body);
+		console.log(prod);
+		res.redirect("/uf/orders");
+	} catch (error) {
+		res.status(400).send("Product not Updated.");
 	}
 });
 

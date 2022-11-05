@@ -42,8 +42,11 @@ block content
 
                         if product.availability==="N/A"
                             td.text-center.text-danger.fw-bold #{product.availability} 
+                        else if product.availability==="booked"
+                            td.text-center.text-warning #{product.availability} 
                         else 
                             td.text-center #{product.availability} 
+
 
                         if product.status==="approved"
                             td.text-success.text-center.fw-bold #{product.status} 
