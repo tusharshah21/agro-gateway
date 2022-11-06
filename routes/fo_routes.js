@@ -23,10 +23,17 @@ const upload = multer({ storage: storage });
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
-	const produces = await Produce.find({ status: "approved" }).sort({ price: -1 });
 
 	if (user.role === "Farmer One") {
 		try {
+			const produces = await Produce.find({ status: "approved" })
+				.sort({ price: -1 })
+				.limit(5);
+
+			const orders = await Order.find().sort({ orderdate: -1 }).limit(10);
+
+			const ufarmers = await User.find({ role: "Urban Farmer" });
+
 			let totalPoultry = await Produce.aggregate([
 				// { $match: { producetype: "poultry" } },
 				{
@@ -103,6 +110,8 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			res.render("fo/fo_dash", {
 				user,
 				produces,
+				orders,
+				ufarmers,
 				totalP: totalPoultry[0],
 				totalH: totalHort[0],
 				totalD: totalDairy[0],

@@ -8,7 +8,7 @@ block content
         //-     option(value="urbanfarmer") Urban Farmer 
         //-     //- option(value="generalpublic") General Public 
         .tables
-            table.table.table-striped
+            table.table.table-striped.table-sm
                 thead
                     tr
                         th(scope='col') #
@@ -17,8 +17,6 @@ block content
                         th(scope='col') Product
                         th(scope="col") Produce Type
                         th(scope='col') Units
-                        th(scope='col') Mode of Delivery
-                        th(scope='col') Payment Method
                         th(scope='col') Owner  
                         th(scope='col') Ward   
                         th(scope='col') Details
@@ -34,9 +32,7 @@ block content
                                     img(src="/"+product.produceimg alt="" srcset="" height="35")
                                 td #{product.producename}
                                 td #{product.producetype}
-                                td #{product.quantity}
-                                td #{product.modeofdelivery}
-                                td #{product.payment} 
+                                td #{product.quantity}                                
                                 td.fst-italic.text-muted #{product.fullname}
                                 td #{product.ward} 
                                 //- if product.status=="approved"

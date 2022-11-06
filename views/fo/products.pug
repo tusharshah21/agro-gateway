@@ -1,50 +1,47 @@
 extends fo_layout.pug 
 
 block content 
-    .container-fluid.mt-3
-        //- select.form-select.mb-3
-        //-     option(value="") Apply filter
-        //-     option(value="farmerone") Farmer One
-        //-     option(value="urbanfarmer") Urban Farmer 
-        //-     //- option(value="generalpublic") General Public 
+    .producttable.mx-3
+        .container-fluid.mt-3
 
-        table.table.table-striped
-            thead
-                tr
-                    th(scope='col') #
-                    //- th(scope="col") 
-                    th(scope='col') Preview
-                    th(scope='col') Product
-                    th(scope="col") Produce Type
-                    th(scope='col') Price
-                    th(scope='col') Mode of Delivery
-                    th(scope='col') Payment Method
-                    th(scope='col') Status
-                    th(scope='col') Owner
-                    th.text-primary(scope='col') Edit
+            table.table.table-striped
+                thead
+                    tr
+                        th(scope='col') #
+                        //- th(scope="col") 
+                        th(scope='col') Preview
+                        th(scope='col') Product
+                        th(scope="col") Produce Type
+                        th(scope='col') Price
+                        th(scope='col') Mode of Delivery
+                        th(scope='col') Payment Method
+                        th(scope='col') Status
+                        th(scope='col') Owner
+                        th.text-primary(scope='col') Edit
 
-            tbody
-                if produce.length>0
-                    each product,index in produce
-                        //- if product.status==="pending"
-                        tr
-                            th(scope='row') #{index+1}
-                            td
-                                img(src="/"+product.produceimg alt="" srcset="" height="35")
-                            td #{product.producename}
-                            td #{product.producetype}
-                            td #{product.price}
-                            td #{product.modeofdelivery}
-                            td #{product.payment} 
-                            if product.status==="approved"
-                                td.text-success #{product.status}
-                            else    
-                                td.text-warning #{product.status}
-                            td.fst-italic.text-muted #{product.fullname}
-                            td                          
-                                a(href="/fo/approve/"+product._id)
-                                    span.material-icons-outlined.ms-3  edit
-                else 
-                    tr 
-                        th(scope="row") 0
-                        td.text-center.text-danger(colspan="100") No Uploaded Produce
+                tbody
+                    if produce.length>0
+                        each product,index in produce
+                            //- if product.status==="pending"
+                            tr
+                                th(scope='row') #{index+1}
+                                td
+                                    img(src="/"+product.produceimg alt="" srcset="" height="35")
+                                td #{product.producename}
+                                td #{product.producetype}
+                                td #{product.price}
+                                td #{product.modeofdelivery}
+                                td #{product.payment} 
+                                if product.status==="approved"
+                                    td.text-success #{product.status}
+                                else    
+                                    td.text-warning #{product.status}
+                                td.fst-italic.text-muted #{product.fullname}
+                                td                          
+                                    a(href="/fo/approve/"+product._id)
+                                        span.material-icons-outlined.ms-3  edit
+                    else 
+                        tr 
+                            th(scope="row") 0
+                            td.text-center.text-danger(colspan="100") No Uploaded Produce
+
