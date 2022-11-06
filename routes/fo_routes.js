@@ -4,6 +4,7 @@ const multer = require("multer");
 const connectEnsureLogin = require("connect-ensure-login");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
+const Order = require("../models/Orders");
 
 // image upload
 const storage = multer.diskStorage({
@@ -223,6 +224,27 @@ router.post("/approve", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 		res.redirect("/fo/products");
 	} catch (error) {
 		res.status(400).send("Product not Updated.");
+	}
+});
+
+// get orders
+router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	req.session.user = req.user;
+	const user = req.session.user;
+	console.log(user);
+	if (user.role === "Farmer One") {
+		try {
+			const orders = await Order.find();
+			const ufarmers = await User.find({ role: "Urban Farmer" });
+			console.log(ufarmers);
+			res.render("fo/orders", { user, orders, ufarmers });
+		} catch (error) {
+			res.status(400).send("Couldn't get orders");
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Farmer One 🤷</h2>`
+		);
 	}
 });
 

@@ -34,20 +34,20 @@ head
 
                 .input-field
                     i.fas.fa-user
-                    input.form-control(type='text' placeholder='Username' name="uniquenumber")
+                    input.form-control(type='text' placeholder='Username' name="uniquenumber" required)
 
                 .input-field
                     i.fas.fa-envelope
-                    input(type='email' placeholder='example@email.com' name="email")
+                    input(type='email' placeholder='example@email.com' name="email" required)
                 .input-field
                     i.fas.fa-lock
-                    input(type='text' placeholder='+256781654258' name="phonenumber")
+                    input(type='text' placeholder='+256781654258' name="phonenumber" required)
                 .input-field
                     i.fas.fa-lock
                     input(type='text' value="Customer" name="role" readonly)
                 .input-field
                     i.fas.fa-lock
-                    input(type='password' placeholder='Password' name="password")
+                    input(type='password' placeholder='Password' name="password" required)
                 button.btn.solid(type='submit') Sign up
                 p.social-text Or Sign up with social platforms
                 .social-media
