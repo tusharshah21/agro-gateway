@@ -39,6 +39,23 @@ block content
                                 h6 Poultry: 
                                     span.fw-bold #{new Intl.NumberFormat().format(totalP.totalCost)}
 
+                .card.mx-3.border-danger
+                    .card-body
+                        h5.card-title My Current Revenue
+                        .d-flex.justify-content-center.mt-3
+                            span.fs-1.material-icons-outlined.mx-3.p-3.text-danger.bg-danger.bg-opacity-10.rounded-circle(style="font-size:3rem") payments
+                            .items 
+                                h4 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
+                                p 12% increase
+                        .mt-4
+                            .text-center
+                                h6 Horticulture: 
+                                    span.fw-bold  #{new Intl.NumberFormat().format(totalH.totalCost)}
+                                h6 Dairy: 
+                                    span.fw-bold #{new Intl.NumberFormat().format(totalD.totalCost)}
+                                h6 Poultry: 
+                                    span.fw-bold #{new Intl.NumberFormat().format(totalP.totalCost)}
+
                 .card.mx-3.border-warning.shadow
                     .card-body
                         h5.card-title Team

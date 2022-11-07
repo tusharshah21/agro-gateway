@@ -52,7 +52,7 @@ block content
                                                     .body.d-flex.rounded
                                                         .img.me-3
                                                             img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
-                                                            .price.fw-bold.mt-5.text-center UGX #{product.price}/-  
+                                                            .price.fw-bold.mt-5.text-center UGX #{new Intl.NumberFormat().format(product.price)}/-  
 
                                                         .details.ms-3
                                                             .title
@@ -80,7 +80,7 @@ block content
                                                             .phone.d-flex
                                                                 p.mx-auto 
                                                                     span.material-icons-outlined phone 
-                                                                    a.text-decoration-none(href="#") +256 #{user.phonenumber}
+                                                                    a.text-decoration-none(href="tel:+256"+user.phonenumber) +256 #{user.phonenumber}
                                                                 p.mx-auto
                                                                     span.material-icons-outlined mail 
                                                                     a.text-decoration-none(href="mailto:"+user.email) #{user.email}

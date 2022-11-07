@@ -10,7 +10,7 @@ block content
                         .d-flex.justify-content-center.mt-3.top
                             span.fs-1.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
                             .items 
-                                h4 #{new Intl.NumberFormat().format(totalD.totalQuantity=totalP.totalQuantity+totalH.totalQuantity)} Units
+                                h4 #{new Intl.NumberFormat().format(totalD.totalQuantity+totalP.totalQuantity+totalH.totalQuantity)} Units
                                 p 12% increase
                         .mt-4
                             .text-center
@@ -27,7 +27,7 @@ block content
                         .d-flex.justify-content-center.mt-3
                             span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
                             .items 
-                                h4 #{new Intl.NumberFormat().format( totalP.totalCost)} UGX
+                                h4 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
                                 p 12% increase
                         .mt-4
                             .text-center
@@ -37,6 +37,22 @@ block content
                                     span.fw-bold.text-success #{new Intl.NumberFormat().format(totalD.totalCost)}
                                 h6 Poultry: 
                                     span.fw-bold.text-success #{new Intl.NumberFormat().format(totalP.totalCost)}
+                .card.mx-3.border-danger
+                    .card-body
+                        h5.card-title Current Ward Revenue
+                        .d-flex.justify-content-center.mt-3
+                            span.fs-1.material-icons-outlined.mx-3.p-3.text-danger.bg-danger.bg-opacity-10.rounded-circle(style="font-size:3rem") payments
+                            .items 
+                                h4 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
+                                p 12% increase
+                        .mt-4
+                            .text-center
+                                h6 Horticulture: 
+                                    span.fw-bold.text-danger  #{new Intl.NumberFormat().format(totalH.totalCost)}
+                                h6 Dairy: 
+                                    span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalD.totalCost)}
+                                h6 Poultry: 
+                                    span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalP.totalCost)}
 
                 .card.mx-3.border-warning
                     .card-body
@@ -55,7 +71,7 @@ block content
                                 h6 Customers: 
                                     span.fw-bold.text-warning #{totalGP}
 
-        .producttable
+        .producttable.mx-5
             .container-fluid.mt-3.p-4
                 h5 Top Selling
                 table.table.table-striped.table-sm
@@ -144,5 +160,68 @@ block content
                                 td.text-center.text-danger(colspan="100") No Uploaded Produce
 
 
-                p.text-center
-                    a.text-decoration-none(href="/ao/products") << View All Products >>
+            p.text-center
+                a.text-decoration-none(href="/ao/products") << View All Products >>
+
+
+        .producttable.mx-5
+            .container-fluid.mt-3
+                h5.pt-3 Recent Orders
+                if orders
+                    table.table.table-striped.table-hover
+                        thead
+                            tr
+                                th.text-center(scope='col') #
+                                //.text-center- th(scope="col") 
+                                th.text-center(scope='col')
+                                th.text-center(scope='col') Product                
+                                th.text-center(scope='col') Units
+                                th.text-center(scope="col") Total
+                                th.text-center(scope='col') Customer
+                                th.text-center(scope='col') Seller
+                                th.text-center(scope='col') Payment Method
+                                th.text-center(scope='col') Delivery
+                                th.text-center(scope='col') Status
+
+
+
+                        tbody
+                            each order,index in orders
+                                tr 
+                                    td.text-center #{index+1}
+                                    td 
+                                        img(src="/"+order.produceimg width="35") 
+                                    td.text-center #{order.producename}                 
+                                    td.text-center #{order.quantity}
+                                    td.text-center #{new Intl.NumberFormat().format(order.price*order.quantity)}
+
+                                    - const email=order.customer.split(" ")
+                                    td.text-center
+                                        |#{email[0]}
+                                        span.material-icons-outlined.text-info.opacity-50( data-bs-toggle='tooltip' data-bs-title=email[1]+" "+email[2]) info
+
+                                    if ufarmers
+                                        each farmer in ufarmers
+                                            if order.seller==farmer._id 
+                                                td.text-center #{farmer.firstname} #{farmer.lastname} 
+
+                                    td.text-center #{order.payment} 
+                                    td.text-center #{order.modeofdelivery} 
+
+                                    if order.status=="complete"                        
+                                        td 
+                                            span.bg-success.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                                    else if order.status=="pending"                                 
+                                        td
+                                            span.bg-warning.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                                    else                                 
+                                        td 
+                                            span.bg-danger.badge.rounded-pill.d-flex.justify-content-center #{order.status} 
+
+                    p.text-center
+                        a.text-decoration-none(href="/fo/orders") << View All Orders >>
+
+
+
+
+
