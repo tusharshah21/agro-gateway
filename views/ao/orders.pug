@@ -1,0 +1,63 @@
+extends ao_layout
+
+block content 
+    .producttable.mx-3
+        .container-fluid.mt-3
+            h5.pt-3 All Orders
+            if orders
+                table.table.table-striped.table-hover
+                    thead
+                        tr
+                            th.text-center(scope='col') #
+                            //.text-center- th(scope="col") 
+                            th.text-center(scope='col')
+                            th.text-center(scope='col') Product                
+                            th.text-center(scope='col') Units
+                            th.text-center(scope="col") Total
+                            th.text-center(scope='col') Customer
+                            th.text-center(scope='col') Seller
+                            th.text-center(scope='col') Payment Method
+                            th.text-center(scope='col') Delivery
+                            th.text-center(scope='col') Status
+
+
+
+                    tbody
+                        each order,index in orders
+                            tr 
+                                td.text-center #{index+1}
+                                td 
+                                    img(src="/"+order.produceimg width="35") 
+                                td.text-center #{order.producename}                 
+                                td.text-center #{order.quantity}
+                                td.text-center #{new Intl.NumberFormat().format(order.price*order.quantity)}
+
+                                - const email=order.customer.split(" ")
+                                td.text-center
+                                    |#{email[0]}
+                                    span.material-icons-outlined.text-info.opacity-50( data-bs-toggle='tooltip' data-bs-title=email[1]+" "+email[2]) info
+
+                                if ufarmers
+                                    each farmer in ufarmers
+                                        if order.seller==farmer._id 
+                                            td.text-center #{farmer.firstname} #{farmer.lastname} 
+
+                                td.text-center #{order.payment} 
+                                td.text-center #{order.modeofdelivery} 
+
+                                if order.status=="complete"                        
+                                    td 
+                                        span.bg-success.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                                else if order.status=="pending"                                 
+                                    td
+                                        span.bg-warning.badge.rounded-pill.d-flex.justify-content-center #{order.status}
+                                else                                 
+                                    td 
+                                        span.bg-danger.badge.rounded-pill.d-flex.justify-content-center #{order.status} 
+
+
+
+
+
+
+

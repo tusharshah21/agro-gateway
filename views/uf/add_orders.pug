@@ -43,13 +43,14 @@ block content
 
 
                             .mb-3.col-md-3.input-field
-                                label.form-label(for='producename') Produce Name
-                                //- input#producename.form-control(type='text' name='producename' value=item.producename readonly)
+                                label.form-label(for='producename') Produce Name                            
                                 select#producename.select2.form-select(name='producename')
                                     option(value=item.producename) #{item.producename}
 
-                                //- .invalid-feedback All field are required
-                                //- .valid-feedback Looks good!
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='producetype') Produce Type                                
+                                select#producetype.select2.form-select(name='producetype')
+                                    option(value=item.productype) #{item.producetype}
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='quantity') Quantity

@@ -4,6 +4,7 @@ const connectEnsureLogin = require("connect-ensure-login");
 const multer = require("multer");
 const User = require("../models/Users");
 const Produce = require("../models/Produce");
+const Order = require("../models/Orders");
 
 // image upload
 const storage = multer.diskStorage({
@@ -29,9 +30,11 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 	try {
 		const user = new User(req.body);
 		if (req.file && req.file.originalname) {
+			// asign avatar field to file path
 			user.avatar = req.file.path;
 		}
 		console.log(req.body);
+		// check if id and email don't already exist
 		let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
 		let emailExists = await User.findOne({ email: req.body.email });
 
@@ -62,6 +65,7 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 //*  * * * * * * * * * * * * * * * * * * Dashboard  * * * * * * * * * * * * * * * * * * * * * * * *
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	// asign user to session
 	const user = req.session.user;
 	const produces = await Produce.find({ status: "approved" }).sort({ price: -1 }).limit(5);
 	if (user.role === "Agriculture Officer") {
@@ -72,6 +76,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			// // Query for returning all tonnage and revenue of a produce
 			// let items = await Produce.find({ prodname: selectedProduce });
 
+			// =====================All poultry================================
 			let totalPoultry = await Produce.aggregate([
 				// { $match: { producetype: "poultry" } },
 				{ $match: { $and: [{ producetype: "poultry" }, { status: "approved" }] } },
@@ -84,6 +89,28 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
+			// Ordered Poultry
+			let totalPoultryOrder = await Order.aggregate([
+				{
+					$match: {
+						$and: [
+							{ status: { $in: ["pending", "complete"] } },
+							{ producetype: "poultry" },
+						],
+					},
+				},
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			console.log("Poultry collections", totalPoultryOrder);
+
+			// =============================All Hort=====================================
 			let totalHort = await Produce.aggregate([
 				// { $match: { producetype: "horticulture" } },
 
@@ -97,6 +124,29 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 					},
 				},
 			]);
+
+			// Ordered Hort
+			let totalHortOrder = await Order.aggregate([
+				{
+					$match: {
+						$and: [
+							{ status: { $in: ["pending", "complete"] } },
+							{ producetype: "horticulture" },
+						],
+					},
+				},
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			console.log("Hort collections", totalHortOrder);
+
+			// ======================================All Dairy=================================
 			let totalDairy = await Produce.aggregate([
 				// { $match: { producetype: "dairy" } },
 				{ $match: { $and: [{ producetype: "dairy" }, { status: "approved" }] } },
@@ -110,24 +160,54 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 					},
 				},
 			]);
+
+			// Ordered Dairy
+			let totalDairyOrder = await Order.aggregate([
+				{
+					$match: {
+						$and: [
+							{ status: { $in: ["pending", "complete"] } },
+							{ producetype: "dairy" },
+						],
+					},
+				},
+				{
+					$group: {
+						_id: "$all",
+						totalQuantity: { $sum: "$quantity" },
+						totalCost: { $sum: { $multiply: ["$price", "$quantity"] } },
+					},
+				},
+			]);
+
+			console.log("Dairy collections", totalDairyOrder);
+
 			let totalGP = await User.find({ role: "Customer" }).count();
 			let totalFO = await User.collection.countDocuments({
 				$and: [{ status: "active" }, { role: "Farmer One" }],
 			});
 			let totalUF = await User.collection.countDocuments({ role: "Urban Farmer" });
 
-			console.log("Poultry collections", totalPoultry);
-			console.log("Hort collections", totalDairy);
-			console.log("Dairy collections", totalHort);
+			let orders = await Order.find();
+			let ufarmers = await User.find({ role: "Urban Farmer" });
+
+			// console.log("Poultry collections", totalPoultryOrder);
+			// console.log("Hort collections", totalDairy);
+			// console.log("Dairy collections", totalHort);
 			res.render("ao/ao_dash.pug", {
-				user: req.session.user,
-				produces: produces,
+				user,
+				produces,
 				totalP: totalPoultry[0],
 				totalH: totalHort[0],
 				totalD: totalDairy[0],
+				totalPO: totalPoultryOrder[0],
+				totalHO: totalHortOrder[0],
+				totalDO: totalDairyOrder[0],
 				totalFO,
 				totalUF,
 				totalGP,
+				orders,
+				ufarmers,
 			});
 		} catch (error) {
 			res.status(400).send("Unable to retrieve items from database");
@@ -254,27 +334,28 @@ router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 	}
 });
 
-router.get("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	const user = req.session.user;
-	if (user.role === "Agriculture Officer") {
-		try {
-			const updateFO = await User.findOne({ _id: req.params.id });
-			res.render("ao/fo_update", { user: req.session.user, farmerone: updateFO });
-		} catch (error) {
-			res.status(400).send("Farmer to update not found.");
-		}
-	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
-	}
-});
+// router.get("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+// 	const user = req.session.user;
+// 	if (user.role === "Agriculture Officer") {
+// 		try {
+// 			const updateFO = await User.findOne({ _id: req.params.id });
+// 			res.render("ao/fo_update", { user: req.session.user, farmerone: updateFO });
+// 		} catch (error) {
+// 			res.status(400).send("Farmer to update not found.");
+// 		}
+// 	} else {
+// 		res.send(
+// 			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
+// 		);
+// 	}
+// });
 
-router.post("/foupdate", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+router.post("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
 		try {
-			await User.findOneAndUpdate({ _id: req.query.id }, req.body);
+			let id = req.params.id;
+			await User.findOneAndUpdate({ _id: id }, req.body);
 			res.redirect("/ao/farmerones");
 		} catch (error) {
 			res.status(400).send("Farmer not Updated.");
@@ -321,5 +402,26 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 // 		);
 // 	}
 // });
+
+// get orders
+router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	req.session.user = req.user;
+	const user = req.session.user;
+	console.log(user);
+	if (user.role === "Agriculture Officer") {
+		try {
+			const orders = await Order.find();
+			const ufarmers = await User.find({ role: "Urban Farmer" });
+			console.log(ufarmers);
+			res.render("ao/orders", { user, orders, ufarmers });
+		} catch (error) {
+			res.status(400).send("Couldn't get orders");
+		}
+	} else {
+		res.send(
+			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Farmer One 🤷</h2>`
+		);
+	}
+});
 
 module.exports = router;

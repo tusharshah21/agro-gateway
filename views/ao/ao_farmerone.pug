@@ -42,7 +42,7 @@ block content
                                 td #{farmerone.ward}                                
                                 td.text-danger #{farmerone.status}
                                 td 
-                                    a(href="/ao/foupdate/"+farmerone._id)
+                                    a(href="" data-bs-toggle="modal" data-bs-target="#fostatus"+farmerone._id)
                                         span.material-icons-outlined.ms-3  edit
 
                         else 
@@ -58,11 +58,44 @@ block content
                                 td #{farmerone.ward}                            
                                 td #{farmerone.status}
                                 td 
-                                    a(href="/ao/foupdate/"+farmerone._id)
+                                    a(href="" data-bs-toggle="modal" data-bs-target="#fostatus"+farmerone._id)
                                         span.material-icons-outlined.ms-3  edit
+
+
+                        //-* Modal
+                        .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="fostatus"+farmerone._id)
+                            .modal-dialog.modal-dialog-centered.modal-lg
+                                .modal-content
+                                    .modal-body.d-flex
+                                        .m-0.p-0
+                                            img(src="/"+farmerone.avatar alt="update img" width="300px")
+                                        .card-body.ms-3.my-auto
+                                            form#formAccountSettings(method='post' action="/ao/foupdate/"+farmerone._id )
+
+                                                .mb-3.input-field
+                                                    label.form-label(for='status') Farmer One Status
+                                                    select#status.select2.form-select(name="status")
+                                                        option(value='active' selected=farmerone.status==="active") Active
+                                                        option(value='retired' selected=farmerone.status==="retired") Retired
+
+                                                .mb-3.input-field
+                                                    label.form-label(for='phonenumber') Phonenumber
+                                                    .input-group.input-group-merge
+                                                        span.input-group-text UG (+256)
+                                                        input#phonenumber.form-control(type='text' name='phonenumber' value=farmerone.phonenumber required)
+
+
+                                                .mt-2
+                                                    button.btn.btn-success.me-2(type='submit')
+                                                        | Save changes
+                                                    button.btn.btn-outline-danger(type='button' data-bs-dismiss="modal") Cancel 
+
+
+
 
                 else 
                     tr 
                         th(scope='row') 0
                         td.text-center(colspan="7") No Farmers Registered
+
 
