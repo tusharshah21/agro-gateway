@@ -310,10 +310,21 @@ block content
                                                         | Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                         | Blanditiis soluta odit totam nam maiores in vel,
                                                         | doloribus nulla ab esse!
+                                                    .d-flex.justify-content-start
+                                                        p.me-2
+                                                            span.badge.bg-secondary.p-2 #{product.payment}
+                                                        p 
+                                                            span.badge.bg-secondary.p-2 #{product.modeofdelivery}
 
-                                                    p.btn.btn-outline-success.btn-sm.me-3 #{product.payment}
-                                                    p.btn.btn-outline-success.btn-sm #{product.modeofdelivery}
-                                                    p.text-capitalize #{product.availability}
+                                                    if product.availability==="booked"
+                                                        p.text-capitalize
+                                                            span.badge.bg-warning.text-dark  #{product.availability}
+                                                    else if product.availability==="N/A"
+                                                        p.text-capitalize
+                                                            span.badge.bg-danger  #{product.availability}
+                                                    else
+                                                        p.text-capitalize
+                                                            span.badge.bg-success  #{product.availability}
                                                 //- .input-group.mb-3
                                                 //-     span#quantity.input-group-text Units
                                                 //-     input.form-control(type='number' value='1' aria-label='quantity' aria-describedby='quantity')

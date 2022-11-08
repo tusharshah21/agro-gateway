@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
 	seller: String,
+	ward: String,
 	customer: String,
 
 	producename: String,

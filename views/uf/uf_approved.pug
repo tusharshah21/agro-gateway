@@ -41,15 +41,15 @@ block content
                             td #{product.payment} 
                             td #{product.quantity} 
                             if product.availability==="available"
-                                td.text-success #{product.availability} 
+                                td.text-success.fw-bold #{product.availability} 
                             else if product.availability==="booked"
-                                td.text-warning #{product.availability}
+                                td.text-warning.fw-bold #{product.availability}
                             else
-                                td.text-info #{product.availability}
+                                td.text-danger.fw-bold #{product.availability}
 
-                            td                          
-                                a(href="/uf/update/"+product._id)
-                                    span.material-icons-outlined.ms-3  edit
+                            //- td                          
+                            //-     a(href="/uf/update/"+product._id)
+                            //-         span.material-icons-outlined.ms-3  edit
                             //- td 
                             //-     form(action="/uf/delete" method="post")
                             //-         input(type="hidden" name="id" value=product.id)

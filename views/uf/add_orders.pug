@@ -11,13 +11,16 @@ block content
                         label.form-label(for='searchproduce') Search Produce
                         .input-group.input-group-merge
                             select#searchproduce.select2.form-select(name="searchproduce")
+                                option(value="" ) Select Produce
                                 each product in produces
-                                    option(value=product._id) #{product.producename}
+                                    if product.availability==="available" 
+                                        option(value=product._id) #{product.producename}
 
                     .mb-3.ms-2.col-md-6.input-field
                         label.form-label(for='searchcustomer') Search Customer
                         .input-group.input-group-merge
                             select#searchcustomer.select2.form-select(name="searchcustomer")
+                                option(value="" ) Select Customer
                                 each customer in customers
                                     option(value=customer._id) #{customer.uniquenumber}, #{customer.email}, #{customer.phonenumber}
                             button.btn.btn-success(type="submit") Search
@@ -33,13 +36,25 @@ block content
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='seller') Seller
                                 select#seller.select2.form-select(name="seller" required)
-                                    option(value=user._id) #{user.firstname} #{user.lastname}                              
+                                    option(value=user._id) #{user.firstname} #{user.lastname}    
+
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for="ward") Seller's Ward
+                                input#ward.form-control(type="text" name="ward" value=user.ward readonly)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!                         
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='customer') Customer                            
                                 select#customer.select2.form-select(name="customer" readonly)                                        
                                     option(value=customer.uniquenumber+" "+customer.email +" "+ customer.phonenumber) #{customer.uniquenumber}, #{customer.email}
 
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for='orderdate') Date of Order
+                                input#date.form-control(type='text' name='orderdate' value=Date() readonly)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
 
                             .mb-3.col-md-3.input-field
@@ -47,18 +62,23 @@ block content
                                 select#producename.select2.form-select(name='producename')
                                     option(value=item.producename) #{item.producename}
 
-                            .mb-3.col-md-3.input-field
-                                label.form-label(for='producetype') Produce Type                                
-                                select#producetype.select2.form-select(name='producetype')
-                                    option(value=item.productype) #{item.producetype}
+                            //- .mb-3.col-md-3.input-field
+                            //-     label.form-label(for='producetype') Produce Type                                
+                            //-     select#producetype.select2.form-select(name='producetype')
+                            //-         option(value=item.productype) #{item.producetype}
+
 
                             .mb-3.col-md-3.input-field
-                                label.form-label(for='quantity') Quantity
-                                .input-group
-                                    input#quantity.form-control(type='number' min="1" max=item.quantity name='quantity' value=1 required)
-                                    span.input-group-text Unit
-                                    .invalid-feedback All field are required (Min=1 Max=#{item.quantity})
-                                    .valid-feedback Looks good!
+                                label.form-label(for="producetype") Produce Type
+                                input#producetype.form-control(type="text" name="producetype" value=item.producetype readonly)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good! 
+
+                            .mb-3.col-md-3.input-field
+                                label.form-label(for="produceimg") Produce Image
+                                input#produceimg.form-control(type="text" name="produceimg" value=item.produceimg readonly)
+                                .invalid-feedback All field are required
+                                .valid-feedback Looks good!
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='price') Unit Price
@@ -87,17 +107,17 @@ block content
                                 .valid-feedback Looks good!
 
 
-                            .mb-3.col-md-3.input-field
-                                label.form-label(for="produceimg") Produce Image
-                                input#produceimg.form-control(type="text" name="produceimg" value=item.produceimg readonly)
-                                .invalid-feedback All field are required
-                                .valid-feedback Looks good!
+
 
                             .mb-3.col-md-3.input-field
-                                label.form-label(for='orderdate') Date of Order
-                                input#date.form-control(type='text' name='orderdate' value=Date() readonly)
-                                .invalid-feedback All field are required
-                                .valid-feedback Looks good!
+                                label.form-label(for='quantity') Quantity
+                                .input-group
+                                    input#quantity.form-control(type='number' min="1" max=item.quantity name='quantity' value=1 required)
+                                    span.input-group-text Unit
+                                    .invalid-feedback All field are required (Min=1 Max=#{item.quantity})
+                                    .valid-feedback Looks good!
+
+
                         .mt-2
                             button.btn.btn-success.me-2(type='submit')
                                 | Add Order
