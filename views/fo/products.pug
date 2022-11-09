@@ -2,7 +2,7 @@ extends fo_layout.pug
 
 block content 
     .producttable.mx-3
-        .container-fluid.mt-3
+        .container-fluid.mt-3.pt-3
 
             table.table.table-striped
                 thead
@@ -37,9 +37,35 @@ block content
                                 else    
                                     td.text-warning #{product.status}
                                 td.fst-italic.text-muted #{product.fullname}
+
                                 td                          
-                                    a(href="/fo/approve/"+product._id)
+                                    a(href="" data-bs-toggle="modal" data-bs-target="#approve"+product._id)
                                         span.material-icons-outlined.ms-3  edit
+
+
+                            //-* Modal
+                            .modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' id="approve"+product._id)
+                                .modal-dialog.modal-dialog-centered.modal-lg
+                                    .modal-content
+                                        .modal-body.d-flex
+                                            .m-0.p-0
+                                                img(src="/"+product.produceimg alt="update img" width="300px")
+                                            .card-body.ms-3.my-auto
+                                                form#formAccountSettings(method='post' action="/fo/approve/"+product._id )
+
+                                                    .mb-3.input-field
+                                                        label.form-label(for='status') Update Order Status
+                                                        select#status.select2.form-select(name="status")
+                                                            option(value='pending' selected=product.status==="pending") Pending
+                                                            option(value='approved' selected=product.status==="approved") Approved
+
+
+                                                    .mt-2
+                                                        button.btn.btn-success.me-2(type='submit')
+                                                            | Save changes
+                                                        a.btn.btn-outline-danger(type='reset' data-bs-dismiss="modal") Cancel 
+
+
                     else 
                         tr 
                             th(scope="row") 0

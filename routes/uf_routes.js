@@ -356,7 +356,7 @@ router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
 		try {
-			const orders = await Order.find({ seller: user._id });
+			const orders = await Order.find({ seller: user._id }).sort({ orderdate: -1 });
 			res.render("uf/orders", { user, orders });
 		} catch (error) {
 			res.status(400).send("Couldn't get orders");
