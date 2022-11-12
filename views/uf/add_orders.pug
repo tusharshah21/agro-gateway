@@ -13,8 +13,9 @@ block content
                             select#searchproduce.select2.form-select(name="searchproduce")
                                 option(value="" ) Select Produce
                                 each product in produces
-                                    if product.availability==="available" 
+                                    if product.availability==="available" && product.status==="approved" 
                                         option(value=product._id) #{product.producename}
+
 
                     .mb-3.ms-2.col-md-6.input-field
                         label.form-label(for='searchcustomer') Search Customer
@@ -33,9 +34,13 @@ block content
                 if user&&customer&&item
                     form#formAccountSettings.needs-validation(method='post' action="/uf/add_orders" novalidate)
                         .row
+                            .col-12
+                                .d-flex.justify-content-center
+                                    img(src="/"+item.produceimg width="200px")
+
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='seller') Seller
-                                select#seller.select2.form-select(name="seller" required)
+                                select#seller.select2.form-select(name="seller" readonly required)
                                     option(value=user._id) #{user.firstname} #{user.lastname}    
 
 
@@ -80,6 +85,7 @@ block content
                                 .invalid-feedback All field are required
                                 .valid-feedback Looks good!
 
+
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='price') Unit Price
                                 .input-group
@@ -122,6 +128,9 @@ block content
                             button.btn.btn-success.me-2(type='submit')
                                 | Add Order
                             button.btn.btn-outline-danger(type='reset') Cancel
+
+                    .mb-3.col-md-3.input-field
+                        img(scr="/"+item.produceimg width="50")
 
 
                 else 

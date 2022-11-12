@@ -22,7 +22,7 @@ function resetFilterBtns() {
 //* * * * * * * * * * * * * * * * * * * *  Timer * * * * * * * * * * * * * * * * * * * *
 
 // Set the date we're counting down to
-const countDownDate = new Date("Nov 11, 2022 18:00:00").getTime();
+const countDownDate = new Date("Nov 22, 2022 18:00:00").getTime();
 
 // Update the count down every 1 second
 const x = setInterval(function () {

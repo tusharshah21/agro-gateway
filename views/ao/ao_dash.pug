@@ -86,7 +86,7 @@ block content
                             th(scope='col') Preview
                             th(scope='col') Product
                             th(scope="col") Produce Type
-                            th(scope='col') Price
+                            th(scope='col') Price Ugx
                             th(scope='col') Mode of Delivery
                             th(scope='col') Payment Method
                             th(scope='col') Owner
@@ -101,7 +101,7 @@ block content
                                         img(src="/"+product.produceimg alt="" srcset="" height="35")
                                     td #{product.producename}
                                     td #{product.producetype}
-                                    td #{product.price}
+                                    td #{new Intl.NumberFormat().format(product.price)}
                                     td #{product.modeofdelivery}
                                     td #{product.payment} 
                                     td.fst-italic.text-muted #{product.fullname}
@@ -180,7 +180,7 @@ block content
                                 th.text-center(scope='col')
                                 th.text-center(scope='col') Product                
                                 th.text-center(scope='col') Units
-                                th.text-center(scope="col") Total
+                                th.text-center(scope="col") Total Ugx
                                 th.text-center(scope='col') Customer
                                 th.text-center(scope='col') Seller
                                 th.text-center(scope='col') Payment Method

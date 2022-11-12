@@ -188,7 +188,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			});
 			let totalUF = await User.collection.countDocuments({ role: "Urban Farmer" });
 
-			let orders = await Order.find();
+			let orders = await Order.find().sort({ orderdate: -1 }).limit(5);
 			let ufarmers = await User.find({ role: "Urban Farmer" });
 
 			// console.log("Poultry collections", totalPoultryOrder);
@@ -213,9 +213,10 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			res.status(400).send("Unable to retrieve items from database");
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
+		// res.send(
+		// 	`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
+		// );
+		res.status(403).render("403");
 	}
 });
 
@@ -229,9 +230,7 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 	if (user.role === "Agriculture Officer") {
 		res.render("ao/members", { user: req.session.user, members: members });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -241,6 +240,8 @@ router.get("/members/farmerones", connectEnsureLogin.ensureLoggedIn(), async (re
 	if (user.role === "Agriculture Officer") {
 		const members = await User.find({ role: "Farmer One" });
 		res.render("ao/members_fo", { user, members: members });
+	} else {
+		res.status(403).render("403");
 	}
 });
 
@@ -250,20 +251,20 @@ router.get("/members/urbanfarmers", connectEnsureLogin.ensureLoggedIn(), async (
 	if (user.role === "Agriculture Officer") {
 		const members = await User.find({ role: "Urban Farmer" });
 		res.render("ao/members_uf", { user, members: members });
+	} else {
+		res.status(403).render("403");
 	}
 });
 
 // GPs
-router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-	const user = req.session.user;
-	if (user.role === "Agriculture Officer") {
-		res.render("ao/general_public_list", { user: req.session.user });
-	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
-	}
-});
+// router.get("/gp", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+// 	const user = req.session.user;
+// 	if (user.role === "Agriculture Officer") {
+// 		res.render("ao/general_public_list", { user: req.session.user });
+// 	} else {
+// 		res.status(403).render("403");
+// 	}
+// });
 
 //  * * * * * * * * * * * * * * * * * * Register Farmer One  * * * * * * * * * * * * * * * * * *
 
@@ -272,9 +273,7 @@ router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	if (user.role === "Agriculture Officer") {
 		res.render("ao/ao_registration", { user: req.session.user });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -317,9 +316,7 @@ router.post(
 				// catch more errors.... registrationn with existing id
 			}
 		} else {
-			res.send(
-				`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-			);
+			res.status(403).render("403");
 		}
 	}
 );
@@ -331,6 +328,8 @@ router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 	if (user.role === "Agriculture Officer") {
 		const farmerOnes = await User.find({ role: "Farmer One" }).sort({ status: 1 });
 		res.render("ao/ao_farmerone", { user, farmerones: farmerOnes });
+	} else {
+		res.status(403).render("403");
 	}
 });
 
@@ -361,9 +360,7 @@ router.post("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, re
 			res.status(400).send("Farmer not Updated.");
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -375,9 +372,7 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	if (user.role === "Agriculture Officer") {
 		res.render("ao/products", { user: req.session.user, produce: produce });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Agriculture Officer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -418,9 +413,7 @@ router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			res.status(400).send("Couldn't get orders");
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Farmer One 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 

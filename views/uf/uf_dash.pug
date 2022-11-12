@@ -58,22 +58,22 @@ block content
                                 h6 Poultry: 
                                     span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalPO.totalCost)}
 
-                .card.mx-3.border-warning
-                    .card-body
-                        h5.card-title.text-warning Team
-                        .d-flex.justify-content-center.mt-3.align-middle
-                            span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
-                            .items.mt-2
-                                h5 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
-                                //- p 12% increase
-                        .mt-4
-                            .text-center
-                                h6 Farmer Ones: 
-                                    span.fw-bold.text-warning #{totalFO}
-                                h6 Urban Farmers: 
-                                    span.fw-bold.text-warning #{totalUF}
-                                h6 Customers: 
-                                    span.fw-bold.text-warning #{totalGP}
+                //- .card.mx-3.border-warning
+                //-     .card-body
+                //-         h5.card-title.text-warning Team
+                //-         .d-flex.justify-content-center.mt-3.align-middle
+                //-             span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
+                //-             .items.mt-2
+                //-                 h5 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
+                //-                 //- p 12% increase
+                //-         .mt-4
+                //-             .text-center
+                //-                 h6 Farmer Ones: 
+                //-                     span.fw-bold.text-warning #{totalFO}
+                //-                 h6 Urban Farmers: 
+                //-                     span.fw-bold.text-warning #{totalUF}
+                //-                 h6 Customers: 
+                //-                     span.fw-bold.text-warning #{totalGP}
 
             .producttable.mx-5
                 .container-fluid.mt-3.py-3
@@ -86,7 +86,7 @@ block content
                                 th(scope='col') Preview
                                 th(scope='col') Product
                                 th(scope="col") Produce Type
-                                th(scope='col') Price
+                                th(scope='col') Price UGX
                                 th(scope='col') Mode of Delivery
                                 th(scope='col') Payment Method
                                 th(scope='col') Owner
@@ -102,7 +102,7 @@ block content
                                             img(src="/"+product.produceimg alt="" srcset="" height="35")
                                         td #{product.producename}
                                         td #{product.producetype}
-                                        td #{product.price}
+                                        td #{product.price} 
                                         td #{product.modeofdelivery}
                                         td #{product.payment} 
                                         td.fst-italic.text-muted #{product.fullname}

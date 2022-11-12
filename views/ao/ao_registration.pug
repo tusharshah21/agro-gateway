@@ -82,7 +82,7 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='role') Role
-                                    input#role.form-control(type='text' name='role' value='Farmer One' )
+                                    input#role.form-control(type='text' name='role' value='Farmer One' readonly )
                                     .valid-feedback Looks good!
 
 
@@ -105,8 +105,8 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='residencetime') Years of Residence
-                                    input#residencetime.form-control(type='number' name='residencetime'  required)
-                                    .invalid-feedback Please provide Residence Type
+                                    input#residencetime.form-control(type='number' name='residencetime' min="10"  required)
+                                    .invalid-feedback Years of residence min=10
                                     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
@@ -130,7 +130,7 @@ block content
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='uniquenumber') Unique Number
                                     .input-group.input-group-merge
-                                        input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' required)
+                                        input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' readonly required)
                                         button#genbtn.btn.btn-success.btn-sm(type="button" onclick="genFoUniqueNum()") generate
                                         .invalid-feedback Please generate Unique Number
                                         .valid-feedback Looks good!
@@ -145,7 +145,7 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='registrationdate') Date of Registration
-                                    input#registrationdate.form-control(type='date' name='registrationdate' required)
+                                    input#registrationdate.form-control(type='text' name='registrationdate' value=Date() readonly required)
                                     .invalid-feedback Please provide Date
                                     .valid-feedback Looks good!
 

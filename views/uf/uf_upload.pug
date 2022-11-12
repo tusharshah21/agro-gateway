@@ -12,25 +12,25 @@ block content
                         .row
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='uploadedby') Uploader ID
-                                select#uploadedby.select2.form-select(name="uploadedby" required)
+                                select#uploadedby.select2.form-select(name="uploadedby" readonly required)
                                     option(value=user._id) #{user._id}                               
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='fullname') Full Name
-                                select#fullname.select2.form-select(name="fullname" required)
+                                select#fullname.select2.form-select(name="fullname" readonly required)
                                     option(value=user.firstname+" "+user.lastname) #{user.firstname} #{user.lastname}
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='email') Email
-                                select#email.select2.form-select(name="email" required)
+                                select#email.select2.form-select(name="email" readonly required)
                                     option(value=user.email) #{user.email}
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='phonenumber') Phone 
-                                select#phonenumber.select2.form-select(name="phonenumber" required)
+                                select#phonenumber.select2.form-select(name="phonenumber" readonly required)
                                     option(value=user.phonenumber) #{user.phonenumber}
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='ward') Ward
-                                select#ward.select2.form-select(name="ward" required)
+                                select#ward.select2.form-select(name="ward" readonly required)
                                     option(value=user.ward) #{user.ward}
 
 
@@ -53,18 +53,18 @@ block content
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='quantity') Quantity
                                 .input-group
-                                    input#quantity.form-control(type='number' name='quantity' placeholder='10' required)
+                                    input#quantity.form-control(type='number' name='quantity' placeholder='10' min="1" required)
                                     span.input-group-text Unit
-                                    .invalid-feedback All field are required
+                                    .invalid-feedback All field are required min=1
                                     .valid-feedback Looks good!
 
                             .mb-3.col-md-4
                                 label.form-label(for='price') Price per Unit
                                 .input-group
                                     span.input-group-text Ugx
-                                    input#price.form-control(type='number' name='price' placeholder='2000' required)
+                                    input#price.form-control(type='number' name='price' placeholder='2000' min="500" required)
                                     span.input-group-text .00
-                                    .invalid-feedback All field are required
+                                    .invalid-feedback All field are required min=500ugx
                                     .valid-feedback Looks good!
 
                             .mb-3.col-md-4.input-field.row
@@ -103,7 +103,7 @@ block content
 
                             .mb-3.col-md-4.input-field
                                 label.form-label(for='uploaddate') Date of Upload
-                                input#uploaddate.form-control(type='date' name='uploaddate' required)
+                                input#uploaddate.form-control(type='text' name='uploaddate' value=Date() readonly required)
                                 .invalid-feedback All field are required
                                 .valid-feedback Looks good!
                         .mt-2

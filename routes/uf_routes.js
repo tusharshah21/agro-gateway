@@ -162,11 +162,11 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 
 			// console.log("Dairy collections", totalDairyOrder);
 
-			let totalGP = await User.find({ role: "Customer" }).count();
-			let totalUF = await User.find({ role: "Urban Farmer" }).count();
-			let totalFO = await User.collection.countDocuments({
-				$and: [{ status: "active" }, { role: "Farmer One" }],
-			});
+			// let totalGP = await User.find({ role: "Customer" }).count();
+			// let totalUF = await User.find({ role: "Urban Farmer" }).count();
+			// let totalFO = await User.collection.countDocuments({
+			// 	$and: [{ status: "active" }, { role: "Farmer One" }],
+			// });
 
 			const produces = await Produce.find({
 				$and: [{ status: "approved" }, { ward: user.ward }],
@@ -188,18 +188,16 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				totalPO: totalPoultryOrder[0],
 				totalDO: totalDairyOrder[0],
 				totalHO: totalHortOrder[0],
-				totalFO: totalFO,
-				totalGP: totalGP,
-				totalUF: totalUF,
+				// totalFO: totalFO,
+				// totalGP: totalGP,
+				// totalUF: totalUF,
 			});
 		} catch (error) {
 			console.log(error);
 			res.status(404).send("Unable to find Produce");
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As an Urban Farmer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -214,9 +212,7 @@ router.get("/uploaded", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 		// }
 		res.render("uf/uf_uploaded", { user: req.session.user, produce: produce });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -228,9 +224,7 @@ router.get("/approved", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 		const produce = await Produce.find({ uploadedby: user }).sort({ $natural: -1 });
 		res.render("uf/uf_approved", { user: req.session.user, produce: produce });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		res.render("403");
 	}
 });
 
@@ -241,9 +235,7 @@ router.get("/upload", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	if (user.role === "Urban Farmer") {
 		res.render("uf/uf_upload", { user: req.session.user }); //req.session.user
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		res.status(403).render("403");
 	}
 });
 
@@ -325,9 +317,10 @@ router.get("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 		// console.log(produces, user);
 		res.render("uf/add_orders", { user, customers, produces, item, customer });
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		// res.send(
+		// 	`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		// );
+		res.status(403).render("403");
 	}
 });
 
@@ -344,9 +337,10 @@ router.post("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res)
 			console.log(error);
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		// res.send(
+		// 	`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		// );
+		res.status(403).render("403");
 	}
 });
 
@@ -362,9 +356,10 @@ router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 			res.status(400).send("Couldn't get orders");
 		}
 	} else {
-		res.send(
-			`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
-		);
+		// res.send(
+		// 	`<h2 style='text-align:center;margin-top:200px;font-size:50px;'>Please Login As Urban Farmer 🤷</h2>`
+		// );
+		res.status(403).render("403");
 	}
 });
 

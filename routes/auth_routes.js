@@ -13,11 +13,11 @@ router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), 
 	req.session.user = req.user;
 	const user = req.session.user;
 	// console.log("User Email: " + user.email, "Unique Id: " + user.uniquenumber);
-	if (user.role === "Agriculture Officer") {
+	if (user.role === "Agriculture Officer" && user.status === "active") {
 		res.redirect("/ao");
-	} else if (user.role === "Farmer One") {
+	} else if (user.role === "Farmer One" && user.status === "active") {
 		res.redirect("/fo");
-	} else if (user.role === "Urban Farmer") {
+	} else if (user.role === "Urban Farmer" && user.status === "active") {
 		res.redirect("/uf");
 	} else {
 		res.redirect("/");
