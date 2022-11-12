@@ -107,3 +107,10 @@
 # # a = 300
 # # b = 300
 # # print(a is b)
+
+# Names pattern pattern="[a-zA-Z]{3,24}"
+# email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+# phone pattern="7\\d\\d\\d\\d\\d\\d\\d\\d"
+# NIN pattern="[a-zA-Z0-9_]{5,}"
+# Address pattern="[A-Za-z0-9'\.\-\s\,]{5,}"
+# password pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"

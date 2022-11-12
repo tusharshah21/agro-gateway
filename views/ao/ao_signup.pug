@@ -34,94 +34,95 @@ head
                             p.text-muted.mb-0
                                 | Allowed JPG, GIF or PNG. Max size of 800K
                     hr.my-3
-                    .card-body
-                        .row
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='firstname') First Name
-                                input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John" required)
-                                .invalid-feedback Please provide First name
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='lastname') Last Name
-                                input#lastname.form-control(type='text' name='lastname' placeholder='Doe' required)
-                                .invalid-feedback Please provide Second name
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='DOB') DOB
-                                input#dob.form-control(type='date' name='dob' required)
-                                .invalid-feedback Please provide Date of Birth
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='email') E-mail
-                                input#email.form-control(type='text' name='email' placeholder='john.doe@example.com' required)
-                                .invalid-feedback Please provide Email
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='phonenumber') Phone Number
-                                .input-group.input-group-merge
-                                    span.input-group-text UG (+256)
-                                    input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333' required)
-                                    .invalid-feedback Please provide Phone Number
+                    fieldset 
+                        .card-body
+                            .row
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='firstname') First Name
+                                    input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John" required)
+                                    .invalid-feedback Please provide First name
                                     .valid-feedback Looks good!
 
-                            .mb-3.col-md-4.input-field.row
-                                label.form-label(for='gender') Gender
-                                .form-check.col.ms-3
-                                    input.form-check-input#male(type='radio' name='gender' value="male" required)
-                                    label.form-check-label(for="male") Male                            
-                                .form-check.col
-                                    input.form-check-input#female(type='radio' name='gender' value="female" required)
-                                    label.form-check-label(for="female") Female
-                                .form-check.col
-                                    input.form-check-input#other(type='radio' name='gender' value="other" required)
-                                    label.form-check-label(for="other") Other
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='nin') National ID
-                                input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20' required)
-                                .invalid-feedback Please provide NIN
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='role') Role
-                                input#organization.form-control(type='text' name='role' value='Agriculture Officer')
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='address') Address
-                                input#address.form-control(type='text' name='address' placeholder='Address' required)
-                                .invalid-feedback Please provide Address
-                                .valid-feedback Looks good!
-
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='uniquenumber') Unique Number
-                                .input-group.input-group-merge
-                                    input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' required)
-                                    button.btn.btn-success.btn-sm(type="button" onclick="genAoUniqueNum()") generate
-                                    .invalid-feedback Please generate Unique Number
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='lastname') Last Name
+                                    input#lastname.form-control(type='text' name='lastname' placeholder='Doe' required)
+                                    .invalid-feedback Please provide Second name
                                     .valid-feedback Looks good!
 
-                            .mb-3.col-md-4.input-field 
-                                label.form-label(for="password") Password
-                                input#password.form-control(type="text" name="password" placeholder="password" required)
-                                .invalid-feedback Please provide Password
-                                .valid-feedback Looks good!
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='DOB') DOB
+                                    input#dob.form-control(type='date' name='dob' required)
+                                    .invalid-feedback Please provide Date of Birth
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='email') E-mail
+                                    input#email.form-control(type='text' name='email' placeholder='john.doe@example.com' required)
+                                    .invalid-feedback Please provide Email
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='phonenumber') Phone Number
+                                    .input-group.input-group-merge
+                                        span.input-group-text UG (+256)
+                                        input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333' required)
+                                        .invalid-feedback Please provide Phone Number
+                                        .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field.row
+                                    label.form-label(for='gender') Gender
+                                    .form-check.col.ms-3
+                                        input.form-check-input#male(type='radio' name='gender' value="male" required)
+                                        label.form-check-label(for="male") Male                            
+                                    .form-check.col
+                                        input.form-check-input#female(type='radio' name='gender' value="female" required)
+                                        label.form-check-label(for="female") Female
+                                    .form-check.col
+                                        input.form-check-input#other(type='radio' name='gender' value="other" required)
+                                        label.form-check-label(for="other") Other
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='nin') National ID
+                                    input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20' required)
+                                    .invalid-feedback Please provide NIN
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='role') Role
+                                    input#organization.form-control(type='text' name='role' value='Agriculture Officer')
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='address') Address
+                                    input#address.form-control(type='text' name='address' placeholder='Address' required)
+                                    .invalid-feedback Please provide Address
+                                    .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='uniquenumber') Unique Number
+                                    .input-group.input-group-merge
+                                        input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' required)
+                                        button.btn.btn-success.btn-sm(type="button" onclick="genAoUniqueNum()") generate
+                                        .invalid-feedback Please generate Unique Number
+                                        .valid-feedback Looks good!
+
+                                .mb-3.col-md-4.input-field 
+                                    label.form-label(for="password") Password
+                                    input#password.form-control(type="text" name="password" placeholder="password" required)
+                                    .invalid-feedback Please provide Password
+                                    .valid-feedback Looks good!
 
 
-                            .mb-3.col-md-4.input-field
-                                label.form-label(for='registrationdate') Date of Registration
-                                input#registrationdate.form-control(type='date' name='registrationdate' required)
-                                .invalid-feedback Please provide Date
-                                .valid-feedback Looks good!
+                                .mb-3.col-md-4.input-field
+                                    label.form-label(for='registrationdate') Date of Registration
+                                    input#registrationdate.form-control(type='date' name='registrationdate' required)
+                                    .invalid-feedback Please provide Date
+                                    .valid-feedback Looks good!
 
-                        .mt-2
-                            button.btn.btn-success.me-2(type='submit')
-                                | Save changes
-                            button.btn.btn-outline-danger(type='reset') Cancel
+                            .mt-2
+                                button.btn.btn-success.me-2(type='submit')
+                                    | Save changes
+                                button.btn.btn-outline-danger(type='reset') Cancel
 
 
 //- // Bootstrap Js

@@ -28,26 +28,27 @@ block content
                             .row
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='firstname') First Name
-                                    input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John" required)
-                                    .invalid-feedback All field are required
+                                    input#firstname.form-control(type='text' name='firstname' value='' autofocus='' placeholder="John" pattern="[a-zA-Z]{3,24}" required)
+                                    .invalid-feedback Must be at least 3 chars and no spaces
                                     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='lastname') Last Name
-                                    input#lastname.form-control(type='text' name='lastname' placeholder='Doe' required)
-                                    .invalid-feedback Please provide First name
+                                    input#lastname.form-control(type='text' name='lastname' placeholder='Doe' pattern="[a-zA-Z]{3,24}" required)
+                                    .invalid-feedback Must be at least 3 chars and no spaces
                                     .valid-feedback Looks good!
+
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='DOB') DOB
-                                    input#dob.form-control(type='date' name='dob')
-                                    .invalid-feedback Please provide Date of Birth
+                                    input#dob.form-control(type='date' name='dob' min="1972-01-01" max="2004-01-01" required)
+                                    .invalid-feedback Please provide Date of Birth min=18 max=50
                                     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='email') E-mail
-                                    input#email.form-control(type='text' name='email' placeholder='john.doe@example.com' required)
-                                    .invalid-feedback Please provide Email
+                                    input#email.form-control(type='email' name='email' placeholder='john.doe@example.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$" required)
+                                    .invalid-feedback Please provide Email eg. example@email.com
                                     .valid-feedback Looks good!
 
 
@@ -55,8 +56,8 @@ block content
                                     label.form-label(for='phonenumber') Phone Number
                                     .input-group.input-group-merge
                                         span.input-group-text UG (+256)
-                                        input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333' required)
-                                        .invalid-feedback Please provide Phone Number
+                                        input#phonenumber.form-control(type='text' name='phonenumber' placeholder='704 222 333' pattern="7\\d\\d\\d\\d\\d\\d\\d\\d" required)
+                                        .invalid-feedback Please provide Phone Number eg: 722333444
                                         .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field.row
@@ -75,8 +76,8 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='nin') National ID
-                                    input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZFP8MD' maxlength='20' required)
-                                    .invalid-feedback Please provide NIN
+                                    input#nin.form-control.text-uppercase(type='text' name='nin' placeholder='CM86DDNCVKZF8' maxlength='13' pattern="[a-zA-Z0-9]{13}" required)
+                                    .invalid-feedback Please provide NIN max=13 chars
                                     .valid-feedback Looks good!
 
 
@@ -88,8 +89,8 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='address') Address
-                                    input#address.form-control(type='text' name='address' placeholder='Address' required)
-                                    .invalid-feedback Please provide Address
+                                    input#address.form-control(type='text' name='address' placeholder='Address' pattern="[a-zA-Z0-9_]{5,}" required)
+                                    .invalid-feedback Please provide Valid Address separated by "_"
                                     .valid-feedback Looks good!
 
                                 .mb-3.col-md-4.input-field
@@ -105,7 +106,7 @@ block content
 
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='residencetime') Years of Residence
-                                    input#residencetime.form-control(type='number' name='residencetime' min="10"  required)
+                                    input#residencetime.form-control(type='number' name='residencetime' min="10" max="50" required)
                                     .invalid-feedback Years of residence min=10
                                     .valid-feedback Looks good!
 
@@ -130,7 +131,7 @@ block content
                                 .mb-3.col-md-4.input-field
                                     label.form-label(for='uniquenumber') Unique Number
                                     .input-group.input-group-merge
-                                        input#uniquenumber.form-control(type='text' name='uniquenumber' placeholder='' readonly required)
+                                        input#uniquenumber.form-control(type='text' name='uniquenumber' required readonly)
                                         button#genbtn.btn.btn-success.btn-sm(type="button" onclick="genFoUniqueNum()") generate
                                         .invalid-feedback Please generate Unique Number
                                         .valid-feedback Looks good!

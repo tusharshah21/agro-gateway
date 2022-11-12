@@ -13,7 +13,7 @@ head
                 h2.title Ufarm Market
                 .input-field
                     i.fas.fa-user
-                    input(type='text' placeholder='Unique ID' name="uniquenumber")
+                    input(type='text' placeholder='Unique ID' name="uniquenumber" )
                 .input-field
                     i.fas.fa-lock
                     input(type='password' placeholder='Password' name="password")
@@ -34,20 +34,20 @@ head
 
                 .input-field
                     i.fas.fa-user
-                    input.form-control(type='text' placeholder='Username' name="uniquenumber" required)
+                    input.form-control(type='text' placeholder='Username' name="uniquenumber" pattern="[a-zA-Z0-9-_]{4,24}" title="Username contains only letters a-z,A-Z,0-9,-,_ and no spaces" required)
 
                 .input-field
                     i.fas.fa-envelope
-                    input(type='email' placeholder='example@email.com' name="email" required)
+                    input(type='email' placeholder='example@email.com' name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$" title="Please give valid email: example@email.com" autocomplete="off" required)
                 .input-field
                     i.fas.fa-lock
-                    input(type='text' placeholder='+256781654258' name="phonenumber" required)
+                    input(type='text' placeholder='712345678' name="phonenumber" pattern="7\\d\\d\\d\\d\\d\\d\\d\\d" title="Remove the starting 0 from mobile number.eg: 712345678" required)
                 .input-field
                     i.fas.fa-lock
                     input(type='text' value="Customer" name="role" readonly)
                 .input-field
                     i.fas.fa-lock
-                    input(type='password' placeholder='Password' name="password" required)
+                    input(type='password' placeholder='Password' name="password" pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required)
                 button.btn.solid(type='submit') Sign up
                 p.social-text Or Sign up with social platforms
                 .social-media
