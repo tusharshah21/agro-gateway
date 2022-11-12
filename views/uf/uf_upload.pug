@@ -46,8 +46,8 @@ block content
 
                             .mb-3.col-md-3.input-field
                                 label.form-label(for='producename') Produce Name
-                                input#producename.form-control(type='text' name='producename' placeholder='Chicken' required)
-                                .invalid-feedback All field are required
+                                input#producename.form-control(type='text' name='producename' pattern="[a-zA-Z_]{3,24}" placeholder='Chicken' required)
+                                .invalid-feedback Produce name separated by "_"
                                 .valid-feedback Looks good!
 
                             .mb-3.col-md-3.input-field
@@ -79,7 +79,7 @@ block content
                             .mb-3.col-md-4.input-field.row
                                 label.form-label(for='payment') Mode of Payment
                                 .form-check.col.ms-3
-                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money")
+                                    input.form-check-input#mobilemoney(type='checkbox' name='payment' value="Mobile Money" required)
                                     label.form-check-label(for="mobilemoney") Mobile Money
                                 .form-check.col
                                     input.form-check-input#cash(type='checkbox' name='payment' value="Cash" )

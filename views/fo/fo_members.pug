@@ -15,6 +15,7 @@ block content
                     th(scope='col') #
                     th
                     th(scope='col') Name
+                    th(scope='col') Age
                     th(scope='col') Unique ID
                     th(scope='col') Email
                     th(scope='col') Phone 
@@ -31,6 +32,11 @@ block content
                             td 
                                 img(src="/"+member.avatar height="35px" style="border-radius: 50%")
                             td #{member.firstname} #{member.lastname}
+                            - var year = new Date(member.dob)
+                            - var year = year.getFullYear()
+                            - var yearNow= new Date()
+                            -var yearNow=yearNow.getFullYear()
+                            td #{yearNow-year}
                             td #{member.uniquenumber}
                             td #{member.email}
                             td +256 #{member.phonenumber}
