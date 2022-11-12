@@ -203,6 +203,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	}
 });
 
+// * * * * * * * * * * * * * * * * * Members * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // members
 router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
@@ -214,6 +215,7 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 	}
 });
 
+// * * * * * * * * * * * * * * * * * Products * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Farmer One" && user.status === "active") {
@@ -224,6 +226,7 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	}
 });
 
+// * * * * * * * * * * * * * * * * * Register UF * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // registration
 router.get("/register", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 	const user = req.session.user;
@@ -275,20 +278,21 @@ router.post(
 	}
 );
 
-// * Approve Produce
-router.get("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-	const user = req.session.user;
-	if (user.role === "Farmer One" && user.status === "active") {
-		try {
-			const updateProduce = await Produce.findOne({ _id: req.params.id });
-			res.render("fo/fo_approve", { user: req.session.user, produce: updateProduce });
-		} catch (error) {
-			res.status(400).send("Product to update not found.");
-		}
-	} else {
-		res.status(403).render("403");
-	}
-});
+// * * * * * * * * * * * * * * * * * Approve Products * * * * * * * * * * * * * * * * * * * * * * * * * *
+// // * Approve Produce
+// router.get("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+// 	const user = req.session.user;
+// 	if (user.role === "Farmer One" && user.status === "active") {
+// 		try {
+// 			const updateProduce = await Produce.findOne({ _id: req.params.id });
+// 			res.render("fo/fo_approve", { user: req.session.user, produce: updateProduce });
+// 		} catch (error) {
+// 			res.status(400).send("Product to update not found.");
+// 		}
+// 	} else {
+// 		res.status(403).render("403");
+// 	}
+// });
 
 router.post("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	try {
@@ -299,6 +303,7 @@ router.post("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res
 	}
 });
 
+// * * * * * * * * * * * * * * * * * Get Orders * * * * * * * * * * * * * * * *	* * * * * * * * * * * * * * * *
 // get orders
 router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	req.session.user = req.user;

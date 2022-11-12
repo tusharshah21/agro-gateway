@@ -56,8 +56,8 @@ router.post("/signup", async (req, res) => {
 	}
 });
 
-router.get("/cart", (req, res) => {
-	res.render("gp/gp_cart");
-});
+// router.get("/cart", (req, res) => {
+// 	res.render("gp/gp_cart");
+// });
 // export
 module.exports = router;
