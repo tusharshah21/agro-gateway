@@ -193,7 +193,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				// totalUF: totalUF,
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			res.status(404).send("Unable to find Produce");
 		}
 	} else {
@@ -244,7 +244,7 @@ router.post(
 	connectEnsureLogin.ensureLoggedIn(),
 	upload.single("produceimg"),
 	async (req, res) => {
-		console.log(req.body);
+		// console.log(req.body);
 		try {
 			const produce = new Produce(req.body);
 			produce.produceimg = req.file.path;
@@ -252,7 +252,7 @@ router.post(
 			res.redirect("/uf/uploaded");
 		} catch (error) {
 			res.status(400).send("Product not Saved.");
-			console.log(error);
+			// console.log(error);
 		}
 	}
 );
@@ -278,7 +278,7 @@ router.post(
 router.post("/update/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	try {
 		await Produce.findOneAndUpdate({ _id: req.params.id }, req.body);
-		console.log(req.body, req.params.id);
+		// console.log(req.body, req.params.id);
 		res.redirect("/uf/uploaded");
 	} catch (error) {
 		res.status(400).send("Product not Updated.");
@@ -291,7 +291,7 @@ router.post("/delete", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 		await Produce.deleteOne({ _id: req.body.id });
 		res.redirect("/uf/uploaded");
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		res.status(400).send(
 			`<h2 style='text-align:center;margin-top:200px;font-size:30px;'>Product not Deleted. 🥹</h2>`
 		);
@@ -327,14 +327,14 @@ router.get("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 router.post("/add_orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	if (user.role === "Urban Farmer") {
-		console.log(req.body);
+		// console.log(req.body);
 		try {
 			const order = new Order(req.body);
 			await order.save();
 			res.redirect("/uf/add_orders");
 		} catch (error) {
 			res.status(400).send("Order not Created.");
-			console.log(error);
+			// console.log(error);
 		}
 	} else {
 		// res.send(
@@ -367,9 +367,9 @@ router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 router.post("/orders/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
-		console.log(req.body, id);
+		// console.log(req.body, id);
 		const prod = await Order.findOneAndUpdate({ _id: id }, req.body);
-		console.log(prod);
+		// console.log(prod);
 		res.redirect("/uf/orders");
 	} catch (error) {
 		res.status(400).send("Product not Updated.");

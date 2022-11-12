@@ -33,13 +33,13 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 			// asign avatar field to file path
 			user.avatar = req.file.path;
 		}
-		console.log(req.body);
+		// console.log(req.body);
 		// check if id and email don't already exist
 		let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
 		let emailExists = await User.findOne({ email: req.body.email });
 
 		if (uniqueExists || emailExists) {
-			console.log("unique:" + uniqueExists, "email: " + emailExists);
+			// console.log("unique:" + uniqueExists, "email: " + emailExists);
 			return res.status(400).send(
 				`<h2 style='text-align:center;margin-top:100px;font-size:100px;'>User already Exists 😭</h2>
 					<p style='text-align:center;margin-top:5px;font-size:40px;'>Try new email or unique Number <span style='font-size:80px'/>🤷</span></p>`
@@ -57,7 +57,7 @@ router.post("/agricosignup", upload.single("avatar"), async (req, res) => {
 		res.status(400).send(
 			"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
 		);
-		console.log(error);
+		// console.log(error);
 		// catch more errors.... registrationn with existing id
 	}
 });
@@ -108,7 +108,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Poultry collections", totalPoultryOrder);
+			// console.log("Poultry collections", totalPoultryOrder);
 
 			// =============================All Hort=====================================
 			let totalHort = await Produce.aggregate([
@@ -144,7 +144,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Hort collections", totalHortOrder);
+			// console.log("Hort collections", totalHortOrder);
 
 			// ======================================All Dairy=================================
 			let totalDairy = await Produce.aggregate([
@@ -180,7 +180,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Dairy collections", totalDairyOrder);
+			// console.log("Dairy collections", totalDairyOrder);
 
 			let totalGP = await User.find({ role: "Customer" }).count();
 			let totalFO = await User.collection.countDocuments({
@@ -226,7 +226,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
 	const members = await User.find({ role: { $in: ["Farmer One", "Urban Farmer"] } });
-	console.log(members);
+	// console.log(members);
 	if (user.role === "Agriculture Officer") {
 		res.render("ao/members", { user: req.session.user, members: members });
 	} else {
@@ -294,7 +294,7 @@ router.post(
 				let emailExists = await User.findOne({ email: req.body.email });
 
 				if (uniqueExists || emailExists) {
-					console.log("unique:" + uniqueExists, "email: " + emailExists);
+					// console.log("unique:" + uniqueExists, "email: " + emailExists);
 					return res.status(400).send(
 						`<h2 style='text-align:center;margin-top:100px;font-size:100px;'>User already Exists 😭</h2>
 					<p style='text-align:center;margin-top:5px;font-size:40px;'>Try new email or unique Number <span style='font-size:80px'/>🤷</span></p>`
@@ -312,7 +312,7 @@ router.post(
 				res.status(400).send(
 					"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
 				);
-				console.log(error);
+				// console.log(error);
 				// catch more errors.... registrationn with existing id
 			}
 		} else {
@@ -402,12 +402,12 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
-	console.log(user);
+	// console.log(user);
 	if (user.role === "Agriculture Officer") {
 		try {
 			const orders = await Order.find();
 			const ufarmers = await User.find({ role: "Urban Farmer" });
-			console.log(ufarmers);
+			// console.log(ufarmers);
 			res.render("ao/orders", { user, orders, ufarmers });
 		} catch (error) {
 			res.status(400).send("Couldn't get orders");

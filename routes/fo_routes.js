@@ -76,7 +76,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Poultry colection ", totalPoultryOrder);
+			// console.log("Poultry colection ", totalPoultryOrder);
 
 			// ======================================HORTICULTURE================================
 			// All Hort
@@ -122,7 +122,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Hort collections", totalHortOrder);
+			// console.log("Hort collections", totalHortOrder);
 
 			// ======================================DAIRY=========================================
 			// All Dairy
@@ -168,7 +168,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				},
 			]);
 
-			console.log("Dairy collections", totalDairyOrder);
+			// console.log("Dairy collections", totalDairyOrder);
 
 			let totalGP = await User.find({ role: "Customer" }).count();
 			let totalUF = await User.collection.countDocuments({
@@ -195,7 +195,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				totalUF: totalUF,
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			res.status(404).send("Unable to find Produce");
 		}
 	} else {
@@ -239,7 +239,7 @@ router.post(
 	connectEnsureLogin.ensureLoggedIn(),
 	upload.single("avatar"),
 	async (req, res) => {
-		console.log(req.body);
+		// console.log(req.body);
 		const user = req.session.user;
 		if (user.role === "Farmer One" && user.status === "active") {
 			try {
@@ -250,7 +250,7 @@ router.post(
 				let uniqueExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
 				let emailExists = await User.findOne({ email: req.body.email });
 
-				console.log("unique Num: " + uniqueExists, "email: " + emailExists);
+				// console.log("unique Num: " + uniqueExists, "email: " + emailExists);
 
 				if (uniqueExists || emailExists) {
 					return res.status(400).render("fo/fo_user_exists");
@@ -266,7 +266,7 @@ router.post(
 				res.status(400).send(
 					"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
 				);
-				console.log(error);
+				// console.log(error);
 				// catch more errors.... registrationn with existing id
 			}
 		} else {
@@ -303,12 +303,12 @@ router.post("/approve/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res
 router.get("/orders", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
-	console.log(user);
+	// console.log(user);
 	if (user.role === "Farmer One" && user.status === "active") {
 		try {
 			const orders = await Order.find();
 			const ufarmers = await User.find({ role: "Urban Farmer" });
-			console.log(ufarmers);
+			// console.log(ufarmers);
 			res.render("fo/orders", { user, orders, ufarmers });
 		} catch (error) {
 			res.status(400).send("Couldn't get orders");

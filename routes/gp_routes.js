@@ -9,7 +9,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
 	const produce = await Produce.find({ status: "approved" });
-	console.log(produce);
+	// console.log(produce);
 	// console.log(req.body);
 	// req.session.user = req.user;
 	// console.log("req.session.user = " + req.session.user);
@@ -25,13 +25,13 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 	try {
 		const user = new User(req.body);
 		let uniquenumberExists = await User.findOne({ uniquenumber: req.body.uniquenumber });
 		let emailExists = await User.findOne({ email: req.body.email });
 
-		console.log("Username: " + uniquenumberExists, "email: " + emailExists);
+		// console.log("Username: " + uniquenumberExists, "email: " + emailExists);
 
 		if (uniquenumberExists || emailExists) {
 			return res
@@ -51,7 +51,7 @@ router.post("/signup", async (req, res) => {
 		res.status(400).send(
 			"<h2 style='text-align:center;margin-top:200px;font-size:100px;'>Something went wrong 🥹🥹🥹!</h1>"
 		);
-		console.log(error);
+		// console.log(error);
 		// catch more errors.... registrationn with existing id
 	}
 });
