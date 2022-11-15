@@ -208,6 +208,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				totalGP,
 				orders,
 				ufarmers,
+				messages: req.flash("login"),
 			});
 		} catch (error) {
 			res.status(400).send("Unable to retrieve items from database");
@@ -228,7 +229,11 @@ router.get("/members", connectEnsureLogin.ensureLoggedIn(), async (req, res) => 
 	const members = await User.find({ role: { $in: ["Farmer One", "Urban Farmer"] } });
 	// console.log(members);
 	if (user.role === "Agriculture Officer") {
-		res.render("ao/members", { user: req.session.user, members: members });
+		res.render("ao/members", {
+			user: req.session.user,
+			members: members,
+			messages: req.flash("register"),
+		});
 	} else {
 		res.status(403).render("403");
 	}
@@ -283,6 +288,7 @@ router.post(
 	upload.single("avatar"),
 	async (req, res) => {
 		const user = req.session.user;
+		req.flash("register", "Farmer One registered Successfully");
 		if (user.role === "Agriculture Officer") {
 			// console.log(req.body);
 			try {
@@ -327,7 +333,11 @@ router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 	const user = req.session.user;
 	if (user.role === "Agriculture Officer") {
 		const farmerOnes = await User.find({ role: "Farmer One" }).sort({ status: 1 });
-		res.render("ao/ao_farmerone", { user, farmerones: farmerOnes });
+		res.render("ao/ao_farmerone", {
+			user,
+			farmerones: farmerOnes,
+			messages: req.flash("update"),
+		});
 	} else {
 		res.status(403).render("403");
 	}
@@ -351,6 +361,7 @@ router.get("/farmerones", connectEnsureLogin.ensureLoggedIn(), async (req, res) 
 
 router.post("/foupdate/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
+	req.flash("update", "Farmer Updated Successfully");
 	if (user.role === "Agriculture Officer") {
 		try {
 			let id = req.params.id;

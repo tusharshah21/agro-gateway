@@ -193,6 +193,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				totalFO: totalFO,
 				totalGP: totalGP,
 				totalUF: totalUF,
+				messages: req.flash("login"),
 			});
 		} catch (error) {
 			// console.log(error);
@@ -220,7 +221,10 @@ router.get("/products", connectEnsureLogin.ensureLoggedIn(), async (req, res) =>
 	const user = req.session.user;
 	if (user.role === "Farmer One" && user.status === "active") {
 		const produce = await Produce.find({ ward: user.ward }).sort({ status: -1 });
-		res.render("fo/products", { user: req.session.user, produce: produce });
+		res.render("fo/products", {
+			user: req.session.user,
+			produce: produce,
+		});
 	} else {
 		res.status(403).render("403");
 	}

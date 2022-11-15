@@ -5,6 +5,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const moment = require("moment");
+const flash = require("connect-flash");
 
 // * Import Schema
 const User = require("./models/Users");
@@ -45,6 +46,7 @@ app.use(
 		saveUninitialized: false,
 	})
 );
+app.use(flash());
 
 // * Passport middleware
 app.use(passport.initialize());

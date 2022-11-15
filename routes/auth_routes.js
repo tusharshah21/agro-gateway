@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
 router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
 	req.session.user = req.user;
 	const user = req.session.user;
+	req.flash("login", "Welcome Back!");
 	// console.log("User Email: " + user.email, "Unique Id: " + user.uniquenumber);
 	if (user.role === "Agriculture Officer" && user.status === "active") {
 		res.redirect("/ao");

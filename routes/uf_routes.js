@@ -24,6 +24,7 @@ const upload = multer({ storage: storage });
 
 router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 	const user = req.session.user;
+
 	if (user.role === "Urban Farmer") {
 		try {
 			// =================================POULTRY =================================================
@@ -191,6 +192,7 @@ router.get("/", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
 				// totalFO: totalFO,
 				// totalGP: totalGP,
 				// totalUF: totalUF,
+				messages: req.flash("login"),
 			});
 		} catch (error) {
 			// console.log(error);

@@ -171,3 +171,7 @@ body {
 	border-radius: 10px;
 	box-shadow: 0px 2px 10px 0px rgb(0, 0, 0, 0.5);
 }
+
+.alert {
+	z-index: 10;
+}

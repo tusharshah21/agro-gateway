@@ -1,6 +1,12 @@
 extends ao_layout.pug
 
 block content 
+    if messages
+        each message in messages
+            .alert.alert-success.alert-dismissible.fade.show.position-fixed.z-index-3.top-0.start-50.translate-middle-x(role="alert") 
+                span #{message} 
+                    strong.ms-2 #{user.firstname} #{user.lastname}
+                button.btn-close(type="button" data-bs-dismiss="alert")
     .container-fluid
         if produces.length>0
             .justify-content-center.d-flex.my-4
