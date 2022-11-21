@@ -8,8 +8,10 @@ block content
                     strong.ms-2 #{user.firstname} #{user.lastname}
                 button.btn-close(type="button" data-bs-dismiss="alert")
     .container-fluid
-        if produces.length>0
-            .justify-content-center.d-flex.my-4
+        .row.align-items-center.justify-content-center.p-4 
+            if produces.length>0
+            .col-lg-3.col-md-6
+                //- .justify-content-center.d-flex.my-4
                 .card.mx-3.border-primary
                     .card-body
                         h5.card-title.text-primary Projected Sales
@@ -26,7 +28,7 @@ block content
                                     span.fw-bold.text-primary #{totalD.totalQuantity}
                                 h6 Poultry:
                                     span.fw-bold.text-primary #{totalP.totalQuantity}
-
+            .col-lg-3.col-md-6
                 .card.mx-3
                     .card-body
                         h5.card-title.text-success Projected Revenue
@@ -43,6 +45,7 @@ block content
                                     span.fw-bold.text-success #{new Intl.NumberFormat().format(totalD.totalCost)}
                                 h6 Poultry: 
                                     span.fw-bold.text-success #{new Intl.NumberFormat().format(totalP.totalCost)}
+            .col-lg-3.col-md-6
                 .card.mx-3.border-danger
                     .card-body
                         h5.card-title.text-danger Current Revenue
@@ -64,6 +67,7 @@ block content
                                 h6 Poultry: 
                                     span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalPO.totalCost)}
 
+            .col-lg-3.col-md-6
                 .card.mx-3.border-warning
                     .card-body
                         h5.card-title.text-warning Team
@@ -81,7 +85,7 @@ block content
                                 h6 Customers: 
                                     span.fw-bold.text-warning #{totalGP}
 
-        .producttable.mx-5
+        .mx-5
             .container-fluid.mt-3.p-4
                 h5 Top Selling
                 table.table.table-striped.table-sm
@@ -174,7 +178,7 @@ block content
             //-     a.text-decoration-none.opacity-50(href="/ao/products") << View All Products >>
 
 
-        .producttable.mx-5
+        .mx-5
             .container-fluid.mt-3
                 h5.pt-3 Recent Orders
                 if orders
