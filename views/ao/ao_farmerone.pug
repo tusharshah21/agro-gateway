@@ -3,9 +3,10 @@ extends ao_layout.pug
 block content 
     if messages
         each message in messages
-            .alert.alert-success.alert-dismissible.fade.show.position-fixed.top-25.start-50.translate-middle-x(role="alert") 
-                span #{message}
-                button.btn-close(type="button" data-bs-dismiss="alert")
+            .alert.alert-success.alert-dismissible.fade.show(role="alert") 
+                .d-flex.justify-content-center
+                    span #{message}
+                    button.btn-close.pe-5(type="button" data-bs-dismiss="alert")
     .container-fluid.mt-3
         //- select.form-select.mb-3
         //-     option(value="") Apply filter

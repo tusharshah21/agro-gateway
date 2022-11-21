@@ -3,87 +3,88 @@ extends ao_layout.pug
 block content 
     if messages
         each message in messages
-            .alert.alert-success.alert-dismissible.fade.show.position-fixed.z-index-3.top-0.start-50.translate-middle-x(role="alert") 
-                span #{message} 
-                    strong.ms-2 #{user.firstname} #{user.lastname}
-                button.btn-close(type="button" data-bs-dismiss="alert")
+            .alert.alert-success.alert-dismissible.fade.show(role="alert") 
+                .d-flex.justify-content-center
+                    span #{message} 
+                        strong.ms-2 #{user.firstname} #{user.lastname}
+                    button.btn-close.pe-5(type="button" data-bs-dismiss="alert")
     .container-fluid
         .row.align-items-center.justify-content-center.p-4 
             if produces.length>0
-            .col-lg-3.col-md-6
-                //- .justify-content-center.d-flex.my-4
-                .card.mx-3.border-primary
-                    .card-body
-                        h5.card-title.text-primary Projected Sales
-                        .d-flex.justify-content-center.mt-3.top
-                            span.fs-1.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
-                            .items.mt-2 
-                                h5 #{new Intl.NumberFormat().format(totalD.totalQuantity+totalP.totalQuantity+totalH.totalQuantity)} Units
-                                //- p 12% increase
-                        .mt-4
-                            .text-center
-                                h6 Horticulture: 
-                                    span.fw-bold.text-primary #{totalH.totalQuantity}
-                                h6 Dairy: 
-                                    span.fw-bold.text-primary #{totalD.totalQuantity}
-                                h6 Poultry:
-                                    span.fw-bold.text-primary #{totalP.totalQuantity}
-            .col-lg-3.col-md-6
-                .card.mx-3
-                    .card-body
-                        h5.card-title.text-success Projected Revenue
-                        .d-flex.justify-content-center.mt-3
-                            span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
-                            .items.mt-2 
-                                h5 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
-                                //- p 12% increase
-                        .mt-4
-                            .text-center
-                                h6 Horticulture: 
-                                    span.fw-bold.text-success  #{new Intl.NumberFormat().format(totalH.totalCost)}
-                                h6 Dairy: 
-                                    span.fw-bold.text-success #{new Intl.NumberFormat().format(totalD.totalCost)}
-                                h6 Poultry: 
-                                    span.fw-bold.text-success #{new Intl.NumberFormat().format(totalP.totalCost)}
-            .col-lg-3.col-md-6
-                .card.mx-3.border-danger
-                    .card-body
-                        h5.card-title.text-danger Current Revenue
-                        .d-flex.justify-content-center.mt-3
-                            span.fs-1.material-icons-outlined.mx-3.p-3.text-danger.bg-danger.bg-opacity-10.rounded-circle(style="font-size:3rem") payments
-                            .items 
-                                h5 #{new Intl.NumberFormat().format( totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)} UGX
-                                - const percentage=(totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)/(totalH.totalCost+totalD.totalCost+totalP.totalCost)
-                                p 
-                                    span.text-success.fw-bold.text-decoration-underline #{percentage.toFixed(2)}% 
-                                        span.material-icons-outlined keyboard_double_arrow_up
+                .col-lg-3.col-md-6
+                    //- .justify-content-center.d-flex.my-4
+                    .card.mx-3.border-primary
+                        .card-body
+                            h5.card-title.text-primary Projected Sales
+                            .d-flex.justify-content-center.mt-3.top
+                                span.fs-1.material-icons-outlined.mx-3.p-3.text-primary.bg-primary.bg-opacity-10.rounded-circle(style="font-size:3rem") shopping_cart
+                                .items.mt-2 
+                                    h5 #{new Intl.NumberFormat().format(totalD.totalQuantity+totalP.totalQuantity+totalH.totalQuantity)} Units
+                                    //- p 12% increase
+                            .mt-4
+                                .text-center
+                                    h6 Horticulture: 
+                                        span.fw-bold.text-primary #{totalH.totalQuantity}
+                                    h6 Dairy: 
+                                        span.fw-bold.text-primary #{totalD.totalQuantity}
+                                    h6 Poultry:
+                                        span.fw-bold.text-primary #{totalP.totalQuantity}
+                .col-lg-3.col-md-6
+                    .card.mx-3
+                        .card-body
+                            h5.card-title.text-success Projected Revenue
+                            .d-flex.justify-content-center.mt-3
+                                span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
+                                .items.mt-2 
+                                    h5 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
+                                    //- p 12% increase
+                            .mt-4
+                                .text-center
+                                    h6 Horticulture: 
+                                        span.fw-bold.text-success  #{new Intl.NumberFormat().format(totalH.totalCost)}
+                                    h6 Dairy: 
+                                        span.fw-bold.text-success #{new Intl.NumberFormat().format(totalD.totalCost)}
+                                    h6 Poultry: 
+                                        span.fw-bold.text-success #{new Intl.NumberFormat().format(totalP.totalCost)}
+                .col-lg-3.col-md-6
+                    .card.mx-3.border-danger
+                        .card-body
+                            h5.card-title.text-danger Current Revenue
+                            .d-flex.justify-content-center.mt-3
+                                span.fs-1.material-icons-outlined.mx-3.p-3.text-danger.bg-danger.bg-opacity-10.rounded-circle(style="font-size:3rem") payments
+                                .items 
+                                    h5 #{new Intl.NumberFormat().format( totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)} UGX
+                                    - const percentage=(totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)/(totalH.totalCost+totalD.totalCost+totalP.totalCost)
+                                    p 
+                                        span.text-success.fw-bold.text-decoration-underline #{percentage.toFixed(2)}% 
+                                            span.material-icons-outlined keyboard_double_arrow_up
 
-                        .mt-4
-                            .text-center
-                                h6 Horticulture: 
-                                    span.fw-bold.text-danger  #{new Intl.NumberFormat().format(totalHO.totalCost)}
-                                h6 Dairy: 
-                                    span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalDO.totalCost)}
-                                h6 Poultry: 
-                                    span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalPO.totalCost)}
+                            .mt-4
+                                .text-center
+                                    h6 Horticulture: 
+                                        span.fw-bold.text-danger  #{new Intl.NumberFormat().format(totalHO.totalCost)}
+                                    h6 Dairy: 
+                                        span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalDO.totalCost)}
+                                    h6 Poultry: 
+                                        span.fw-bold.text-danger #{new Intl.NumberFormat().format(totalPO.totalCost)}
 
-            .col-lg-3.col-md-6
-                .card.mx-3.border-warning
-                    .card-body
-                        h5.card-title.text-warning Team
-                        .d-flex.justify-content-center.mt-3.align-middle
-                            span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
-                            .items.mt-2
-                                h5 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
-                                //- p 12% increase
-                        .mt-4
-                            .text-center
-                                h6 Farmer Ones: 
-                                    span.fw-bold.text-warning #{totalFO}
-                                h6 Urban Farmers: 
-                                    span.fw-bold.text-warning #{totalUF}
-                                h6 Customers: 
-                                    span.fw-bold.text-warning #{totalGP}
+                .col-lg-3.col-md-6
+                    .card.mx-3.border-warning
+                        .card-body
+                            h5.card-title.text-warning Team
+                            .d-flex.justify-content-center.mt-3.align-middle
+                                span.fs-1.material-icons-outlined.mx-3.p-3.text-warning.bg-warning.bg-opacity-10.rounded-circle(style="font-size:3rem") groups
+                                .items.mt-2
+                                    h5 #{new Intl.NumberFormat().format(totalFO + totalUF + totalGP)} Users
+                                    //- p 12% increase
+                            .mt-4
+                                .text-center
+                                    h6 Farmer Ones: 
+                                        span.fw-bold.text-warning #{totalFO}
+                                    h6 Urban Farmers: 
+                                        span.fw-bold.text-warning #{totalUF}
+                                    h6 Customers: 
+                                        span.fw-bold.text-warning #{totalGP}
 
         .mx-5
             .container-fluid.mt-3.p-4
@@ -157,10 +158,10 @@ block content
                                                             .phone.d-flex
                                                                 p.mx-auto 
                                                                     span.material-icons-outlined phone 
-                                                                    a(href="#") +256 #{user.phonenumber}
+                                                                    a(href="#") +256#{product.phonenumber}
                                                                 p.mx-auto
                                                                     span.material-icons-outlined mail 
-                                                                    a.text-decoration-none(href="mailto:"+user.email) #{user.email}
+                                                                    a.text-decoration-none(href="mailto:"+product.email) #{product.email}
 
 
                                                             //- .my-2
