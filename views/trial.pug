@@ -1,0 +1,26 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Dashboard
+    //- // Bootstrap
+    link(rel='stylesheet' href="/bootstrapcss/bootstrap.min.css")
+    //- // Custom CSS
+    //- link(rel='stylesheet' href='/css/ao.css')
+    //- link(rel='stylesheet' href='/css/registration_page.css')
+    //- //- // google material icons cdn -
+    //- link(href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' rel='stylesheet')
+
+form(action="/trial" method="post")
+    .mb-3
+        label.form-label(for='exampleInputEmail1') Email address
+        input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' name="email")
+        #emailHelp.form-text We&apos;ll never share your email with anyone else.
+    .mb-3
+        label.form-label(for='exampleInputPassword1') Password
+        input#exampleInputPassword1.form-control(type='password' name="password")
+    //- .mb-3.form-check
+    //-     input#exampleCheck1.form-check-input(type='checkbox')
+    //-     label.form-check-label(for='exampleCheck1') Check me out
+    button.btn.btn-primary(type='submit') Submit
