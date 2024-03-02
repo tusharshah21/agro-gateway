@@ -16,6 +16,7 @@ const authRoutes = require("./routes/auth_routes");
 const gpRoutes = require("./routes/gp_routes");
 const foRoutes = require("./routes/fo_routes");
 const ufRoutes = require("./routes/uf_routes");
+const shopRoute = require("./routes/shop_routes.js");
 
 //* ====================================== Apps =====================================================
 const app = express();
@@ -71,6 +72,8 @@ app.use("/uf", ufRoutes);
 
 // GP routes
 app.use("/", gpRoutes);
+
+// app.use("/shop", shopRoute);
 
 // 404 routing
 app.get("*", (req, res) => {
