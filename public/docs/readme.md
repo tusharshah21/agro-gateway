@@ -11,7 +11,7 @@ The division is divided into 4 urban wards (LCs), each Urban Ward has an appoint
 FarmerOne (FO) who is the contact person for the Agricultural Officer (AO) for purposes of
 mobilization, supervision, regulation and support. Fresh Horticulture produce, poultry and
 dairy products are the only categories in this program.
-The program is named Ufarm
+The program is named Agro-Indi
 
 ## Program Procedures
 
@@ -39,7 +39,7 @@ inspection
 
 • Can only use the system using the unique ids given by FO during registration
 • Only registered Farmers upload produce and products they have by (name, ward name,
-date, unit price in Ugx, quantity, mode of payment, directions, mode of delivery, produce
+date, unit price in ₹, quantity, mode of payment, directions, mode of delivery, produce
 type)
 • Once the produce is no longer available, it should be marked/Labeled with N/A
 Produce type; organic, none organic.
@@ -65,7 +65,7 @@ All forms should be validated;
 • Username should be alphanumeric and not empty
 • All names should be strings between 5 to 50 characters
 • NiN should be 13 alphanumeric characters
-• Prices are in Ugx
+• Prices are in ₹
 • Younger than 10 years old should not be registered as farmerOne, urban farmers etc
 • No form should be submitted when empty
 • Make sure you use at least one fieldset in your solution

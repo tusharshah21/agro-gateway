@@ -81,4 +81,4 @@ app.get("*", (req, res) => {
 });
 
 //* ============================================= Server ======================================================
-app.listen(PORT, console.log(`UFARM 🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));
+app.listen(PORT, console.log(`Agro-Indi🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));

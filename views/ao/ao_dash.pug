@@ -36,7 +36,7 @@ block content
                             .d-flex.justify-content-center.mt-3
                                 span.fs-1.material-icons-outlined.mx-3.p-3.text-success.bg-success.bg-opacity-10.rounded-circle(style="font-size:3rem") paid
                                 .items.mt-2 
-                                    h5 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} UGX
+                                    h5 #{new Intl.NumberFormat().format( totalH.totalCost+totalD.totalCost+totalP.totalCost)} ₹
                                     //- p 12% increase
                             .mt-4
                                 .text-center
@@ -53,7 +53,7 @@ block content
                             .d-flex.justify-content-center.mt-3
                                 span.fs-1.material-icons-outlined.mx-3.p-3.text-danger.bg-danger.bg-opacity-10.rounded-circle(style="font-size:3rem") payments
                                 .items 
-                                    h5 #{new Intl.NumberFormat().format( totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)} UGX
+                                    h5 #{new Intl.NumberFormat().format( totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)} ₹
                                     - const percentage=(totalHO.totalCost+totalDO.totalCost+totalPO.totalCost)/(totalH.totalCost+totalD.totalCost+totalP.totalCost)
                                     p 
                                         span.text-success.fw-bold.text-decoration-underline #{percentage.toFixed(2)}% 
@@ -97,7 +97,7 @@ block content
                             th(scope='col') Preview
                             th(scope='col') Product
                             th(scope="col") Produce Type
-                            th(scope='col') Price Ugx
+                            th(scope='col') Price ₹
                             th(scope='col') Mode of Delivery
                             th(scope='col') Payment Method
                             th(scope='col') Owner
@@ -130,7 +130,7 @@ block content
                                                     .body.d-flex.rounded
                                                         .img.me-3
                                                             img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
-                                                            .price.fw-bold.mt-4.text-center UGX #{product.price}/-  
+                                                            .price.fw-bold.mt-4.text-center ₹ #{product.price}/-  
 
                                                         .details.ms-3
                                                             .title
@@ -191,7 +191,7 @@ block content
                                 th.text-center(scope='col')
                                 th.text-center(scope='col') Product                
                                 th.text-center(scope='col') Units
-                                th.text-center(scope="col") Total Ugx
+                                th.text-center(scope="col") Total ₹
                                 th.text-center(scope='col') Customer
                                 th.text-center(scope='col') Seller
                                 th.text-center(scope='col') Payment Method

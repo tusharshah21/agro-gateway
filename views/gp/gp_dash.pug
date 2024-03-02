@@ -8,41 +8,53 @@ block content
                 #hero.carousel.slide(data-bs-ride='carousel')
                     .carousel-inner
                         .carousel-item.active
-                            img.d-block.w-100(src='/images/hero-1.png' alt='...')
+                            img.d-block.w-100(src='/images/hero-6.png' alt='...')
                             .content
                                 h1
-                                    | Super market Fruitbox
+                                    | Your first order with us
                                     br
-                                    |  start from
-                                    span  UGX 1000
+                                    |  
+                                    span  and get a discout of 15%
+                                    br
+
                                 p
                                     | Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                     | Corrupti ad natus facilis magni corporis alias.
-                                a(href='#products') Shop Now
+                                p 
+                                    | Book an appointment with us
+                                a(href='#products') At ₹ 7999
                         .carousel-item
-                            img.d-block.w-100(src='/images/hero-2.png' alt='...')
+                            img.d-block.w-100(src='/images/hero-4.png' alt='...')
                             .content
                                 h1
-                                    | You first Order
+                                    | You first Setup for
+                                    br
+                                    span 25% off
+                                    |  
+                                    br
+                                    span -Vertical Farming
+                                p
+                                    | Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                    | Corrupti ad natus facilis magni corporis alias.
+                                p 
+                                    | Book an appointment with us
+                                a(href='#products') At ₹ 7999
+                        .carousel-item
+                            img.d-block.w-100(src='/images/hero-7.png' alt='...')
+                            .content
+                                h1
+                                    | You first Setup for
                                     br
                                     span 20% off
-                                    |  at Juice
-                                p
-                                    | Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    | Corrupti ad natus facilis magni corporis alias.
-                                a(href='#products') Shop Now
-                        .carousel-item
-                            img.d-block.w-100(src='/images/hero-3.png' alt='...')
-                            .content
-                                h1
-                                    | You first Order
+                                    |  
                                     br
-                                    span 20% off
-                                    |  at Vegbox
+                                    span -Hydroponics
                                 p
                                     | Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                     | Corrupti ad natus facilis magni corporis alias.
-                                a(href='#products') Shop Now
+                                p 
+                                    | Book an appointment with us
+                                a(href='#products') At ₹ 7999
                     // Carousel Navigation
                     .arrows
                         button.carousel-control-prev(type='button' data-bs-target='#hero' data-bs-slide='prev')
@@ -62,15 +74,15 @@ block content
                     button.btn.m-2.text-dark.active-filter-btn(type='button' data-filter='*')
                         | All
                     button.btn.m-2.text-dark(type='button' data-filter='.best')
-                        | Best Sellers
+                        | Vertical Farming
                     button.btn.m-2.text-dark(type='button' data-filter='.feat')
-                        | Featured
+                        | Hydroponics
                     button.btn.m-2.text-dark(type='button' data-filter='.new')
-                        | New Arrival
+                        | Aeroponics
                 .collection-list.mt-4.row.gx-0.gy-3
                     .col-md-6.col-lg-4.col-xl-3.p-2.best.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-1.jpg')
+                            img.w-100(src='/images/seed-1.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -79,8 +91,8 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Mangoes
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Strawberry
+                            span.fw-bold ₹ 49
                             //- p
                             //-     a(href="tel:+256781435857")
                             //-         span.material-icons-outlined.text-warning  phone
@@ -89,7 +101,7 @@ block content
 
                     .col-md-6.col-lg-4.col-xl-3.p-2.feat.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-2.jpg')
+                            img.w-100(src='/images/seed-2.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -99,10 +111,10 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                             p.text-capitalize.my-1 Lettuce
-                            span.fw-bold Ugx 2000
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.new.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-3.jpg')
+                            img.w-100(src='/images/seed-3.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -111,11 +123,11 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Kiwi
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Parsley
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.best.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-4.jpg')
+                            img.w-100(src='/images/seed-4.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -124,11 +136,11 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Cucumber
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Mint
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.feat.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-5.jpg')
+                            img.w-100(src='/images/seed-5.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -137,11 +149,11 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Mushrooms
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Brocolli
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.new.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-6.jpg')
+                            img.w-100(src='/images/seed-6.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -150,11 +162,11 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Cantaloupe
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Basil
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.best.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-7.jpg')
+                            img.w-100(src='/images/seed-7.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -163,11 +175,50 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
-                            p.text-capitalize.my-1 Potatoes
-                            span.fw-bold Ugx 2000
+                            p.text-capitalize.my-1 Tomato
+                            span.fw-bold ₹ 49
                     .col-md-6.col-lg-4.col-xl-3.p-2.feat.items
                         .collection-img.position-relative.overflow-hidden
-                            img.w-100(src='/images/product-8.jpg')
+                            img.w-100(src='/images/seed-8.jpg')
+                            span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                        .text-center
+                            .rating.mt-3
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                            p.text-capitalize.my-1 Arugula
+                            span.fw-bold ₹ 49
+                    .col-md-6.col-lg-4.col-xl-3.p-2.feat.items
+                        .collection-img.position-relative.overflow-hidden
+                            img.w-100(src='/images/seed-9.jpg')
+                            span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                        .text-center
+                            .rating.mt-3
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                            p.text-capitalize.my-1 Swiss Chad
+                            span.fw-bold ₹ 49
+                    .col-md-6.col-lg-4.col-xl-3.p-2.new.items
+                        .collection-img.position-relative.overflow-hidden
+                            img.w-100(src='/images/seed-10.jpg')
+                            span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                        .text-center
+                            .rating.mt-3
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                            p.text-capitalize.my-1 Kale
+                            span.fw-bold ₹ 49
+                    .col-md-6.col-lg-4.col-xl-3.p-2.feat.items
+                        .collection-img.position-relative.overflow-hidden
+                            img.w-100(src='/images/seed-11.jpg')
                             span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
                         .text-center
                             .rating.mt-3
@@ -177,7 +228,21 @@ block content
                                 span.material-icons-outlined.text-warning  star 
                                 span.material-icons-outlined.text-warning  star 
                             p.text-capitalize.my-1 Spinach
-                            span.fw-bold Ugx 2000
+                            span.fw-bold ₹ 49
+                    .col-md-6.col-lg-4.col-xl-3.p-2.best.items
+                        .collection-img.position-relative.overflow-hidden
+                            img.w-100(src='/images/seed-13.jpg')
+                            span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                        .text-center
+                            .rating.mt-3
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                                span.material-icons-outlined.text-warning  star 
+                            p.text-capitalize.my-1 Thyme
+                            span.fw-bold ₹ 49
+                            
     // end of collection
     // Banner
     section#offers.py-5.mt-5
@@ -194,75 +259,69 @@ block content
         .title.text-center
             h2.position-relative.d-inline-block Featured Products
             p.mt-4 Select from the premium product brands and save plenty money
-        #featured.carousel.slide.py-3(data-bs-ride='carousel')
-            .carousel-inner
-                .carousel-item.active
-                    .row.d-flex
-                        if produce.length>0
-                            //- - produce.sort((a,b)=>0.5-Math.random())
-                            each product in produce
-                                if product.producetype=="poultry"
-                                    .col-2.featured-img.mx-auto
-                                        img.d-block.w-100(src='/'+product.produceimg alt='...')
-                                        .addCart
-                                            a.text-dark(href="mailto:"+product.email) 
-                                                span.material-icons-outlined  mail 
-                                        ul.side-icons
-                                            span.material-icons-outlined  search 
-                                            span.material-icons-outlined  favorite_border 
-                                            span.material-icons-outlined  phone 
-
-
-                .carousel-item
-                    .row.d-flex
-                        if produce.length>0
-                            //- - produce.sort((a,b)=>0.5-Math.random())
-                            each product in produce
-                                if product.producetype=="horticulture"
-                                    .col-2.featured-img.mx-auto
-                                        img.d-block.w-100(src='/'+product.produceimg alt='...')
-                                        .addCart
-                                            a.text-dark(href="mailto:"+product.email) 
-                                                span.material-icons-outlined  mail 
-                                        ul.side-icons
-                                            span.material-icons-outlined  search 
-                                            span.material-icons-outlined  favorite_border 
-                                            span.material-icons-outlined  phone 
-
-
-                .carousel-item
-                    .row.d-flex
-                        if produce.length>0
-                            //- - produce.sort((a,b)=>0.5-Math.random())
-                            each product in produce
-                                if product.producetype=="dairy"
-                                    .col-2.featured-img.mx-auto
-                                        img.d-block.w-100(src='/'+product.produceimg alt='...')
-                                        .addCart
-                                            a.text-dark(href="mailto:"+product.email) 
-                                                span.material-icons-outlined  mail 
-                                        ul.side-icons
-                                            span.material-icons-outlined  search 
-                                            span.material-icons-outlined  favorite_border 
-                                            span.material-icons-outlined  phone  
-
-
-            button.carousel-control-prev(type='button' data-bs-target='#featured' data-bs-slide='prev')
-                span.material-icons-outlined  chevron_left 
-                span.visually-hidden Previous
-            button.carousel-control-next(type='button' data-bs-target='#featured' data-bs-slide='next')
-                span.material-icons-outlined  chevron_right 
-                span.visually-hidden Next
-    //- // End of featured slider
-
+    .mx-5
+        .row.gx-0.gy-3
+            .col-md-6.col-lg-4.col-xl-3.p-2.best.items
+                            .collection-img.position-relative.overflow-hidden
+                                img.w-100(src='/images/seed-14.jpg')
+                                span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                            .text-center
+                                .rating.mt-3
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                p.text-capitalize.my-1 Pepper
+                                span.fw-bold ₹ 149   
+            .col-md-6.col-lg-4.col-xl-3.p-2.best.items
+                            .collection-img.position-relative.overflow-hidden
+                                img.w-100(src='/images/seed-15.jpg')
+                                span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                            .text-center
+                                .rating.mt-3
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                p.text-capitalize.my-1 Cucumber
+                                span.fw-bold ₹ 149
+            .col-md-6.col-lg-4.col-xl-3.p-2.best.items
+                            .collection-img.position-relative.overflow-hidden
+                                img.w-100(src='/images/seed-16.jpg')
+                                span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                            .text-center
+                                .rating.mt-3
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                p.text-capitalize.my-1 Lettuce
+                                span.fw-bold ₹ 149
+            .col-md-6.col-lg-4.col-xl-3.p-2.best.items
+                            .collection-img.position-relative.overflow-hidden
+                                img.w-100(src='/images/seed-12.jpg')
+                                span.position-absolute.bg-success.text-white.d-flex.align-items-center.justify-content-center sale
+                            .text-center
+                                .rating.mt-3
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                    span.material-icons-outlined.text-warning  star 
+                                p.text-capitalize.my-1 Cilantro,
+                                span.fw-bold ₹ 149
 
     // Products
-    section#products.py-5.container-fluid
+    section#products.pt-5.container-fluid
         .title.text-center
             h2.position-relative.d-inline-block New Products
             p.mt-4 Select from the premium product brands and save plenty money. 
                 span.text-success.fw-bold Refresh to see more
-        .row.mt-4
+
+        .row
             if produce.length>0
                 - produce.sort((a,b)=>0.5-Math.random())
                 each product in produce.slice(0,12)
@@ -280,7 +339,7 @@ block content
                         .bottom
                             a(href="" data-bs-toggle="modal" data-bs-target="#productpage"+product._id ) #{product.producename}
                             .price
-                                span Ugx #{new Intl.NumberFormat().format(product.price)}
+                                span ₹ #{new Intl.NumberFormat().format(product.price)}
 
 
                     //-* Modal
@@ -292,7 +351,7 @@ block content
                                         .body.d-flex.rounded
                                             .img.me-3
                                                 img.rounded(src='/'+product.produceimg alt='' srcset='' width='300px' height='300px')
-                                                .price.fw-bold.mt-4.text-center UGX #{new Intl.NumberFormat().format(product.price)}/-  
+                                                .price.fw-bold.mt-4.text-center ₹ #{new Intl.NumberFormat().format(product.price)}/-  
 
                                             .details.ms-3
                                                 .title
@@ -342,7 +401,7 @@ block content
                                                             //-         | Add to Cart
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-1.jpg' alt='')
+                                                            //-         img(src='/images/seed-1.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -356,7 +415,7 @@ block content
                                                             //-             span.cancel $160
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-2.jpg' alt='')
+                                                            //-         img(src='/images/seed-2.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -369,7 +428,7 @@ block content
                                                             //-             span $150
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-4.jpg' alt='')
+                                                            //-         img(src='/images/seed-4.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -383,7 +442,7 @@ block content
                                                             //-             span.cancel $160
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-5.jpg' alt='')
+                                                            //-         img(src='/images/seed-5.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -396,7 +455,7 @@ block content
                                                             //-             span $150
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-6.jpg' alt='')
+                                                            //-         img(src='/images/seed-6.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -409,7 +468,7 @@ block content
                                                             //-             span $150
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-7.jpg' alt='')
+                                                            //-         img(src='/images/seed-7.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -423,7 +482,7 @@ block content
                                                             //-             span.cancel $160
                                                             //- .product.col-3
                                                             //-     .img-container
-                                                            //-         img(src='/images/product-8.jpg' alt='')
+                                                            //-         img(src='/images/seed-8.jpg' alt='')
                                                             //-         .addCart
                                                             //-             span.material-icons-outlined  shopping_cart 
                                                             //-         ul.side-icons
@@ -469,14 +528,14 @@ block content
                         | voluptatibus corporis recusandae accusantium velit, nemo, nobis, nulla
                         | ullam pariatur totam quos.
                 .col-lg-6.order-lg-0
-                    img.img-fluid(src='/images/basket.png' alt='')
+                    img.img-fluid(src='/images/basket(2).png' alt='')
     // end of about us
     // Count down
     section.count-down.py-5
         .container.title.text-center
             h2.position-relative.d-inline-block Count down to sale
         .counter.mt-4
-            p#timer
+            p#timer 16:00:00
     // end of count down
     // newsletter
     section#newsletter.py-5
