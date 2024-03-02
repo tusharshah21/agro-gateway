@@ -257,6 +257,12 @@ nav a .material-icons-outlined:hover {
 	color: white;
 }
 
+.logo{
+	width: 25%;
+	margin-left: 20px;
+	/* height: 100px; */
+}
+
 /* Featured Prods */
 .featured {
 	position: relative;
