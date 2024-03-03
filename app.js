@@ -11,12 +11,8 @@ const flash = require("connect-flash");
 const User = require("./models/Users");
 
 //* Import Routes
-const aoRoutes = require("./routes/ao_routes");
 const authRoutes = require("./routes/auth_routes");
 const gpRoutes = require("./routes/gp_routes");
-const foRoutes = require("./routes/fo_routes");
-const ufRoutes = require("./routes/uf_routes");
-const shopRoute = require("./routes/shop_routes.js");
 
 //* ====================================== Apps =====================================================
 const app = express();
@@ -61,19 +57,10 @@ passport.deserializeUser(User.deserializeUser());
 // login
 app.use("/login", authRoutes);
 
-// AO routes
-app.use("/ao", aoRoutes);
-
-// FO routes
-app.use("/fo", foRoutes);
-
-// UF routes
-app.use("/uf", ufRoutes);
-
 // GP routes
-app.use("/", gpRoutes);
+app.use("/gp", gpRoutes);
 
-// app.use("/shop", shopRoute);
+
 
 // 404 routing
 app.get("*", (req, res) => {
@@ -82,6 +69,15 @@ app.get("*", (req, res) => {
 	// );
 	res.render("404.pug");
 });
+
+
+
+// Define route for serving the index file
+app.get('/', (req, res) => {
+  res.render('index')
+});
+
+
 
 //* ============================================= Server ======================================================
 app.listen(PORT, console.log(`Agro-Indi 🧑‍🌾🧺 available on port ${PORT}!! 😊😊`));

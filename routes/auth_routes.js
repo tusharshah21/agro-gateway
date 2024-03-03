@@ -21,7 +21,7 @@ router.post("/", passport.authenticate("local", { failureRedirect: "/login" }), 
 	} else if (user.role === "Urban Farmer" && user.status === "active") {
 		res.redirect("/uf");
 	} else {
-		res.redirect("/");
+		res.redirect("/gp");
 	}
 });
 
